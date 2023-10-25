@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:34:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 09:59:48 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:03:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -38,7 +38,7 @@ char	*ft_strrchr(const char *s, int c)
 	else
 		return (NULL);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -49,4 +49,4 @@ int	main(void)
 	c = 'i';
 	ptr = ft_strrchr(string, c);
 	printf("The character '%c' is found at: %p which is %c", c, ptr, *ptr); 
-}
+}*/
