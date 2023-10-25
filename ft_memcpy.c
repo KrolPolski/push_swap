@@ -6,17 +6,17 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:26:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 14:23:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:48:45 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*restrict			destination;
-	const char	*restrict		source;
-	size_t						i;	
+	char		*destination;
+	const char	*source;
+	size_t		i;	
 
 	i = 0;
 	destination = dst;

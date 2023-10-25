@@ -6,28 +6,13 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:38:54 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 15:31:21 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:51:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-size_t static	ft_strlen(const char *s)
-{
-	int		i;
-	size_t	length;
-
-	i = 0;
-	length = 0;
-	while (s[i] != '\0')
-	{
-		length++;
-		i++;
-	}
-	return (length);
-}
-
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -47,9 +32,9 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 
 int	main(void)
 {
-	char *restrict	src;
+	char *src;
 	char source[] = "Duckhunter";
-	char *restrict	dst;
+	char *dst;
 	char destination[] = "Fisherman";
 	size_t	dstsize;
 	size_t	result;

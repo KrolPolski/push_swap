@@ -6,28 +6,13 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:35:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 18:30:12 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:49:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-size_t static	ft_strlen(const char *s)
-{
-	int		i;
-	size_t	length;
-
-	i = 0;
-	length = 0;
-	while (s[i] != '\0')
-	{
-		length++;
-		i++;
-	}
-	return (length);
-}
-
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	srclength;
 	size_t	dstlength;
