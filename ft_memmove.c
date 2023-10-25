@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:26:37 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 14:37:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:55:33 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

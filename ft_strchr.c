@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:34:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 09:57:42 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:56:09 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

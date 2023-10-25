@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 12:13:18 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:55:51 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

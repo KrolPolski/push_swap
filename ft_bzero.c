@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:16:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/24 12:22:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:53:37 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

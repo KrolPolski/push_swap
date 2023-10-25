@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:21:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 10:35:37 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:54:54 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:38:54 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 15:51:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:57:04 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

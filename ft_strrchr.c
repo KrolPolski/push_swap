@@ -6,26 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:05:44 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 10:05:46 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:58:36 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t static	ft_strlen(const char *s)
-{
-	int		i;
-	size_t	length;
-
-	i = 0;
-	length = 0;
-	while (s[i] != '\0')
-	{
-		length++;
-		i++;
-	}
-	return (length);
-}
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
