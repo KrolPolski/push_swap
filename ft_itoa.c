@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/27 12:40:12 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:45:29 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -30,13 +30,26 @@ int	static	ft_power(int a, int exp)
 	return (result);
 }
 
+char static	*ft_conversion(int k, int i, char *str, int n)
+{
+	while (k > 0)
+	{
+		str[i] = (n / ft_power(10, k)) + 48;
+		n = n - ((str[i] - 48) * ft_power(10, k));
+		i++;
+		k--;
+	}
+	str[i++] = (n % 10) + 48;
+	str[i] = '\0';
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	int		i;
 	int		k;
 	int		digits;
 	char	*str;
-	int		denominator;
 
 	i = 0;
 	str = malloc(12);
@@ -55,18 +68,9 @@ char	*ft_itoa(int n)
 		k = k / 10;
 	}
 	k = digits - 1;
-	while (k > 0)
-	{
-		str[i] = (n / ft_power(10, k)) + 48;
-		n = n - ((str[i] - 48) * ft_power(10, k));
-		i++;
-		k--;
-	}
-	str[i++] = (n % 10) + 48;
-	str[i] = '\0';
-	return (str);
+	return (ft_conversion(k, i, str, n));
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -78,4 +82,4 @@ int	main(void)
 	str = ft_itoa(n);
 	printf("'%d' represented as a string is '%s'", n, str);
 	free(str);
-}
+}*/
