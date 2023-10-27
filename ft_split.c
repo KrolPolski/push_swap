@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/27 10:51:52 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:16:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char	**ft_split(char const *s, char c)
 		{
 			str_array[j][k] = '\0';
 			k = 0;
-			j++;
-			str_array[j] = malloc(ft_strlen(s) + 1);
+			str_array[++j] = malloc(ft_strlen(s) + 1);
 		}
 		i++;
 	}
