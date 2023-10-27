@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:39:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 15:50:32 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/27 12:31:14 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ char	*ft_strrchr(const char *s, int c);
 char	ft_tolower(char c);
 char	ft_toupper(char c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strdup(const char *s1);
 #endif
