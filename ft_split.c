@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/27 10:44:29 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:51:52 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	**ft_split(char const *s, char c)
 		}
 		i++;
 	}
+	j++;
+	str_array[j] = NULL;
 	return (str_array);
 }
 /*
