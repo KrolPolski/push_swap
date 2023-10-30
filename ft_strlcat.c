@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:35:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 14:55:23 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:18:45 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,18 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	srclength = ft_strlen(src);
 	dstlength = ft_strlen(dst);
 	max = dstsize - dstlength;
-	if (dstsize < dstlength)
-		return (dstlength);
+	if (dstsize <= dstlength || max < 0)
+		return (dstsize + srclength);
 	i = 0;
 	j = 0;
 	while (dst[j] != '\0')
-	{
 		j++;
-	}
-	while (src[i] != '\0' && i < max)
+	while (src[i] != '\0' && i < max - 1)
 	{
 		dst[j] = src[i];
 		i++;
 		j++;
 	}
 	dst[j] = '\0';
-	return (srclength + dstsize);
+	return (srclength + dstlength);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	char source[] = "erman";
-	char dest[13] = "Fish";
-	size_t result;
-	printf("The source was '%s' and the destination was '%s'\n", source, dest);
-	result = ft_strlcat(dest, source, 13);
-	printf("The destination is now '%s' and the return is '%zu'\n", dest, result);
-}*/
