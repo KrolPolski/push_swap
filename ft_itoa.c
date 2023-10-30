@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 15:41:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:47:26 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -44,6 +44,17 @@ char static	*ft_conversion(int k, int i, char *str, int n)
 	return (str);
 }
 
+char static	*ft_handle_malloc(int digits, int n)
+{
+	char	*str;
+
+	if (n < 0)
+		str = malloc(digits + 2);
+	else
+		str = malloc(digits + 1);
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	int		i;
@@ -60,10 +71,7 @@ char	*ft_itoa(int n)
 		k = k / 10;
 	}
 	k = digits - 1;
-	if (n < 0)
-		str = malloc(digits + 2);
-	else
-		str = malloc(digits + 1);
+	str = ft_handle_malloc(digits, n);
 	if (str == NULL)
 		return (NULL);
 	if (n == -2147483648)
