@@ -6,19 +6,19 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 14:23:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 10:00:43 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:58:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char static	ft_test_cipher(unsigned int x, char c)
+/*char static	ft_test_cipher(unsigned int x, char c)
 {
 	if (x % 2 == 0)
 		return (c - 1);
 	else
 		return (c + 1);
-}
+}*/
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
