@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:26:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 12:11:27 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:20:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	destination = dst;
 	source = src;
-
-	if (source == NULL)
+	if (src == NULL && dst == NULL)
 		return (NULL);
 	while (i < n)
 	{
