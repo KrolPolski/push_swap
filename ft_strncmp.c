@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:11:01 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 15:57:43 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:13:55 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const unsigned char *s1, const unsigned char *s2, size_t n)
 {
 	unsigned int	i;
 
