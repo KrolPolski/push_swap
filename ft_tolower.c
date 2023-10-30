@@ -6,11 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:48:24 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/23 18:48:54 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:01:45 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ft_tolower(char c)
+unsigned char	ft_tolower(unsigned char c)
 {
 	if (c >= 65 && c <= 90)
 		return (c + 32);

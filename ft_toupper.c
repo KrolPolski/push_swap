@@ -6,11 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:47:20 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/23 18:48:02 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:01:12 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ft_toupper(char c)
+unsigned char	ft_toupper(unsigned char c)
 {
 	if (c >= 97 && c <= 122)
 		return (c - 32);
