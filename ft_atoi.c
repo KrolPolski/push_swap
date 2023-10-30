@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:01:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 11:56:41 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:55:18 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 int	static	ft_str_to_int(char *str, int accumulator)
@@ -35,12 +35,14 @@ char static	*trim_whitespace(char *str)
 		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
 			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 			i++;
-		if (str[i] == '+')
+		else if (str[i] == '+')
 		{
 			i++;
 			return (str + i);
 		}
-		if (str[i] == '-')
+		else if (str[i] == '-')
+			return (str + i);
+		else
 			return (str + i);
 	}
 	return (str + i);
