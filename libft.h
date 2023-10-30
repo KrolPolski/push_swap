@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:39:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/27 12:31:14 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:30:57 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <unistd.h>
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
