@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:01:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 16:33:55 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:13:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_str_to_int(char *str, int accumulator)
+int	static	ft_str_to_int(char *str, int accumulator)
 {
 	int	i;
 
