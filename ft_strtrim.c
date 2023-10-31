@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:01:00 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 10:55:30 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:33:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	static	ft_trimfront(unsigned char const *s1, unsigned char const *set, unsigned char *temp_string)
+static int	ft_trimfront(unsigned char const *s1, unsigned char const *set, unsigned char *temp_string)
 
 {
 	int	i;

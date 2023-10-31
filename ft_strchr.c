@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:34:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 15:56:09 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:32:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+unsigned char	*ft_strchr(const unsigned char *s, int c)
 {
 	int	i;
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != c && s[i] != '\0')
 		i++;
 	if (s[i] == c)
-		return ((char *)&s[i]);
+		return ((unsigned char *)&s[i]);
 	else
 		return (NULL);
 }

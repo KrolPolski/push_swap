@@ -6,10 +6,10 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:01:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 15:55:18 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:10:13 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	static	ft_str_to_int(char *str, int accumulator)
+static int	ft_str_to_int(char *str, int accumulator)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	static	ft_str_to_int(char *str, int accumulator)
 		return (ft_str_to_int(str + 1, accumulator * 10 + (*str - '0')));
 }
 
-char static	*trim_whitespace(char *str)
+static char *trim_whitespace(char *str)
 {
 	int	i;
 

@@ -6,14 +6,14 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:53:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 10:56:28 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:21:13 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(unsigned char *s, int fd)
 {
-	int		length;
+	int	length;
 	char	new_line;
 
 	new_line = '\n';
