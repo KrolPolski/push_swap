@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:43:41 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/25 15:57:24 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:49:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const unsigned char *s)
 {
 	int		i;
 	size_t	length;

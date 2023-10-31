@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 14:23:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 11:58:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:50:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 		return (c + 1);
 }*/
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(unsigned char const *s, char (*f)(unsigned int, char))
 {
 	char	*tmp_str;
 	int		i;

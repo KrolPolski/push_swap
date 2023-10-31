@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:01:00 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/26 15:38:04 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:55:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	static	ft_trimfront(char const *s1, char const *set, char *temp_string)
+int	static	ft_trimfront(unsigned char const *s1, unsigned char const *set, unsigned char *temp_string)
 
 {
 	int	i;
@@ -31,13 +31,13 @@ int	static	ft_trimfront(char const *s1, char const *set, char *temp_string)
 	return (j);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+unsigned char	*ft_strtrim(unsigned char const *s1, unsigned char const *set)
 {
 	int		i;
 	int		j;
 	int		k;
-	char	*temp_string;
-	char	*clean_string;
+	unsigned char	*temp_string;
+	unsigned char	*clean_string;
 
 	clean_string = malloc(ft_strlen(s1));
 	temp_string = malloc(ft_strlen(s1));

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:39:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 14:14:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:04:51 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(char const *s, char c);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
+char	*ft_strchr(unsigned const char *s, int c);
+unsigned char	*ft_strdup(const unsigned char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src,
 			size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src,
+size_t	ft_strlcpy(unsigned char *dst, const unsigned char *src,
 			size_t dstsize);
-size_t	ft_strlen(const char *s);
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+size_t	ft_strlen(const unsigned char *s);
+char	*ft_strmapi(unsigned char const *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const unsigned char *s1, const unsigned char *s2, size_t n);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strnstr(const unsigned char *haystack, const unsigned char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	*ft_strtrim(char const *s1, char const *set);
+unsigned char	*ft_strtrim(unsigned char const *s1, unsigned char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	ft_tolower(char c);
 char	ft_toupper(char c);

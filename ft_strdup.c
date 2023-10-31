@@ -6,19 +6,21 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:20:29 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/26 10:31:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:04:27 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+unsigned char	*ft_strdup(const unsigned char *s1)
 {
 	int		length;
-	char	*s2;
+unsigned	char	*s2;
 
 	length = ft_strlen(s1);
 	s2 = malloc(length + 1);
+	if (s2 == NULL)
+		return (NULL);
 	ft_strlcpy(s2, s1, length + 1);
 	return (s2);
 }

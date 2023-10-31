@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:05:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 11:57:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:45:47 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	int		i;
-	int		length;
 
 	i = 0;
-	length = ft_strlen(s);
 	while (s[i] != '\0')
 	{
 		f(i, s + i);
