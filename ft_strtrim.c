@@ -6,36 +6,22 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:01:00 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 11:30:33 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned char	*ft_strtrim(unsigned char const *s1, unsigned char const *set)
+static char	*ft_trim_handler(char const *s1,
+	char const *set)
 {
-	int				i;
-	int				j;
-	int				k;
-	unsigned char	*clean_string;
+	int		i;
+	int		j;
+	int		k;
+	char	*clean_string;
 
 	i = 0;
-	if (s1 == NULL)
-		return (NULL);
 	j = ft_strlen(s1) - 1;
-	if (s1[0] == '\0')
-	{
-		clean_string = malloc(1);
-		if (clean_string == NULL)
-			return (NULL);
-		else
-		{
-			clean_string[0] = '\0';
-			return (clean_string);
-		}
-	}
-	if (set[0] == '\0')
-		return ((unsigned char *)s1);
 	while (s1[i] != '\0' && ft_strchr(set, s1[i]) != NULL)
 		i++;
 	while (j > 0 && ft_strchr(set, s1[j]) != NULL)
@@ -53,10 +39,35 @@ unsigned char	*ft_strtrim(unsigned char const *s1, unsigned char const *set)
 		return (NULL);
 	k = 0;
 	while (i <= j)
-	{
 		clean_string[k++] = s1[i++];
-	}
 	clean_string[k] = '\0';
+	return (clean_string);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	int		j;
+	char	*clean_string;
+
+	i = 0;
+	if (s1 == NULL)
+		return (NULL);
+	j = ft_strlen(s1) - 1;
+	if (s1[0] == '\0')
+	{
+		clean_string = malloc(1);
+		if (clean_string == NULL)
+			return (NULL);
+		else
+		{
+			clean_string[0] = '\0';
+			return (clean_string);
+		}
+	}
+	if (set[0] == '\0')
+		return ((char *)s1);
+	clean_string = ft_trim_handler(s1, set);
 	return (clean_string);
 }
 /*
@@ -64,9 +75,9 @@ unsigned char	*ft_strtrim(unsigned char const *s1, unsigned char const *set)
 
 int	main(void)
 {
-	unsigned char	dirty_string[] = "=!===!==Da!ta!=====";
-	unsigned char	set[] = "=!";
-	unsigned char	*clean_string;
+	char	dirty_string[] = "=!===!==Da!ta!=====";
+	char	set[] = "=!";
+	char	*clean_string;
 
 	clean_string = ft_strtrim(dirty_string, set);
 	printf("'%s' with '%s' removed is '%s'", dirty_string, set, clean_string);

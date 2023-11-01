@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 10:59:52 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:37:49 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_power(int a, int exp)
@@ -30,7 +31,7 @@ static int	ft_power(int a, int exp)
 	return (result);
 }
 
-static unsigned char	*ft_conversion(int k, int i, unsigned char *str, int n)
+static char	*ft_conversion(int k, int i, char *str, int n)
 {
 	while (k > 0)
 	{
@@ -44,9 +45,9 @@ static unsigned char	*ft_conversion(int k, int i, unsigned char *str, int n)
 	return (str);
 }
 
-static unsigned char	*ft_handle_malloc(int digits, int n)
+static char	*ft_handle_malloc(int digits, int n)
 {
-	unsigned char	*str;
+	char	*str;
 
 	if (n < 0)
 		str = malloc(digits + 2);
@@ -55,12 +56,12 @@ static unsigned char	*ft_handle_malloc(int digits, int n)
 	return (str);
 }
 
-unsigned char	*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int				i;
 	int				k;
 	int				digits;
-	unsigned char	*str;
+	char	*str;
 
 	i = 0;
 	digits = 1;
@@ -75,7 +76,7 @@ unsigned char	*ft_itoa(int n)
 	if (str == NULL)
 		return (NULL);
 	if (n == -2147483648)
-		return (ft_strdup((unsigned char *)"-2147483648"));
+		return (ft_strdup((char *)"-2147483648"));
 	if (n < 0)
 	{
 		str[i++] = '-';

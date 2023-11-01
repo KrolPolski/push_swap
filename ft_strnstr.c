@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:44:56 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 11:07:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:39:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strnstr(const unsigned char *haystack,
-			const unsigned char *needle, size_t len)
+char	*ft_strnstr(const char *haystack,
+			const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;

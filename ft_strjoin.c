@@ -6,17 +6,17 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:02:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 11:20:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned char	*ft_strjoin(unsigned char const *s1, unsigned char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int				s1_length;
 	int				s2_length;
-	unsigned char	*new_string;
+	char	*new_string;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
