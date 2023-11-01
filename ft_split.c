@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 14:32:20 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:51:51 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ char	**ft_split(char const *s, char c)
 			str_array[1][0] = '\0';
 			return str_array;
 		}
-//	while (s[i] == c)
-//		i++;
+	//while (s[i] == c && s[i] != '\0')
+	//	i++;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)
 			str_array[j][k++] = s[i];
 		//else if (s[i] == c && s[i + 1] != c && str_array[j][0] == '\0')
 
-		else if (s[i] == c && s[i + 1] != c && str_array[j][0] != '\0')
+		else if (s[i] == c && s[i + 1] != c && k != 0)
 		{
 //			printf("we are about to null terminate a string, j is now '%d' and the current string is '%s'\n", j, str_array[j]);
 			str_array[j][k] = '\0';
@@ -56,6 +56,8 @@ char	**ft_split(char const *s, char c)
 //	printf("str_array[0] is currently '%s'", str_array[0]);
 	str_array[j][k] = '\0';
 //	printf("'%d' is current value of j", j);
+	if (j == 0)
+		j++;
 	str_array[j] = NULL;
 //	printf("str_array[0] is '%s' right before return", str_array[0]);
 	return (str_array);
