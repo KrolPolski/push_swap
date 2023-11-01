@@ -6,14 +6,14 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:57:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 13:22:33 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:01:10 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int		length;
+	int				length;
 	unsigned char	*string;
 
 	string = ft_itoa(n);

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 13:25:25 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:01:54 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	**ft_split(unsigned char const *s, char c)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	int		k;
 	char	**str_array;
 
 	i = 0;

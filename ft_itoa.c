@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 13:18:00 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:59:52 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -57,9 +57,9 @@ static unsigned char	*ft_handle_malloc(int digits, int n)
 
 unsigned char	*ft_itoa(int n)
 {
-	int		i;
-	int		k;
-	int		digits;
+	int				i;
+	int				k;
+	int				digits;
 	unsigned char	*str;
 
 	i = 0;
@@ -75,7 +75,7 @@ unsigned char	*ft_itoa(int n)
 	if (str == NULL)
 		return (NULL);
 	if (n == -2147483648)
-		return (ft_strdup((unsigned char*)"-2147483648"));
+		return (ft_strdup((unsigned char *)"-2147483648"));
 	if (n < 0)
 	{
 		str[i++] = '-';

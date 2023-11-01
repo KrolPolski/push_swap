@@ -6,23 +6,24 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:44:56 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 15:48:01 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:07:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strnstr(const unsigned char *haystack, const unsigned char *needle, size_t len)
+char	*ft_strnstr(const unsigned char *haystack,
+			const unsigned char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
 	int		cmpresult;
-	
+
 	i = 0;
 	j = 0;
 	if (needle[0] == '\0')
 		return ((char *)haystack);
 	if (len == 0)
-		return (NULL);	
+		return (NULL);
 	while (haystack[i] != '\0' && i < len)
 	{
 		if (haystack[i] == needle[j] && haystack[i] != '\0' && i < len)

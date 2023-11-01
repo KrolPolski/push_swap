@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:20:29 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 11:04:27 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:02:41 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 unsigned char	*ft_strdup(const unsigned char *s1)
 {
-	int		length;
-unsigned	char	*s2;
+	int				length;
+	unsigned char	*s2;
 
 	length = ft_strlen(s1);
 	s2 = malloc(length + 1);

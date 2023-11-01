@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:45:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 10:12:30 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:46:42 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = start;
 	j = 0;
+	if (s == NULL)
+		return (NULL);
 	substring = malloc(len + 1);
 	if (substring == NULL)
 		return (NULL);
-	if (start >= len)
+	if (start >= len || s[0] == '\0' || len == 0)
 	{
 		substring[0] = '\0';
 		return (substring);

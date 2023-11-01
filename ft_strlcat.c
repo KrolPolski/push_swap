@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:35:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/31 13:28:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:04:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlcat(unsigned char *dst, const unsigned char *src, size_t dstsize)
 	srclength = ft_strlen(src);
 	dstlength = ft_strlen(dst);
 	max = dstsize - dstlength;
-	if (dstsize <= dstlength /*|| max < 0*/)
+	if (dstsize <= dstlength)
 		return (dstsize + srclength);
 	i = 0;
 	j = 0;
