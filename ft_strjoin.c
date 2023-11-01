@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:02:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 11:03:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:14:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ unsigned char	*ft_strjoin(unsigned char const *s1, unsigned char const *s2)
 	int				s2_length;
 	unsigned char	*new_string;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	s1_length = ft_strlen(s1);
 	s2_length = ft_strlen(s2);
 	new_string = malloc(s1_length + s2_length + 1);

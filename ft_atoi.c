@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:01:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 10:51:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:12:56 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 static int	ft_str_to_int(char *str, int accumulator)
 {
 	int	i;
