@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 14:23:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:37:43 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		length;
 
 	i = 0;
+	if (s == NULL)
+		return (NULL);
 	length = ft_strlen(s);
 	tmp_str = malloc(length + 1);
 	if (tmp_str == NULL)

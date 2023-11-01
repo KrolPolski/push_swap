@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:37:49 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:41:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static char	*ft_handle_malloc(int digits, int n)
 
 char	*ft_itoa(int n)
 {
-	int				i;
-	int				k;
-	int				digits;
+	int		i;
+	int		k;
+	int		digits;
 	char	*str;
 
 	i = 0;
