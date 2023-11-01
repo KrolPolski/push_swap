@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
+#    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/10/30 11:59:11 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/01 13:54:50 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

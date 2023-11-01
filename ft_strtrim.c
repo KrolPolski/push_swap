@@ -6,22 +6,17 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:01:00 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:36:11 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_trim_handler(char const *s1,
-	char const *set)
+static char	*ft_trim_handler(char const *s1, char const *set, int i, int j)
 {
-	int		i;
-	int		j;
 	int		k;
 	char	*clean_string;
 
-	i = 0;
-	j = ft_strlen(s1) - 1;
 	while (s1[i] != '\0' && ft_strchr(set, s1[i]) != NULL)
 		i++;
 	while (j > 0 && ft_strchr(set, s1[j]) != NULL)
@@ -67,7 +62,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	if (set[0] == '\0')
 		return ((char *)s1);
-	clean_string = ft_trim_handler(s1, set);
+	clean_string = ft_trim_handler(s1, set, i, j);
 	return (clean_string);
 }
 /*
