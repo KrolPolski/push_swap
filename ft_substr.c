@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:45:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/26 10:56:59 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:12:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substring = malloc(len + 1);
 	if (substring == NULL)
 		return (NULL);
+	if (start >= len)
+	{
+		substring[0] = '\0';
+		return (substring);
+	}
 	while (s[i] != '\0' && j < len)
 	{
 		substring[j] = s[i];
