@@ -6,12 +6,12 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 15:34:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:56:23 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
+#include <stdio.h>
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -26,12 +26,26 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (s[0] == '\0')
 		return (NULL);
+//	printf("We must not have immediately returned null");
 	str_array = malloc(ft_strlen(s) + 1);
+		if (str_array == NULL)
+			return (NULL);
 	str_array[0] = malloc(ft_strlen(s) + 1);
+		if (str_array[0] == NULL)
+		{
+			free(str_array);
+			return (NULL);
+		}
 	if (c == '\0')
 	{
 		ft_strlcpy(str_array[0], s, ft_strlen(s));
 		str_array[1] = malloc(1);
+		if (str_array[1] == NULL)
+		{
+			free(str_array[0]);
+			free(str_array);
+			return (NULL);
+		}
 		str_array[1][0] = '\0';
 		return (str_array);
 	}
@@ -49,6 +63,13 @@ char	**ft_split(char const *s, char c)
 			str_array[j][k] = '\0';
 			k = 0;
 			str_array[++j] = malloc(ft_strlen(s) + 1);
+			if (str_array[j] == NULL)
+			{
+				while (k < j)
+					free(str_array[k++]);
+				free(str_array);
+				return (NULL);
+			}
 		}
 		i++;
 	}
@@ -61,15 +82,16 @@ char	**ft_split(char const *s, char c)
 //	printf("str_array[0] is '%s' right before return", str_array[0]);
 	return (str_array);
 }
-/*
+
 #include <stdio.h>
 
 int	main(void)
 {
 	char	str[] = "\0aa\0bbb";
+//     char *s = "split  ||this|for|me|||||!|";
 	char	c = '\0';
 	char	**str_array;
-*/
+
 /*
 //	char	str[] = ",,,So long,,, and thanks,,, for all, the fish,,,";
 //	char    str[] = "   So-long    and-thanks    for-all    the-fish    ";
@@ -77,8 +99,8 @@ int	main(void)
 	char str[] = "      split       this for   me  !       ";
 	char    c = ' ';
 */
-//	str_array = ft_split(str, c);
-//	printf("'%s' split by '%c' results in:\n", str, c);
+	str_array = ft_split(str, c);
+	printf("'%s' split by '%c' results in:\n", str, c);
 
 	/*	printf("'%s' '%s' '%s' '%s' '%s' \n", str_array[0], str_array[1],
 		str_array[2], str_array[3], str_array[4]);
@@ -88,5 +110,5 @@ int	main(void)
 	free(str_array[3]);
 	free(str_array[4]);
 	free(str_array);*/
-//}
+}
 
