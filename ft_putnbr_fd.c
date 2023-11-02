@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:57:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 13:54:50 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:16:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_putnbr_fd(int n, int fd)
 	char	*string;
 
 	string = ft_itoa(n);
+	if (string == NULL)
+		return ;
 	length = ft_strlen(string);
 	write(fd, string, length);
 	free(string);
