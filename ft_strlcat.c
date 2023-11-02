@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:35:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:46:37 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	j;
 	size_t	max;
 
-	if (dstsize == 0)
-		return (0);
 	srclength = ft_strlen(src);
+	if (dstsize == 0)
+		return (dstsize + srclength);
 	dstlength = ft_strlen(dst);
 	max = dstsize - dstlength;
 	if (dstsize <= dstlength)
