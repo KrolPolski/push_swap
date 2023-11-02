@@ -6,26 +6,40 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:57:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/02 12:16:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:55:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+static void	ft_putchar(int fd, char c)
+{
+	write(fd, &c, 1);
+}
+
+
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int		length;
-	char	*string;
-
-	string = ft_itoa(n);
-	if (string == NULL)
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
 		return ;
-	length = ft_strlen(string);
-	write(fd, string, length);
-	free(string);
+	}
+	if (n < 0)
+	{
+		ft_putchar(fd, '-');
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		n = n % 10;
+	}
+	if (n < 10)
+		ft_putchar(fd, n + '0');
 }
-
 /*
+
 #include <fcntl.h>
 
 int	main(void)
