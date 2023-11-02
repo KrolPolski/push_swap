@@ -6,17 +6,16 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:57:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/02 13:55:44 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:21:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static void	ft_putchar(int fd, char c)
 {
 	write(fd, &c, 1);
 }
-
-
 
 void	ft_putnbr_fd(int n, int fd)
 {
