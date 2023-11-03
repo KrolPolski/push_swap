@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:05:44 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:37:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 08:55:48 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
 
+	if (s[0] == '\0' && c == '\0')
+		return ((char *)s);
 	if (s[0] == '\0')
 		return (NULL);
 	i = ft_strlen(s);
