@@ -6,17 +6,35 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/03 12:40:22 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:27:51 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**ft_initial_mallocs(char const *s)
+static int	ft_check_valid_substr(char const *s, char c)
+{
+	int		a;
+	int		no_str;
+
+	no_str = 1;
+	a = 0;
+	while (s[a] != '\0')
+	{
+		if (s[a] != c)
+			no_str = 0;
+		a++;
+	}
+	return (no_str);
+}
+
+static char	**ft_initial_mallocs(char const *s, char c)
 {
 	char	**str_array;
 
 	if (s == NULL)
+		return (NULL);
+	if (ft_check_valid_substr(s, c) == 1)
 		return (NULL);
 	str_array = malloc(sizeof(char *) * (ft_strlen(s) + 1));
 	if (str_array == NULL)
@@ -71,7 +89,7 @@ char	**ft_split(char const *s, char c)
 	struct s_counter	ctr;
 	char				**str_array;
 
-	str_array = ft_initial_mallocs(s);
+	str_array = ft_initial_mallocs(s, c);
 	if (str_array == NULL)
 		return (NULL);
 	if (c == '\0')
