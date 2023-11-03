@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:39:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/03 10:01:32 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:16:53 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
+struct s_counter
+{
+	int	i;
+	int	j;
+	int	k;
+};
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);

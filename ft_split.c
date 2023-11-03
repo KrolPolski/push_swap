@@ -6,18 +6,11 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/03 10:51:02 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:18:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-struct s_counter
-{
-	int	i;
-	int	j;
-	int	k;
-};
 
 static char	**ft_initial_mallocs(char const *s)
 {
@@ -106,7 +99,7 @@ int	main(void)
 	result = ft_split(str, c);
 	printf("For the string '%s' and c of '%c', results are: \n", str, c);
 	printf("'%s' '%s'", result[0], result[1]);
-*/
+}*/
 /*
 char    **expected = (char*[6]){"split  ", "this", "for", "me", "!", NULL};
 
@@ -157,4 +150,4 @@ char    **expected = (char*[6]){"split  ", "this", "for", "me", "!", NULL};
 	printf("'%s' split by '%c' results in:\n", str2, c);
 	printf("str_array[0] = '%s' and str_array[1] = '%s' \n", 
 	str_array[0], str_array[1]);*/
-}
+//}
