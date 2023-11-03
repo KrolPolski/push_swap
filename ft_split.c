@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/03 12:18:22 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:40:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**ft_initial_mallocs(char const *s)
 
 	if (s == NULL)
 		return (NULL);
-	str_array = malloc(ft_strlen(s) + 1);
+	str_array = malloc(sizeof(char *) * (ft_strlen(s) + 1));
 	if (str_array == NULL)
 		return (NULL);
 	str_array[0] = malloc(ft_strlen(s) + 1);
