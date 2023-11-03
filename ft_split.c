@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/02 13:45:58 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:51:02 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,16 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	*//* char    **expected = (char*[6]){"split  ", 
-	* "this", "for", "me", "!", NULL};
+	char	str[] = "                 ";
+    char	c = ' ';
+	char	**result;
+
+	result = ft_split(str, c);
+	printf("For the string '%s' and c of '%c', results are: \n", str, c);
+	printf("'%s' '%s'", result[0], result[1]);
+*/
+/*
+char    **expected = (char*[6]){"split  ", "this", "for", "me", "!", NULL};
 
     char    *s = "split  ||this|for|me|||||!|";
 	int             i = 0;
@@ -140,7 +148,7 @@ int	main(void)
 //	char	c = ',';
 	char str[] = "      split       this for   me  !       ";
 	char    c = ' ';
-
+*//*
 	char	str2[] = "\0aa\0bbb";
 	char	c = '\0';
 	char 	**str_array;
@@ -148,5 +156,5 @@ int	main(void)
 	
 	printf("'%s' split by '%c' results in:\n", str2, c);
 	printf("str_array[0] = '%s' and str_array[1] = '%s' \n", 
-	str_array[0], str_array[1]);
-}*/
+	str_array[0], str_array[1]);*/
+}
