@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:44:56 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/02 14:22:11 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:05:21 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	*ft_strnstr(const char *haystack,
 	{
 		if (haystack[i] == needle[j] && haystack[i] != '\0' && i < len)
 		{
-			cmpresult = ft_strncmp((unsigned char *)&haystack[i],
-					(unsigned char *)needle, ft_strlen(needle));
+			cmpresult = ft_strncmp((char *)&haystack[i],
+					(char *)needle, ft_strlen(needle));
 			if (cmpresult == 0 && ((i + ft_strlen(needle)) <= len))
 				return ((char *)&haystack[i]);
 		}
