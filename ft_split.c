@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/05 12:32:28 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/05 13:04:24 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,12 @@ char	**ft_split(char const *s, char c)
 	str_array = ft_initial_mallocs(s);
 	if (str_array == NULL)
 		return (NULL);
-
-	if (c == '\0' || ft_check_valid_substr(s, c) == 1)
+	if(ft_check_valid_substr(s, c) == 1)
+{
+		str_array[0] = NULL;
+		return (str_array);
+}		
+	if (c == '\0')
 	{
 		ft_strlcpy(str_array[0], s, ft_strlen(s));
 		str_array[1] = NULL;
@@ -105,25 +109,30 @@ char	**ft_split(char const *s, char c)
 	ft_split_main_logic(s, str_array, ctr, c);
 	return (str_array);
 }
-/*
-#include <stdio.h>
+
+/*#include <stdio.h>
 #include <string.h>
 
 int	main(void)
 {
-	char	str[] = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
-	char	c = ' ';
+//	char	str[] = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
+//	char	c = ' ';
+//	
+	char	str[] = "";
+	char	c = 'z';
 	char	**result;
 	int		i;
-
+	
 	i = 0;
 	result = ft_split(str, c);
 	printf("For the string '%s' and c of '%c', results are: \n", str, c);
 	while (result[i] != NULL)
 {
 	printf("'%s'\n", result[i]);
+	free(result[i]);
 	i++;
 }
+	free(result);
 }*/
 /*
 char    **expected = (char*[6]){"split  ", "this", "for", "me", "!", NULL};
