@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:34:25 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 12:33:25 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:58:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int		i;
+	char	a;
 
 	i = 0;
-	while (s[i] != c && s[i] != '\0')
+	a = (char)c;
+	while (s[i] != a && s[i] != '\0')
 		i++;
-	if (s[i] == c)
+	if (s[i] == a)
 		return ((char *)&s[i]);
 	else
 		return (NULL);
