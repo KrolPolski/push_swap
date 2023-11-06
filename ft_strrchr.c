@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:05:44 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/03 08:55:48 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:11:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
+	char	a;
 
-	if (s[0] == '\0' && c == '\0')
+	a = (char)c;
+	if (s[0] == '\0' && a == '\0')
 		return ((char *)s);
 	if (s[0] == '\0')
 		return (NULL);
 	i = ft_strlen(s);
-	while (s[i] != c && i != 0)
+	while (s[i] != a && i != 0)
 		i--;
-	if (s[i] == c)
+	if (s[i] == a)
 		return ((char *)&s[i]);
 	else
 		return (NULL);
