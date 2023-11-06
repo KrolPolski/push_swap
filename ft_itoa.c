@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:50:04 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 13:41:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:44:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ char	*ft_itoa(int n)
 		k = k / 10;
 	}
 	k = digits - 1;
+	if (n == -2147483648)
+		return (ft_strdup((char *)"-2147483648"));
 	str = ft_handle_malloc(digits, n);
 	if (str == NULL)
 		return (NULL);
-	if (n == -2147483648)
-		return (ft_strdup((char *)"-2147483648"));
 	if (n < 0)
 	{
 		str[i++] = '-';
