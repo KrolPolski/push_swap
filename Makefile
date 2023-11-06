@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/01 13:54:50 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/06 14:20:53 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,9 @@ SRCS = ft_atoi.c \
 
 OBJS = $(SRCS:.c=.o)
 
+BONUS_SRCS = ft_lstnew.c \
+			 ft_lstadd_front.c
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 EXEC = libft.a
 
 all: $(EXEC)
@@ -56,6 +59,8 @@ all: $(EXEC)
 $(EXEC) : $(OBJS)
 	ar -rc $(EXEC) $(OBJS)
 
+bonus : $(OBJS) $(BONUS_OBJS)
+	ar -rc $(EXEC) $(OBJS) $(BONUS_OBJS)
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
