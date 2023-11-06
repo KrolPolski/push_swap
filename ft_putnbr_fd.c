@@ -6,16 +6,11 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:57:46 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/02 14:21:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:00:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	ft_putchar(int fd, char c)
-{
-	write(fd, &c, 1);
-}
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -26,7 +21,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n < 0)
 	{
-		ft_putchar(fd, '-');
+		ft_putchar_fd('-', fd);
 		n = -n;
 	}
 	if (n >= 10)
@@ -35,7 +30,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n = n % 10;
 	}
 	if (n < 10)
-		ft_putchar(fd, n + '0');
+		ft_putchar_fd(n + '0', fd);
 }
 /*
 
