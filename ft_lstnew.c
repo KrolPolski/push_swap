@@ -6,16 +6,16 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:05:56 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 14:57:01 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:03:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
-	t_list *new;
-	
+	t_list	*new;
+
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return (NULL);
