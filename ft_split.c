@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 13:25:32 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:34:20 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**ft_split_main_logic(char const *s, char **str_array,
 		{
 			str_array[ctr.j][ctr.k] = '\0';
 			ctr.k = 0;
-			str_array[++ctr.j] = malloc(ft_strlen(s) + 1);
+			str_array[++ctr.j] = malloc(ft_strlen(&s[ctr.i]) + 1);
 			if (str_array[ctr.j] == NULL)
 			{
 				while (ctr.k < ctr.j)
@@ -99,7 +99,7 @@ char	**ft_split(char const *s, char c)
 	}
 	if (c == '\0')
 	{
-		ft_strlcpy(str_array[0], s, ft_strlen(s));
+		ft_strlcpy(str_array[0], s, ft_strlen(s) + 1);
 		str_array[1] = NULL;
 		return (str_array);
 	}
@@ -109,8 +109,8 @@ char	**ft_split(char const *s, char c)
 	ft_split_main_logic(s, str_array, ctr, c);
 	return (str_array);
 }
-
-/*#include <stdio.h>
+/*
+#include <stdio.h>
 #include <string.h>
 
 int	main(void)
@@ -119,8 +119,11 @@ int	main(void)
 //	adipiscing elit. Sed non risus. Suspendisse";
 //	char	c = ' ';
 //	
-	char	str[] = "";
-	char	c = 'z';
+//	char	str[] = "";
+//	char	c = 'z';
+
+	char	str[] = "tripouille";
+	char	c = 0;
 	char	**result;
 	int		i;
 	
