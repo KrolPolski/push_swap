@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 09:22:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:21:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ char	**ft_split_main_logic(char const *s, char **str_array,
 	{
 		if (s[ctr.i] != c)
 			str_array[ctr.j][ctr.k++] = s[ctr.i];
-		else if (s[ctr.i] == c && s[ctr.i + 1] != c && ctr.k != 0)
+		else if (s[ctr.i] == c && s[ctr.i + 1] != c
+			&& s[ctr.i + 1] != '\0' && ctr.k != 0)
 		{
 			str_array[ctr.j][ctr.k] = '\0';
 			ctr.k = 0;
