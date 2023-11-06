@@ -6,12 +6,11 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/05 13:04:24 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:22:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_check_valid_substr(char const *s, char c)
 {
@@ -49,7 +48,6 @@ static char	**ft_initial_mallocs(char const *s)
 
 char	**ft_split_cleanup(char **str_array, struct s_counter ctr)
 {
-	//printf("Starting cleanup, current string is '%s'\n", str_array[ctr.j]);
 	str_array[ctr.j][ctr.k] = '\0';
 	if (ctr.j == 0 || str_array[ctr.j][0] != '\0')
 		ctr.j++;
@@ -66,7 +64,7 @@ char	**ft_split_main_logic(char const *s, char **str_array,
 	{
 		if (s[ctr.i] != c)
 			str_array[ctr.j][ctr.k++] = s[ctr.i];
-	else if (s[ctr.i] == c && s[ctr.i + 1] != c && ctr.k != 0)
+		else if (s[ctr.i] == c && s[ctr.i + 1] != c && ctr.k != 0)
 		{
 			str_array[ctr.j][ctr.k] = '\0';
 			ctr.k = 0;
@@ -92,11 +90,11 @@ char	**ft_split(char const *s, char c)
 	str_array = ft_initial_mallocs(s);
 	if (str_array == NULL)
 		return (NULL);
-	if(ft_check_valid_substr(s, c) == 1)
-{
+	if (ft_check_valid_substr(s, c) == 1)
+	{
 		str_array[0] = NULL;
 		return (str_array);
-}		
+	}
 	if (c == '\0')
 	{
 		ft_strlcpy(str_array[0], s, ft_strlen(s));
@@ -115,7 +113,8 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-//	char	str[] = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
+//	char	str[] = "lorem ipsum dolor sit amet, consectetur
+//	adipiscing elit. Sed non risus. Suspendisse";
 //	char	c = ' ';
 //	
 	char	str[] = "";
