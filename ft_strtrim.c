@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:01:00 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/01 15:36:11 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:20:24 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		}
 	}
 	if (set[0] == '\0')
-		return ((char *)s1);
+		return (ft_strdup(s1));
 	clean_string = ft_trim_handler(s1, set, i, j);
 	return (clean_string);
 }
