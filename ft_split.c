@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 13:21:58 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:25:32 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	if (ft_check_valid_substr(s, c) == 1)
 	{
+		free(str_array[0]);
 		str_array[0] = NULL;
 		return (str_array);
 	}
