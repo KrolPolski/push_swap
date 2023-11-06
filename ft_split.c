@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:48:23 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 13:34:20 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:59:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	**ft_initial_mallocs(char const *s)
 	return (str_array);
 }
 
-char	**ft_split_cleanup(char **str_array, struct s_counter ctr)
+static char	**ft_split_cleanup(char **str_array, struct s_counter ctr)
 {
 	str_array[ctr.j][ctr.k] = '\0';
 	if (ctr.j == 0 || str_array[ctr.j][0] != '\0')
@@ -55,7 +55,7 @@ char	**ft_split_cleanup(char **str_array, struct s_counter ctr)
 	return (str_array);
 }
 
-char	**ft_split_main_logic(char const *s, char **str_array,
+static char	**ft_split_main_logic(char const *s, char **str_array,
 		struct s_counter ctr, char c)
 {
 	while (s[ctr.i] == c && s[ctr.i] != '\0')
