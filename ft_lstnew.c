@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:05:56 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 14:17:56 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:57:01 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,14 @@ t_list *ft_lstnew(void *content)
 	new->next = NULL;
 	return (new);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	t_list *first;
+	char str[] = "Fish";
+	
+	first = ft_lstnew(str);
+	printf("The str stored on first is '%s'\n", first->content);
+}*/

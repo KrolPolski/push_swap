@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:28:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/06 14:34:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:09:13 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,19 @@ int ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	t_list *first;
+	t_list *new;
+	char str[] = "Fish";
+	char str2[] = "sticks";
+	first = ft_lstnew(str);
+	new = ft_lstnew(str2);
+	printf("The front item of the list was: '%s'\n", first->content);
+	ft_lstadd_front(&first, new);
+	printf("The front item of the list is now: '%s'\n", first->content);
+	printf("There should now be two items in the list: '%d'\n", ft_lstsize(first));
+}*/
