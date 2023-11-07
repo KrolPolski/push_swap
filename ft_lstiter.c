@@ -6,16 +6,16 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 11:14:28 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:55:34 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:30:29 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list *curr;
-	
+	t_list	*curr;
+
 	if (lst == NULL || f == NULL)
 		return ;
 	curr = lst;
