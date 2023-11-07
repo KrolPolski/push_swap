@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/07 14:36:07 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/07 15:13:53 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(NAME) : $(OBJS)
 	ar -rc $(NAME) $(OBJS)
 
 bonus : $(OBJS) $(BONUS_OBJS)
-	ar -rc $(NAME) $(OBJS) $(BONUS_OBJS)
+	ar -rc $(NAME) $(BONUS_OBJS)
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 

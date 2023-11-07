@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:11:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 14:25:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:02:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*new_list;
 	t_list	*curr;
 
-	if (lst == NULL || f == NULL)
+	new_list = malloc(sizeof(t_list));
+	if (lst == NULL || f == NULL || new_list == NULL)
 		return (NULL);
 	curr = lst;
-	new_list = malloc(sizeof(t_list));
-	if (!new_list)
-		return (NULL);
 	curr_new = new_list;
 	while (curr != NULL)
 	{
