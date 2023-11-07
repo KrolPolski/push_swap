@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/06 14:42:37 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/07 09:08:03 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ BONUS_SRCS = ft_lstnew.c \
 			 ft_lstadd_front.c \
 			 ft_lstsize.c \
 			 ft_lstlast.c \
-			 ft_lstadd_back.c
+			 ft_lstadd_back.c \
+			 ft_lstdelone.c
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 EXEC = libft.a
