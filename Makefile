@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/07 09:08:03 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/07 09:21:11 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ bonus : $(OBJS) $(BONUS_OBJS)
 	cc $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean:
 	rm -f $(EXEC)
