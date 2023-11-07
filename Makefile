@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/07 15:13:53 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/07 15:28:31 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,4 +80,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
