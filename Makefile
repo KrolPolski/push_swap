@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/07 09:21:11 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/07 11:15:22 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,26 +54,28 @@ BONUS_SRCS = ft_lstnew.c \
 			 ft_lstsize.c \
 			 ft_lstlast.c \
 			 ft_lstadd_back.c \
-			 ft_lstdelone.c
+			 ft_lstdelone.c \
+			 ft_lstclear.c \
+			 ft_lstiter.c
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
-EXEC = libft.a
+NAME = libft.a
 
-all: $(EXEC)
+all: $(NAME)
 
-$(EXEC) : $(OBJS)
-	ar -rc $(EXEC) $(OBJS)
+$(NAME) : $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
 bonus : $(OBJS) $(BONUS_OBJS)
-	ar -rc $(EXEC) $(OBJS) $(BONUS_OBJS)
+	ar -rc $(NAME) $(OBJS) $(BONUS_OBJS)
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
 
-fclean:
-	rm -f $(EXEC)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:08:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:05:21 by rboudwin         ###   ########.fr       */
+/*   Created: 2023/11/07 11:14:28 by rboudwin          #+#    #+#             */
+/*   Updated: 2023/11/07 11:55:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (lst == NULL || del == NULL)
+	t_list *curr;
+	
+	if (lst == NULL || f == NULL)
 		return ;
-	del(lst->content);
-	del(lst);
+	curr = lst;
+	while (curr != NULL)
+	{
+		f(curr->content);
+		curr = curr->next;
+	}
 }
 /*
+static void ft_adddollar(void *ptr)
+{
+	char *str;
+	
+	str = (char *)ptr;	
+	str[0] = '$';
+}
+
 #include <stdio.h>
 
 int	main(void)
@@ -27,10 +41,10 @@ int	main(void)
 	t_list *lst;
 	t_list *curr;
 
-	
-	lst = ft_lstnew(ft_strdup("One"));
-	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Two")));
-	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Three")));
+
+	lst = ft_lstnew(ft_strdup("one"));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("two")));
+	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("three")));
 
 	curr = lst;
 	printf("Before:\n");
@@ -40,10 +54,10 @@ int	main(void)
 		curr = curr->next;
 	}
 	printf("'%s'\n", curr->content);
-	printf("After the last one was deleted\n");
-	ft_lstdelone(curr, free);
+	printf("After the list was processed\n");
 	curr = lst;
-	while (curr->next != NULL)
+	ft_lstiter(lst, ft_adddollar);
+	while (curr != NULL)
 	{
 		printf("'%s'\n", curr->content);
 		curr = curr->next;

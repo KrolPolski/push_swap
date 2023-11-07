@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 09:08:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:05:21 by rboudwin         ###   ########.fr       */
+/*   Created: 2023/11/07 09:21:49 by rboudwin          #+#    #+#             */
+/*   Updated: 2023/11/07 11:44:23 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (lst == NULL || del == NULL)
+	t_list	*curr;
+	t_list	*next;
+
+	curr = *lst;
+	if (lst == NULL || *lst == NULL || del == NULL)
 		return ;
-	del(lst->content);
-	del(lst);
+	while (curr != NULL)
+	{
+		next = curr->next;
+		if (curr->content != NULL)
+			del(curr->content);
+		del(curr);
+		curr = next;
+	}
+	*lst = NULL;
 }
+
 /*
 #include <stdio.h>
 
@@ -27,7 +39,7 @@ int	main(void)
 	t_list *lst;
 	t_list *curr;
 
-	
+
 	lst = ft_lstnew(ft_strdup("One"));
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Two")));
 	ft_lstadd_back(&lst, ft_lstnew(ft_strdup("Three")));
@@ -40,10 +52,10 @@ int	main(void)
 		curr = curr->next;
 	}
 	printf("'%s'\n", curr->content);
-	printf("After the last one was deleted\n");
-	ft_lstdelone(curr, free);
+	printf("After the last two were deleted\n");
 	curr = lst;
-	while (curr->next != NULL)
+	ft_lstclear(&curr->next, free);
+	while (curr != NULL)
 	{
 		printf("'%s'\n", curr->content);
 		curr = curr->next;
