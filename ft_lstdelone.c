@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:08:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:05:21 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:03:41 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	if (lst == NULL || del == NULL)
 		return ;
 	del(lst->content);
-	del(lst);
+	free(lst);
 }
 /*
 #include <stdio.h>

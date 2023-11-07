@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 09:21:49 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/07 11:44:23 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:04:40 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*next;
 
 	curr = *lst;
-	if (lst == NULL || *lst == NULL || del == NULL)
+	if (lst == NULL || del == NULL)
 		return ;
 	while (curr != NULL)
 	{
 		next = curr->next;
-		if (curr->content != NULL)
-			del(curr->content);
-		del(curr);
+		ft_lstdelone(curr, del);
 		curr = next;
 	}
 	*lst = NULL;
