@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/11/07 15:28:31 by rboudwin         ###   ########.fr        #
+#    Updated: 2023/11/08 16:41:52 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ $(NAME) : $(OBJS)
 	ar -rc $(NAME) $(OBJS)
 
 bonus : $(OBJS) $(BONUS_OBJS)
+	touch bonus
 	ar -rc $(NAME) $(BONUS_OBJS)
 %.o: %.c
 	cc $(CFLAGS) -c $< -o $@
@@ -80,4 +81,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
