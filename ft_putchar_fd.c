@@ -6,15 +6,18 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:21:47 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/10/30 10:41:28 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:25:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	int	a;
+
+	a = write(fd, &c, 1);
+	return (a);
 }
 /*
 #include <fcntl.h>
