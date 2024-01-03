@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 12:16:53 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 12:23:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	*convert_and_build_array(int argc, char **argv)
 		return (NULL);
 	while (i < argc)
 	{
+		if (argv[i][0] < 48 || argv[i][0] > 57)
+		{
+			free(a);
+			a = NULL;
+			return (NULL);
+		}
 		tmp = ft_atoi(argv[i]);
 		a[i * sizeof(int)] = tmp;
 		ft_printf("%d, ", a[i * sizeof(int)]);
@@ -41,10 +47,11 @@ int	*convert_and_build_array(int argc, char **argv)
 }
 int	main(int argc, char **argv)
 {
-	t_list	a;
-	t_list	b;
+	int *a;
 
 	if (argc < 2)
 		ft_putstr_fd("Error\n", 2);
-	convert_and_build_array(argc, argv);
+	a = convert_and_build_array(argc, argv);
+	if (!a)
+		ft_putstr_fd("Error\n", 2);
 }
