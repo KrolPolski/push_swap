@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 12:23:58 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:11:49 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,37 @@
 	5. Write a function for each push_swap instruction
 	6. Write logic to decide how to choose which instruction for what situation
 */
-int	*convert_and_build_array(int argc, char **argv)
+int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
-	int *a;
 	int	tmp;
 	int	i;
+	int *ptr;
 
 	i = 1;
-	a = malloc(argc * sizeof(int));
-	if (!a)
-		return (NULL);
 	while (i < argc)
 	{
 		if (argv[i][0] < 48 || argv[i][0] > 57)
 		{
-			free(a);
-			a = NULL;
-			return (NULL);
+			vec_free(a);
+			return (-1);
 		}
 		tmp = ft_atoi(argv[i]);
-		a[i * sizeof(int)] = tmp;
-		ft_printf("%d, ", a[i * sizeof(int)]);
+		vec_push(a, &tmp);
+		ptr = vec_get(a, i - 1);
+		ft_printf("%d, ", *ptr);
 		i++;
 	}
-	return (a);
+	return (1);
 }
 int	main(int argc, char **argv)
 {
-	int *a;
+	int ret;
+	t_vec a;
 
 	if (argc < 2)
 		ft_putstr_fd("Error\n", 2);
-	a = convert_and_build_array(argc, argv);
-	if (!a)
+	vec_new(&a, 1, sizeof(int));
+	ret = convert_and_build_vector(&a, argc, argv);
+	if (ret == -1)
 		ft_putstr_fd("Error\n", 2);
 }
