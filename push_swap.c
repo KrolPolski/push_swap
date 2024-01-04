@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 12:55:42 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:01:46 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ int	push_swap(t_vec *a, t_vec *b)
 {
 	sa(a);
 	pb(a, b);
-	pb(a, b);
+	ft_printf("length of a is %d and b is %d\n", a->len, b->len);
+	ft_printf("allocation size of b is %d and elem size is %d\n", b->alloc_size, b->elem_size);
+	
 	ft_printf("a and b are now: \n");
 	print_vector(a);
 	print_vector(b);
+	pb(a, b);
 	//sb(b);
 	ft_printf("a and b are now: \n");
 	print_vector(a);
@@ -79,14 +82,21 @@ int	main(int argc, char **argv)
 	t_vec b;
 
 	if (argc < 2)
+	{
 		ft_putstr_fd("Error\n", 2);
+		exit(-1);
+	}
 	vec_new(&a, 0, sizeof(int));
 	vec_new(&b, 0, sizeof(int));
 	ret = convert_and_build_vector(&a, argc, argv);
 	print_vector(&a);
 	if (ret == -1)
+	{
 		ft_putstr_fd("Error\n", 2);
+		exit(-1);
+	}
 	//if we get here we can assume arguments are clean
+	ft_printf("about to enter push_swap function\n");
 	push_swap(&a, &b);
 	vec_free(&a);
 	vec_free(&b);
