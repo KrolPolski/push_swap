@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 14:01:46 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:47:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,18 @@ int	push_swap(t_vec *a, t_vec *b)
 	print_vector(a);
 	print_vector(b);
 	pb(a, b);
-	//sb(b);
+	sb(b);
+	pa(a, b);
+	pa(a, b);
 	ft_printf("a and b are now: \n");
 	print_vector(a);
 	print_vector(b);
+	ra(a);
+	ft_printf("After ra: ");
+	print_vector(a);
+	rra(a);
+	ft_printf("After rra: ");
+	print_vector(a);
 	//if (a->len < 4)
 	//	push_swap_small(a, b);
 	/*if (a->len < 10)

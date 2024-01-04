@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 13:20:14 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:57:36 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,46 @@ int	pb(t_vec *a, t_vec *b)
 
 /* ra (rotate a): Shift up all elements of stack a by 1.
 The first element becomes the last one.*/
-int	ra(t_vec *a);
+int	ra(t_vec *a)
+{
+	vec_push(a, vec_get(a, 0));
+	vec_remove(a, 0);
+	return (1);
+}
 
 /* rb (rotate b): Shift up all elements of stack b by 1.
 The first element becomes the last one.*/
-int	rb(t_vec *b);
+int	rb(t_vec *b)
+{
+	vec_push(b, vec_get(b, 0));
+	vec_remove(b, 0);
+	return (1);
+}
 
 /*rr : ra and rb at the same time.*/
-int	rr(t_vec *a, t_vec *b);
+int	rr(t_vec *a, t_vec *b)
+{
+	ra(a);
+	rb(b);
+	return (1);
+}
 
 /*rra (reverse rotate a): Shift down all elements of stack a by 1.
 The last element becomes the first one.*/
-int	rra(t_vec *a);
+int	rra(t_vec *a)
+{
+	int x;
+	//this isn't working because the pointer 
+	//is pointing to the same location,
+	// but what is stored there has changed, 
+	// since everything moved one space
+	// probably need to copy it over to a temporary int
+	// variable. FIXED
+	x = *(int *)(vec_get(a, a->len - 1));
+	vec_insert(a, &x, 0);
+	vec_remove(a, a->len - 1);
+	return (1);
+}
 
 /*rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.*/
