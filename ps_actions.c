@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 11:51:04 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:56:36 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	sa(t_vec *a)
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
 	ft_printf("0 and 1 positions are now '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
+	return (1);
 }
 
 /* sb (swap b): Swap the first 2 elements at the top of stack b.
@@ -44,6 +45,7 @@ int	sb(t_vec *b)
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
 	ft_printf("0 and 1 positions are now '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
+	return (1);
 }
 
 /* ss : sa and sb at the same time.*/
@@ -51,6 +53,7 @@ int ss(t_vec *a, t_vec *b)
 {
 	sa(a);
 	sb(b);
+	return (1);
 }
 
 /* pa (push a): Take the first element at the top of b and put it at the top of a.
@@ -59,6 +62,7 @@ int	pa(t_vec *a, t_vec *b)
 {
 	vec_insert(a, vec_get(b, 0), 0);
 	vec_remove(b, 0);
+	return (1);
 }
 
 /* pb (push b): Take the first element at the top of a and put it at the top of b.
@@ -67,6 +71,7 @@ int	pb(t_vec *a, t_vec *b)
 {
 	vec_insert(b, vec_get(a, 0), 0);
 	vec_remove(a, 0);
+	return (1);
 }
 
 /* ra (rotate a): Shift up all elements of stack a by 1.

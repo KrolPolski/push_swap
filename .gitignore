@@ -1,3 +1,5 @@
 # ignore objects and archives, everywhere
 *.[oa]
 a.out
+push_swap
+Libft/*
