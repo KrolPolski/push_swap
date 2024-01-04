@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 11:11:49 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:13:01 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ int	main(int argc, char **argv)
 	ret = convert_and_build_vector(&a, argc, argv);
 	if (ret == -1)
 		ft_putstr_fd("Error\n", 2);
+	vec_free(&a);
 }
