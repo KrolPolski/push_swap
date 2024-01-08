@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 15:57:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:32:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,7 @@ The last element becomes the first one.*/
 int	rra(t_vec *a)
 {
 	int x;
-	//this isn't working because the pointer 
-	//is pointing to the same location,
-	// but what is stored there has changed, 
-	// since everything moved one space
-	// probably need to copy it over to a temporary int
-	// variable. FIXED
+
 	x = *(int *)(vec_get(a, a->len - 1));
 	vec_insert(a, &x, 0);
 	vec_remove(a, a->len - 1);
@@ -119,7 +114,15 @@ int	rra(t_vec *a)
 
 /*rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.*/
-int	rrb(t_vec *b);
+int	rrb(t_vec *b)
+{
+	int x;
+	
+	x = *(int *)(vec_get(b, b->len - 1));
+	vec_insert(b, &x, 0);
+	vec_remove(b, b->len - 1);
+	return (1);
+}
 
 /*rrr : rra and rrb at the same time.*/
 int	rrr(t_vec *a, t_vec *b);
