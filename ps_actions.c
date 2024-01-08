@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/08 11:32:30 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:36:25 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,9 @@ int	rrb(t_vec *b)
 }
 
 /*rrr : rra and rrb at the same time.*/
-int	rrr(t_vec *a, t_vec *b);
+int	rrr(t_vec *a, t_vec *b)
+{
+	rra(a);
+	rrb(b);
+	return(1);
+}
