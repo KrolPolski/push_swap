@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:02:35 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:09:33 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	sa(t_vec *a)
 	ptr_1 = vec_get(a, 1);
 	if (!ptr_0 || !ptr_1)
 		return (-1);
-	ft_printf("sa\n");
 	tmp = *ptr_1;
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
@@ -41,7 +40,6 @@ int	sb(t_vec *b)
 	ptr_1 = vec_get(b, 1);
 	if (!ptr_0 || !ptr_1)
 		return (-1);
-	ft_printf("sb\n");
 	tmp = *ptr_1;
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
