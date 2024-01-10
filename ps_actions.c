@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:22:05 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/08 11:36:25 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:02:35 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	sa(t_vec *a)
 	int	tmp;
 	ptr_0 = vec_get(a, 0);
 	ptr_1 = vec_get(a, 1);
+	if (!ptr_0 || !ptr_1)
+		return (-1);
 	ft_printf("sa\n");
-	ft_printf("0 and 1 positions are '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
 	tmp = *ptr_1;
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
-	ft_printf("0 and 1 positions are now '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
 	return (1);
 }
 
@@ -39,20 +39,20 @@ int	sb(t_vec *b)
 	int	tmp;
 	ptr_0 = vec_get(b, 0);
 	ptr_1 = vec_get(b, 1);
+	if (!ptr_0 || !ptr_1)
+		return (-1);
 	ft_printf("sb\n");
-	ft_printf("0 and 1 positions are '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
 	tmp = *ptr_1;
 	*ptr_1 = *ptr_0;
 	*ptr_0 = tmp;
-	ft_printf("0 and 1 positions are now '%d' and '%d' respectively\n", *ptr_0, *ptr_1);
 	return (1);
 }
 
 /* ss : sa and sb at the same time.*/
 int ss(t_vec *a, t_vec *b)
 {
-	sa(a);
-	sb(b);
+	if (sa(a) == -1 || sb(b) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -60,8 +60,13 @@ int ss(t_vec *a, t_vec *b)
 Do nothing if b is empty.*/
 int	pa(t_vec *a, t_vec *b)
 {
-	vec_insert(a, vec_get(b, 0), 0);
-	vec_remove(b, 0);
+	int *ptr;
+	
+	ptr = vec_get(b,0);
+	if (!ptr)
+		return (-1);
+	if (vec_insert(a, ptr, 0) == -1 || vec_remove(b, 0) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -69,8 +74,13 @@ int	pa(t_vec *a, t_vec *b)
 Do nothing if a is empty.*/
 int	pb(t_vec *a, t_vec *b)
 {
-	vec_insert(b, vec_get(a, 0), 0);
-	vec_remove(a, 0);
+	int *ptr;
+
+	ptr = vec_get(a, 0);
+	if (!ptr)
+		return (-1);
+	if (vec_insert(b, ptr, 0) == -1 || vec_remove(a, 0) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -78,8 +88,11 @@ int	pb(t_vec *a, t_vec *b)
 The first element becomes the last one.*/
 int	ra(t_vec *a)
 {
-	vec_push(a, vec_get(a, 0));
-	vec_remove(a, 0);
+	int *ptr;
+
+	ptr = vec_get(a, 0);
+	if (!ptr || vec_push(a, ptr) == -1 || vec_remove(a, 0) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -87,16 +100,19 @@ int	ra(t_vec *a)
 The first element becomes the last one.*/
 int	rb(t_vec *b)
 {
-	vec_push(b, vec_get(b, 0));
-	vec_remove(b, 0);
+	int *ptr;
+
+	ptr = vec_get(b, 0);
+	if (!ptr || vec_push(b, ptr) == -1 || vec_remove(b, 0) == -1)
+		return (-1);
 	return (1);
 }
 
 /*rr : ra and rb at the same time.*/
 int	rr(t_vec *a, t_vec *b)
 {
-	ra(a);
-	rb(b);
+	if (ra(a) == -1 || rb(b) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -105,10 +121,14 @@ The last element becomes the first one.*/
 int	rra(t_vec *a)
 {
 	int x;
+	int *ptr;
 
-	x = *(int *)(vec_get(a, a->len - 1));
-	vec_insert(a, &x, 0);
-	vec_remove(a, a->len - 1);
+	ptr = vec_get(a, a->len - 1);
+	if (!ptr)
+		return (-1);
+	x = *(int *)(ptr);
+	if (vec_insert(a, &x, 0) == -1 || vec_remove(a, a->len - 1) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -117,17 +137,21 @@ The last element becomes the first one.*/
 int	rrb(t_vec *b)
 {
 	int x;
+	int *ptr;
 	
-	x = *(int *)(vec_get(b, b->len - 1));
-	vec_insert(b, &x, 0);
-	vec_remove(b, b->len - 1);
+	ptr = vec_get(b, b->len - 1);
+	if (!ptr)
+		return (-1);
+	x = *(int *)(ptr);
+	if (vec_insert(b, &x, 0) == -1 || vec_remove(b, b->len - 1) == -1)
+		return (-1);
 	return (1);
 }
 
 /*rrr : rra and rrb at the same time.*/
 int	rrr(t_vec *a, t_vec *b)
 {
-	rra(a);
-	rrb(b);
-	return(1);
+	if (rra(a) == -1 || rrb(b) == -1)
+		return (-1);
+	return (1);
 }
