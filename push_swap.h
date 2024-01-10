@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:40 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:15:18 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:35:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ int	rrb(t_vec *b);
 int	rrr(t_vec *a, t_vec *b);
 
 int	print_vector(t_vec *vec);
+int	check_order(t_vec *a);
 #endif
