@@ -3,6 +3,8 @@ NAME	:= push_swap
 CFLAGS	:= -Wunreachable-code -Ofast 
 SRCS	:= push_swap.c \
 		   ps_actions.c \
+		   ps_actions2.c \
+		   ps_actions3.c \
 		   tools.c
 OBJS	:= ${SRCS:.c=.o} Libft/libft.a
 
