@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:35:03 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:36:02 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ int	check_order(t_vec *a)
 		i++;
 	}
 	return (in_order);
+}
+
+int	vec_int(t_vec *a, int index)
+{
+	int	*ptr;
+	int	x;
+
+	ptr = vec_get(a, index);
+	x = *ptr;
+	return (x);
 }

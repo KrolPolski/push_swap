@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:36:47 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:52:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,70 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	return (1);
 }
+//this one is simple enough to hardcode
+int	push_swap_three(t_vec *a, t_vec *b)
+{
+	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	{
+		sa(a);
+		ft_printf("sa\n");
+		return (1);
+	}
+	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
+	{
+		rra(a);
+		ft_printf("rra\n");
+		return (1);
+	}
+	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
+	{
+		ra(a);
+		ft_printf("ra\n");
+		return (1);
+	}
+	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
+	{
+		sa(a);
+		ft_printf("sa\n");
+		rra(a);
+		ft_printf("rra\n");
+		return (1);
+	}
+	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	{
+		sa(a);
+		ft_printf("sa\n");
+		ra(a);
+		ft_printf("ra\n");
+		return (1);
+	}
+	else
+		ft_printf("Something went wrong in push_swap_three");
+	return (-1);
+}
+
 //we need to handle 2, or 3 numbers.
 int	push_swap_small(t_vec *a, t_vec *b)
 {
+	int	i;
+	int	index;
+
+	i = 0;
+	if (a->len == 2)
+	{
+		if (*(int *)vec_get(a, 0) > *(int *)vec_get(a, 1))
+		{
+			sa(a);
+			ft_printf("sa\n");
+			return (1);
+		}
+		else
+			return (1);
+	}
+	else
+		push_swap_three(a, b);
+	return (1);
 	
-
-	//else
-	//{
-
-	//}
-	return (1);	
 }
 
 int	push_swap(t_vec *a, t_vec *b)
