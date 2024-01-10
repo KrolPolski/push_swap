@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:40 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:13:18 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:15:18 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Do nothing if there is only one or no elements.*/
 int	sb(t_vec *b);
 
 /* ss : sa and sb at the same time.*/
-int ss(t_vec *a, t_vec *b);
+int	ss(t_vec *a, t_vec *b);
 
 /* pa (push a): Take the first element 
 at the top of b and put it at the top of a.
