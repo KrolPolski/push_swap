@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 11:52:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:51:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,24 @@
 /* Parse the arguments and add them as elements to the vector */
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
+	// we need to build in logic that will 
+	//handle arguments being passed in quotes
+	// like this: "1 2 3" instead of 1 2 3
 	int	tmp;
 	int	i;
 	int *ptr;
+	char **split;
 
 	i = 1;
+	if (argc == 2)
+	{
+		split = ft_split(argv[1], ' ');
+		argv = split;
+		//this works but isn't super clear, there has to be a
+		// cleaner solution than screwing with argc and i
+		i = 0;
+		argc++;
+	}
 	while (i < argc)
 	{
 		if (argv[i][0] < 48 || argv[i][0] > 57)
