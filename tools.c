@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 11:36:02 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:33:15 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,35 @@ int	vec_int(t_vec *a, int index)
 	ptr = vec_get(a, index);
 	x = *ptr;
 	return (x);
+}
+
+int	find_max(t_vec *a)
+{
+	int	index;
+	int	max;
+
+	index = 0;
+	max = 0;
+	while (index < a->len)
+	{
+		if (vec_int(a, index) > max)
+			max = vec_int(a, index);
+		index++;
+	}
+	return (max);
+}
+int	find_min(t_vec *a, int max)
+{
+	int	index;
+	int	min;
+
+	index = 0;
+	min = max;
+	while (index < a->len)
+	{
+		if (vec_int(a, index) < min)
+			min = vec_int(a, index);
+		index++;
+	}
+	return (min);
 }

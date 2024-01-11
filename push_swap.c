@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/10 15:51:30 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:33:40 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	int	tmp;
 	int	i;
 	int *ptr;
-	char **split;
 
 	i = 1;
 	if (argc == 2)
 	{
-		split = ft_split(argv[1], ' ');
-		argv = split;
+		argv = ft_split(argv[1], ' ');
+		if (!argv)
+			return (-1);
 		//this works but isn't super clear, there has to be a
 		// cleaner solution than screwing with argc and i
 		i = 0;
-		argc++;
+		argc = 0;
+		while (argv[i] != NULL)
+		{
+			argc++;
+			i++;
+		}
+		i = 0;
 	}
 	while (i < argc)
 	{
@@ -122,7 +128,15 @@ int	push_swap_small(t_vec *a, t_vec *b)
 	return (1);
 	
 }
-
+int	push_swap_medium(t_vec *a, t_vec *b)
+{
+	int max;
+	int min;
+	
+	max = find_max(a);
+	min = find_min(a, max);
+	ft_printf("The min is %d and the max is %d\n", min, max);
+}
 int	push_swap(t_vec *a, t_vec *b)
 {
 	/*tests:
@@ -160,8 +174,8 @@ int	push_swap(t_vec *a, t_vec *b)
 		return (1);
 	if (a->len < 4)
 		push_swap_small(a, b);
-	/*if (a->len < 10)
-		push_swap_medium(a, b);
+	if (a->len < 10)
+		push_swap_medium(a, b);/*
 	if (a->len < 100)
 		push_swap_large(a, b);
 	if (a->len >= 100)
