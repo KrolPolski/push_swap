@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/11 10:33:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:25:39 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,40 +64,33 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	return (1);
 }
 //this one is simple enough to hardcode
-int	push_swap_three(t_vec *a, t_vec *b)
+int	push_swap_three(t_vec *a)
 {
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-		sa(a);
-		ft_printf("sa\n");
+		sa(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
 	{
-		rra(a);
-		ft_printf("rra\n");
+		rra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
 	{
-		ra(a);
-		ft_printf("ra\n");
+		ra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
 	{
-		sa(a);
-		ft_printf("sa\n");
-		rra(a);
-		ft_printf("rra\n");
+		sa(a, 1);
+		rra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-		sa(a);
-		ft_printf("sa\n");
-		ra(a);
-		ft_printf("ra\n");
+		sa(a, 1);
+		ra(a, 1);
 		return (1);
 	}
 	else
@@ -116,26 +109,44 @@ int	push_swap_small(t_vec *a, t_vec *b)
 	{
 		if (*(int *)vec_get(a, 0) > *(int *)vec_get(a, 1))
 		{
-			sa(a);
-			ft_printf("sa\n");
+			sa(a, 1);
 			return (1);
 		}
 		else
 			return (1);
 	}
 	else
-		push_swap_three(a, b);
+		push_swap_three(a);
 	return (1);
 	
 }
+
 int	push_swap_medium(t_vec *a, t_vec *b)
 {
-	int max;
-	int min;
-	
+	int	max;
+	int	min;
+	int	midpoint;
+	int index;
+
+	index = 0;
 	max = find_max(a);
 	min = find_min(a, max);
-	ft_printf("The min is %d and the max is %d\n", min, max);
+	midpoint = min + ((max - min) / 2);
+	//ft_printf("The min is %d and the max is %d\n", min, max);
+	pb(a, b, 1);
+	pb(a, b, 1);
+	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(b, 0) < vec_int(b, 1))
+	{
+		ss(a, b, 1);
+	}
+	else if (vec_int(b, 0) < vec_int(b, 1))
+	{
+		sb(b, 1);
+	}
+	while (vec_int(a, 0) < vec_int(b, 0))
+	{
+		ra(a, 1);
+	}
 }
 int	push_swap(t_vec *a, t_vec *b)
 {
@@ -174,7 +185,7 @@ int	push_swap(t_vec *a, t_vec *b)
 		return (1);
 	if (a->len < 4)
 		push_swap_small(a, b);
-	if (a->len < 10)
+	else if (a->len < 10)
 		push_swap_medium(a, b);/*
 	if (a->len < 100)
 		push_swap_large(a, b);
