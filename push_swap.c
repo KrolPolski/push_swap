@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/11 18:25:39 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:26:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,8 @@ int	main(int argc, char **argv)
 	vec_new(&a, 0, sizeof(int));
 	vec_new(&b, 0, sizeof(int));
 	ret = convert_and_build_vector(&a, argc, argv);
+	//print_vector(&a);
+	//smart_rotate(&a, 5);
 	//print_vector(&a);
 	if (ret == -1)
 	{

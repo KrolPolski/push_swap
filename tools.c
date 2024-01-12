@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/11 18:25:58 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:25:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	find_min(t_vec *a, int max)
 	}
 	return (min);
 }
-/*int	smart_rotate(t_vec *a, int target)
+int	smart_rotate(t_vec *a, int target)
 {
 	//we want to rotate to get the target 
 	//value on top, but we don't know which direction will be more efficient yet.
@@ -95,13 +95,25 @@ int	find_min(t_vec *a, int max)
 	{
 		i++;
 	}
+	ft_printf("i = %d", i);
 	if (vec_int(a, i) == target)
 	{
 		from_zero = i;
 		from_end = a->len - 1 - i;
 	}
-	if (from_zero >= from_end)
+	if (from_zero <= from_end)
+		while (i > 0)
+		{
+			ra(a, 1);
+			i--;
+		}
 		//rotate using ra(a) i number of times
 	else
+		i = a->len - i;
+		while (i > 0)
+		{
+			rra(a, 1);
+			i--;
+		}
 		//rotate using rra(a) a->len - i number of times
-}*/
+}
