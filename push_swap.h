@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:40 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/11 18:21:51 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:30:35 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	check_order(t_vec *a);
 int	push_swap_three(t_vec *a);
 int	vec_int(t_vec *a, int index);
 int	push_swap_small(t_vec *a, t_vec *b);
+int	push_swap_five(t_vec *a, t_vec *b);
 int	push_swap_medium(t_vec *a, t_vec *b);
 int	find_max(t_vec *a);
 int	find_min(t_vec *a, int max);

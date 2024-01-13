@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/12 13:26:34 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:46:15 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	push_swap_three(t_vec *a)
 		ra(a, 1);
 		return (1);
 	}
-	else
-		ft_printf("Something went wrong in push_swap_three");
+//	else
+//		ft_printf("Something went wrong in push_swap_three");
 	return (-1);
 }
 
@@ -120,34 +120,97 @@ int	push_swap_small(t_vec *a, t_vec *b)
 	return (1);
 	
 }
+/* make an answer key. problem solved
+1. check first three cards to see if they should be adjacent. 
+if so ra 3, 2, or 1 times as required to get to three cards that don't belong together. if not do nothing
+2. push three cards
+3. calculate the shortest path to an insertion point. rotate or swap as needed to get the right card on top of b.
+4. smart rotate to insertion point (integer just above top card of b), then push a, repeat until all the cards are gone
+5. smart rotate to the next card that is not adjacent to where it should be. 
+6. push. repeat 5 until there are three cards in b. then go to 3. loop this until it matches the sorted set.*/
 
-int	push_swap_medium(t_vec *a, t_vec *b)
+/*to implement the above, we need 1) an answer key, 
+2) a function that will check the distance of every vector item
+from its intended insertion point so we can choose the lowest cost options */
+//that is a start.
+/*ALT: 1. push 2
+		2. calculate rotation distance in a to the first integer above b, 0 and b,1
+		3. if b, 0 distance <= b, 1, smart rotate, then push a, otherwise swap b and then do it
+		3. if the second card in b belongs in the next spot, push it now
+		3. if one of them is the max, distance to min instead.
+		4. rra and swap until you can't solve it
+		5. smart rotate and insert 2nd card from b
+		6. rra and swap until you can't. then push b. 
+		7. rra and swap until you can't then push b.
+		8. go to 3. until it is sorted
+		
+		/* 1. push the first two cards no matter what
+   2. swap or double swap if needed to ensure low card on top of a, high card on top of b
+   3. if the next a card is higher than top card of b, push it until that isn't true
+   4. smart rotate a to a_min
+   5. while b, 0 > than bottom of A ,push a
+   6. rra 
+   7. swap if needed until top of a > 2nd card in a but also > 3rd card.
+   8. push b.
+   9. if top of b < max of a, smart rotate to max
+   10. if top of b < max of a but also more than bottom of a, push a, else rra
+   11. if b, 0 < a, 0 and greater than the bottom one, push a, else rra, swap as needed until you can't, then push b
+   12. identify the integer just above the integer in b. smart rotate to that, push a
+   13. once we are out of stuff in b, smart rotate to min, be done */
+int	push_swap_five(t_vec *a, t_vec *b)
+{
+	pb(a, b, 1);
+	pb(a, b, 1);	
+	push_swap_small(a, b);
+	if (vec_int(b, b->len - 1) > vec_int(b, 0))
+          sb(b, 1);
+    if (vec_int(b, 0) < vec_int(a, 0))
+    {
+        pa(a, b, 1);
+        pa(a, b, 1);
+        return (1);
+    }
+    while(vec_int(b, 0) < vec_int(a, a->len - 1))
+        rra(a, 1);
+    pa(a, b, 1);
+    while(vec_int(b, 0) < vec_int(a, a->len - 1) && vec_int(a, 0) > vec_int(a, a->len - 1))
+        rra(a, 1);
+    pa(a, b, 1);
+    while(vec_int(a, 0) > vec_int(a, a->len - 1))
+        rra(a, 1);
+	return (1);
+}
+
+/*int	push_swap_medium(t_vec *a, t_vec *b)
 {
 	int	max;
 	int	min;
 	int	midpoint;
 	int index;
+	int	init_len;
+	int	below_midpoint;
+	int i;
 
+	below_midpoint = 0;
 	index = 0;
+	init_len = a->len;
 	max = find_max(a);
 	min = find_min(a, max);
 	midpoint = min + ((max - min) / 2);
-	//ft_printf("The min is %d and the max is %d\n", min, max);
-	pb(a, b, 1);
-	pb(a, b, 1);
-	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(b, 0) < vec_int(b, 1))
+	while (i < a->len)
 	{
-		ss(a, b, 1);
+		if (vec_int(a, i) < midpoint)
+			below_midpoint++;
+		i++;
 	}
-	else if (vec_int(b, 0) < vec_int(b, 1))
+	i = 0;
+	while )
 	{
-		sb(b, 1);
+		if (vec_int(a, 0) < midpoint)
+			pa(a, b, 1);
 	}
-	while (vec_int(a, 0) < vec_int(b, 0))
-	{
-		ra(a, 1);
-	}
-}
+}*/
+
 int	push_swap(t_vec *a, t_vec *b)
 {
 	/*tests:
@@ -183,10 +246,13 @@ int	push_swap(t_vec *a, t_vec *b)
 	print_vector(b);*/
 	if (a->len == 1)
 		return (1);
-	if (a->len < 4)
+	else if (a->len < 4)
 		push_swap_small(a, b);
-	else if (a->len < 10)
-		push_swap_medium(a, b);/*
+	else if (a->len < 6)
+		push_swap_five(a, b);
+	//else if (a->len < 10)
+	//	push_swap_medium(a, b);
+	/*
 	if (a->len < 100)
 		push_swap_large(a, b);
 	if (a->len >= 100)
@@ -198,6 +264,7 @@ int	main(int argc, char **argv)
 	int ret;
 	t_vec a;
 	t_vec b;
+	t_vec key;
 
 	if (argc < 2)
 	{
@@ -207,6 +274,8 @@ int	main(int argc, char **argv)
 	vec_new(&a, 0, sizeof(int));
 	vec_new(&b, 0, sizeof(int));
 	ret = convert_and_build_vector(&a, argc, argv);
+	//vec_from(&key, &a, a.len, a.elem_size);
+	//vec_sort(&key, ft_memcmp);
 	//print_vector(&a);
 	//smart_rotate(&a, 5);
 	//print_vector(&a);
