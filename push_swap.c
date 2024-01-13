@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/13 14:46:15 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/13 16:06:06 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,12 @@ int	push_swap(t_vec *a, t_vec *b)
 }
 int	main(int argc, char **argv)
 {
+	//we have to add logic to catch duplicate values and error out
+	//also we need to catch anything outside the integer range and error out as well
+	//went from five to a hundred, then to 500;
+	//probably need to push to b until there are only three left in a, using smart rotates
+	//to keep them in order.
+	//need a cost comparison feature to decide which thing we have to get to first.
 	int ret;
 	t_vec a;
 	t_vec b;
