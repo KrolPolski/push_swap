@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 11:48:04 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:56:57 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,31 +138,40 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	int	min_total_cost;
 	int	index;
 	int	i;
+	int	k;
 
 	i = 0;
+	k = 0;
 	index = a->len;
 	min_a_cost = a->len;
 	//we also need to think about whether to insist on next integer. probably not?
 	//consider where to stop when we have only three left. i guess not here
 	while (i < a->len)
 	{
-		if (vec_int(a, i) > vec_int(b, 0))
+		while (k < b->len)
 		{
-			a_cost_forward = i;
-			a_cost_reverse = a->len - i - 1;
-			if (a_cost_forward <= a_cost_reverse)
-				a_cost = a_cost_forward;
-			else
-				a_cost = a_cost_reverse;
-			if (a_cost < min_a_cost)
+			if (vec_int(a, i) > vec_int(b, k))
 			{
-				ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
-				min_a_cost = a_cost;
-				index = i;
+				a_cost_forward = i + k;
+				a_cost_reverse = a->len - i - 1 + k;
+				if (a_cost_forward <= a_cost_reverse)
+					a_cost = a_cost_forward;
+				else
+					a_cost = a_cost_reverse;
+				if (a_cost < min_a_cost)
+				{
+					ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
+					min_a_cost = a_cost;
+					index = i;
+				}
 			}
+			k++;
 		}
+		k = 0;
 		i++;
+		
 		//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
 	}
+	
 	return (index);
 }
