@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/13 16:06:06 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 10:31:57 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,27 @@ int	push_swap(t_vec *a, t_vec *b)
 		push_swap_jumbo(a, b);*/
 	return (1);
 }
+int	validate_input (t_vec *a)
+{
+	//detect duplicate values
+	int i;
+	i = 0;
+	int k;
+	k = 1;
+	while (i < a->len - 1)
+	{
+		while (k < a->len)
+		{
+			if (vec_int(a, i) == vec_int(a, k))
+				return (-1);
+			k++;
+		}
+		i++;
+		k = i + 1;
+	}
+	//detect values outside of integer range. except atoi is going to flunk this so I have to move this logic.
+}
+
 int	main(int argc, char **argv)
 {
 	//we have to add logic to catch duplicate values and error out
@@ -287,6 +308,13 @@ int	main(int argc, char **argv)
 	//print_vector(&a);
 	if (ret == -1)
 	{
+		ft_putstr_fd("Error\n", 2);
+		exit(-1);
+	}
+	if (validate_input(&a) == -1)
+	{
+		vec_free(&a);
+		vec_free(&b);
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}
