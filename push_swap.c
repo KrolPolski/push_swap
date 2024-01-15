@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 11:06:46 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:21:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,39 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	return (1);
 }
-//this one is simple enough to hardcode
+int	reverse_sort_three(t_vec *a)
+{
+	if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
+	{
+		sa(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	{
+		rra(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 1) > vec_int(a, 2) && vec_int(a, 0) < vec_int(a, 2))
+	{
+		ra(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 1) < vec_int(a, 2))
+	{
+		sa(a, 1);
+		rra(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
+	{
+		sa(a, 1);
+		ra(a, 1);
+		return (1);
+	}
+//	else
+//		ft_printf("Something went wrong in push_swap_three");
+	return (-1);
+}
 int	push_swap_three(t_vec *a)
 {
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
@@ -186,9 +218,23 @@ int	push_swap_five(t_vec *a, t_vec *b)
 	return (1);
 }
 
-/*int	push_swap_medium(t_vec *a, t_vec *b)
+int	push_swap_medium(t_vec *a, t_vec *b)
 {
-	int	max;
+	//push three to b, sort three, 
+	//choose cheapest to push to b
+	//push to b
+	//loop until there are only three left in a
+	//push them all back to a in an intelligent way
+	//that will probably work.
+	pb(a,b,1);
+	pb(a,b,1);
+	pb(a,b,1);
+	print_vector(b);
+	reverse_sort_three(b);
+	print_vector(b);
+
+	//giving up on this logic for now, going to try a different approach
+	/*int	max;
 	int	min;
 	int	midpoint;
 	int index;
@@ -213,8 +259,8 @@ int	push_swap_five(t_vec *a, t_vec *b)
 	{
 		if (vec_int(a, 0) < midpoint)
 			pa(a, b, 1);
-	}
-}*/
+	}*/
+}
 
 int	push_swap(t_vec *a, t_vec *b)
 {
@@ -255,8 +301,8 @@ int	push_swap(t_vec *a, t_vec *b)
 		push_swap_small(a, b);
 	else if (a->len < 6)
 		push_swap_five(a, b);
-	//else if (a->len < 10)
-	//	push_swap_medium(a, b);
+	else
+		push_swap_medium(a, b);
 	/*
 	if (a->len < 100)
 		push_swap_large(a, b);
@@ -288,8 +334,8 @@ int	validate_input (t_vec *a)
 
 int	main(int argc, char **argv)
 {
-	//we have to add logic to catch duplicate values and error out
-	//also we need to catch anything outside the integer range and error out as well
+	//we have to add logic to catch duplicate values and error out DONE
+	//also we need to catch anything outside the integer range and error out as well DONE
 	//went from five to a hundred, then to 500;
 	//probably need to push to b until there are only three left in a, using smart rotates
 	//to keep them in order.
@@ -315,7 +361,7 @@ int	main(int argc, char **argv)
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
-		ft_printf("We concluded that convert and build vector failed\n");
+	//	ft_printf("We concluded that convert and build vector failed\n");
 		exit(-1);
 	}
 	if (validate_input(&a) == -1)
@@ -323,7 +369,7 @@ int	main(int argc, char **argv)
 		vec_free(&a);
 		vec_free(&b);
 		ft_putstr_fd("Error\n", 2);
-		ft_printf("we concluded that validate_input failed\n");
+	//	ft_printf("we concluded that validate_input failed\n");
 		exit(-1);
 	}
 	if (check_order(&a) == 1)
