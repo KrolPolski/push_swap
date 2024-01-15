@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 11:42:44 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:06:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,10 +232,10 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 	pb(a, b, 1);
 	//print_vector(b);
 	reverse_sort_three(b);
-	next = choose_cheapest_push(a, b);
+	choose_cheapest_push(a, b);
 	print_vector(a);
 	print_vector(b);
-	ft_printf("Given the vectors a and b above, be believe the cheapest one is at index %d, which is %d\n", next, vec_int(a, next));
+	//ft_printf("Given the vectors a and b above, be believe the cheapest one is at index %d, which is %d\n", next, vec_int(a, next));
 	
 
 	//giving up on this logic for now, going to try a different approach

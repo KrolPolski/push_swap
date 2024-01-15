@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:40 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 11:43:34 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:07:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ int	find_max(t_vec *a);
 int	find_min(t_vec *a, int max);
 int	smart_rotate(t_vec *a, int target);
 int	choose_cheapest_push(t_vec *a, t_vec *b);
+int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
 #endif

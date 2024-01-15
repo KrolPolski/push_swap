@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 11:56:57 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:22:57 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,13 @@ int	smart_rotate(t_vec *a, int target)
 	int from_end;
 	int	i;
 
+	ft_printf("we entered smart_rotate\n");
 	i = 0;
 	while (i < a->len && vec_int(a, i) != target)
 	{
 		i++;
 	}
-	ft_printf("i = %d", i);
+	ft_printf("i = %d\n", i);
 	if (vec_int(a, i) == target)
 	{
 		from_zero = i;
@@ -136,13 +137,15 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	int	min_b_cost;
 	int total_cost;
 	int	min_total_cost;
-	int	index;
+	int	index_a;
+	int	index_b;
 	int	i;
 	int	k;
 
 	i = 0;
 	k = 0;
-	index = a->len;
+	index_a = a->len;
+	index_b = b->len;
 	min_a_cost = a->len;
 	//we also need to think about whether to insist on next integer. probably not?
 	//consider where to stop when we have only three left. i guess not here
@@ -162,7 +165,8 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 				{
 					ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
 					min_a_cost = a_cost;
-					index = i;
+					index_a = i;
+					index_b = k;
 				}
 			}
 			k++;
@@ -172,6 +176,14 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 		
 		//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
 	}
-	
-	return (index);
+	execute_cheapest_push(a, b, index_a, index_b);
+	return (1);
+}
+int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
+{
+	ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
+	//need to add logic to double rotate when possible, for now not worrying about it
+	smart_rotate(a, vec_int(a, index_a));
+	smart_rotate(b, vec_int(b, index_b));
+	pb(a, b, 1);
 }
