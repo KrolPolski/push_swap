@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 10:31:57 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:06:46 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	// we need to build in logic that will 
 	//handle arguments being passed in quotes
 	// like this: "1 2 3" instead of 1 2 3
-	int	tmp;
+	long	tmp;
+	int		int_tmp;
 	int	i;
 	int *ptr;
 
@@ -50,13 +51,17 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		if (argv[i][0] < 48 || argv[i][0] > 57)
+		//this logic is breaking negative numbers
+		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
 		{
 			vec_free(a);
 			return (-1);
 		}
-		tmp = ft_atoi(argv[i]);
-		vec_push(a, &tmp);
+		tmp = ft_long_atoi(argv[i]);
+		if (tmp > 2147483647 || tmp < -2147483648)
+			return (-1);
+		int_tmp = (int)tmp;
+		vec_push(a, &int_tmp);
 		ptr = vec_get(a, i - 1);
 		//ft_printf("%d, ", *ptr);
 		i++;
@@ -277,6 +282,7 @@ int	validate_input (t_vec *a)
 		i++;
 		k = i + 1;
 	}
+	return (1);
 	//detect values outside of integer range. except atoi is going to flunk this so I have to move this logic.
 }
 
@@ -309,6 +315,7 @@ int	main(int argc, char **argv)
 	if (ret == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
+		ft_printf("We concluded that convert and build vector failed\n");
 		exit(-1);
 	}
 	if (validate_input(&a) == -1)
@@ -316,6 +323,7 @@ int	main(int argc, char **argv)
 		vec_free(&a);
 		vec_free(&b);
 		ft_putstr_fd("Error\n", 2);
+		ft_printf("we concluded that validate_input failed\n");
 		exit(-1);
 	}
 	if (check_order(&a) == 1)
