@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 14:41:57 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/01/15 15:17:23 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,37 +70,36 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 }
 int	reverse_sort_three(t_vec *a)
 {
-	if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
+	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-		sa(a, 1);
-		return (1);
-	}
-	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
-	{
-		rra(a, 1);
-		return (1);
-	}
-	else if (vec_int(a, 1) > vec_int(a, 2) && vec_int(a, 0) < vec_int(a, 2))
-	{
-		ra(a, 1);
-		return (1);
-	}
-	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 1) < vec_int(a, 2))
-	{
-		sa(a, 1);
-		rra(a, 1);
+		rrb(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
 	{
-		sa(a, 1);
-		ra(a, 1);
+		sb(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
+	{
+		rrb(a, 1);
+		sb(a, 1);
+		return (1);
+	}
+	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
+	{
+		return (1);
+	}
+	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	{
+	    rrb(a, 1);
 		return (1);
 	}
 //	else
 //		ft_printf("Something went wrong in push_swap_three");
 	return (-1);
 }
+
 int	push_swap_three(t_vec *a)
 {
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
@@ -241,8 +240,8 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 	batch_push(a, b);
 	smart_rotate(a, find_min(a, find_max(a)));
 	//now we need to push b back appropriately
-	print_vector(a);
-	print_vector(b);
+	//print_vector(a);
+	//print_vector(b);
 	//ft_printf("Given the vectors a and b above, be believe the cheapest one is at index %d, which is %d\n", next, vec_int(a, next));
 	
 

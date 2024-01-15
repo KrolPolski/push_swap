@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 13:15:40 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 12:50:46 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/01/15 15:18:23 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H

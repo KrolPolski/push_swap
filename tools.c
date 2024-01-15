@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 14:40:09 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/01/15 15:18:32 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/01/15 15:18:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "push_swap.h"
 int	print_vector(t_vec *vec)
@@ -90,13 +91,13 @@ int	smart_rotate(t_vec *a, int target)
 	int from_end;
 	int	i;
 
-	ft_printf("we entered smart_rotate\n");
+//	ft_printf("we entered smart_rotate\n");
 	i = 0;
 	while (i < a->len && vec_int(a, i) != target)
 	{
 		i++;
 	}
-	ft_printf("i = %d\n", i);
+	//ft_printf("i = %d\n", i);
 	if (vec_int(a, i) == target)
 	{
 		from_zero = i;
@@ -163,7 +164,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					a_cost = a_cost_reverse;
 				if (a_cost < min_a_cost)
 				{
-					ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
+				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
 					min_a_cost = a_cost;
 					index_a = i;
 					index_b = k;
@@ -181,7 +182,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 }
 int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 {
-	ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
+	//ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
 	//need to add logic to double rotate when possible, for now not worrying about it
 	smart_rotate(a, vec_int(a, index_a));
 	smart_rotate(b, vec_int(b, index_b));
@@ -192,8 +193,8 @@ int	batch_push(t_vec *a, t_vec *b)
 	
 	smart_rotate(b, find_max(b));
 	smart_rotate(a, find_max(a));
-	print_vector(a);
-	print_vector(b);
+	//print_vector(a);
+	//print_vector(b);
 	while (b->len > 0)
 	{
 		if (vec_int(b, 0) < vec_int(a, 0) &&

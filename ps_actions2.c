@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ps_actions2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 10:10:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/11 18:22:32 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/01/15 15:17:58 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/01/15 15:18:00 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "push_swap.h"
 
