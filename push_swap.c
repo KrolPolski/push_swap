@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 13:15:33 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 12:06:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:41:57 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,15 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 	pb(a, b, 1);
 	//print_vector(b);
 	reverse_sort_three(b);
-	choose_cheapest_push(a, b);
+	while (a->len > 3)
+	{
+		choose_cheapest_push(a, b);
+	}
+	//now we need to sort a
+	push_swap_three(a);
+	batch_push(a, b);
+	smart_rotate(a, find_min(a, find_max(a)));
+	//now we need to push b back appropriately
 	print_vector(a);
 	print_vector(b);
 	//ft_printf("Given the vectors a and b above, be believe the cheapest one is at index %d, which is %d\n", next, vec_int(a, next));

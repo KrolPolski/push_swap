@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:47:06 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 12:22:57 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:40:09 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,4 +186,26 @@ int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 	smart_rotate(a, vec_int(a, index_a));
 	smart_rotate(b, vec_int(b, index_b));
 	pb(a, b, 1);
+}
+int	batch_push(t_vec *a, t_vec *b)
+{
+	
+	smart_rotate(b, find_max(b));
+	smart_rotate(a, find_max(a));
+	print_vector(a);
+	print_vector(b);
+	while (b->len > 0)
+	{
+		if (vec_int(b, 0) < vec_int(a, 0) &&
+			vec_int(b, 0) > vec_int(a, a->len - 1))
+			pa(a, b, 1);
+		else if (vec_int(b, 0) > vec_int(a, 0) &&
+			vec_int(b, 0) > vec_int(a, a->len -1))
+		{
+			pa(a, b, 1);
+			sa(a, 1);
+		}
+		else
+			rra(a, 1);
+	}
 }
