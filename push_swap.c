@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/16 10:46:21 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:13:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,32 +68,37 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	return (1);
 }
-int	reverse_sort_three(t_vec *a)
+int	reverse_sort_three(t_vec *b)
 {
-	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
 	{
-		rrb(a, 1);
+		rrb(b, 1);
 		return (1);
 	}
-	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
+	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 2) < vec_int(b, 0))
 	{
-		sb(a, 1);
+		sb(b, 1);
 		return (1);
 	}
-	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
+	else if (vec_int(b, 1) < vec_int(b, 2) && vec_int(b, 0) > vec_int(b, 2))
 	{
-		rrb(a, 1);
-		sb(a, 1);
+		rrb(b, 1);
+		sb(b, 1);
 		return (1);
 	}
-	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
+	else if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 1) > vec_int(b, 2))
 	{
 		return (1);
 	}
-	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	else if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
 	{
-	    rrb(a, 1);
+	    rrb(b, 1);
 		return (1);
+	}
+	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b,1) < vec_int(b, 2))
+	{
+		rb(b, 1);
+		sb(b, 1);
 	}
 //	else
 //		ft_printf("Something went wrong in push_swap_three");
