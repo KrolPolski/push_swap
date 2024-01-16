@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 15:17:23 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/16 10:46:21 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 	//now we need to sort a
 	push_swap_three(a);
 	batch_push(a, b);
-	smart_rotate(a, find_min(a, find_max(a)));
+	smart_rotate_a(a, find_min(a, find_max(a)));
 	//now we need to push b back appropriately
 	//print_vector(a);
 	//print_vector(b);
@@ -352,6 +352,7 @@ int	main(int argc, char **argv)
 	//probably need to push to b until there are only three left in a, using smart rotates
 	//to keep them in order.
 	//need a cost comparison feature to decide which thing we have to get to first.
+	//fix header emails on each of the libft things that got borked by VSCode
 	int ret;
 	t_vec a;
 	t_vec b;

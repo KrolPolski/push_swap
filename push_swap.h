@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 15:18:23 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/16 10:47:27 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	push_swap_five(t_vec *a, t_vec *b);
 int	push_swap_medium(t_vec *a, t_vec *b);
 int	find_max(t_vec *a);
 int	find_min(t_vec *a, int max);
-int	smart_rotate(t_vec *a, int target);
+int	smart_rotate_a(t_vec *a, int target);
+int	smart_rotate_b(t_vec *b, int target);
 int	choose_cheapest_push(t_vec *a, t_vec *b);
 int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
 int	batch_push(t_vec *a, t_vec *b);

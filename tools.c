@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 15:18:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 15:18:34 by rboudwin         ###   ########.fr       */
+/*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
+/*   Updated: 2024/01/16 10:49:12 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 int	print_vector(t_vec *vec)
@@ -82,7 +81,9 @@ int	find_min(t_vec *a, int max)
 	}
 	return (min);
 }
-int	smart_rotate(t_vec *a, int target)
+//this is using ra functions etc even when it is the b vector. we need
+//to figure out whether to  use ra or rb functions instead.
+int	smart_rotate_a(t_vec *a, int target)
 {
 	//we want to rotate to get the target 
 	//value on top, but we don't know which direction will be more efficient yet.
@@ -118,6 +119,45 @@ int	smart_rotate(t_vec *a, int target)
 			i--;
 		}
 		//rotate using rra(a) a->len - i number of times
+	return (1);
+}
+int	smart_rotate_b(t_vec *b, int target)
+{
+	//we want to rotate to get the target 
+	//value on top, but we don't know which direction will be more efficient yet.
+	//We can use the index, distance from 0 or distance from len - 1
+	int from_zero;
+	int from_end;
+	int	i;
+
+//	ft_printf("we entered smart_rotate\n");
+	i = 0;
+	while (i < b->len && vec_int(b, i) != target)
+	{
+		i++;
+	}
+	//ft_printf("i = %d\n", i);
+	if (vec_int(b, i) == target)
+	{
+		from_zero = i;
+		from_end = b->len - 1 - i;
+	}
+	if (from_zero <= from_end)
+		while (i > 0)
+		{
+			rb(b, 1);
+			i--;
+		}
+		//rotate using ra(a) i number of times
+	else
+		i = b->len - i;
+		while (i > 0)
+		{
+			rrb(b, 1);
+			i--;
+		}
+		//rotate using rra(a) a->len - i number of times
+	return (1);
 }
 
 /*We need to determine which item in stack a
@@ -142,6 +182,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	int	index_b;
 	int	i;
 	int	k;
+	int next;
 
 	i = 0;
 	k = 0;
@@ -154,7 +195,12 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	{
 		while (k < b->len)
 		{
-			if (vec_int(a, i) > vec_int(b, k))
+			if (k == 0)
+				next = b->len - 1;
+			else
+				next = k - 1;
+			//this line triggers a seg fault because k can be 0 in some cases.
+			if (vec_int(a, i) > vec_int(b, k) && vec_int(a, i) < vec_int (b, next))
 			{
 				a_cost_forward = i + k;
 				a_cost_reverse = a->len - i - 1 + k;
@@ -177,6 +223,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 		
 		//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
 	}
+//	ft_printf("We have concluded that the cheapest push will be from index_a %d (%d)to index_b %d (%d)\n", index_a, vec_int(a, index_a), index_b, vec_int(b, index_b));
 	execute_cheapest_push(a, b, index_a, index_b);
 	return (1);
 }
@@ -184,15 +231,16 @@ int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 {
 	//ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
 	//need to add logic to double rotate when possible, for now not worrying about it
-	smart_rotate(a, vec_int(a, index_a));
-	smart_rotate(b, vec_int(b, index_b));
+	smart_rotate_a(a, vec_int(a, index_a));
+	smart_rotate_b(b, vec_int(b, index_b));
 	pb(a, b, 1);
+	return (1);
 }
 int	batch_push(t_vec *a, t_vec *b)
 {
 	
-	smart_rotate(b, find_max(b));
-	smart_rotate(a, find_max(a));
+	smart_rotate_b(b, find_max(b));
+	smart_rotate_a(a, find_max(a));
 	//print_vector(a);
 	//print_vector(b);
 	while (b->len > 0)
@@ -209,4 +257,5 @@ int	batch_push(t_vec *a, t_vec *b)
 		else
 			rra(a, 1);
 	}
+	return (1);
 }
