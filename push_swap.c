@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 14:45:39 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:17:37 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -426,8 +426,8 @@ int	main(int argc, char **argv)
 	//if we get here we can assume arguments are clean
 //	ft_printf("about to enter push_swap function\n");
 	push_swap(&a, &b);
-	ft_printf("We are done\n");
-	print_vector(&a);
+	//ft_printf("We are done\n");
+//	print_vector(&a);
 	vec_free(&a);
 	vec_free(&b);
 }

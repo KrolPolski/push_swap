@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:58 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 16:07:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:11:05 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* ra (rotate a): Shift up all elements of stack a by 1.
 The first element becomes the last one.*/
-int	ra(t_vec *a, int print)
+/*int	ra(t_vec *a, int print)
 {
 	int	*ptr;
 
@@ -25,6 +25,19 @@ int	ra(t_vec *a, int print)
 	if (print)
 		ft_printf("ra\n");
 	return (1);
+}*/
+int	ra(t_vec *a, int print)
+{
+	int	num;
+	int	*ptr;
+
+	num = vec_int(a, 0);
+	ptr = &num;
+	vec_remove(a, 0);
+	vec_push(a, ptr);
+	if (print == 1)
+		ft_printf("ra\n");
+	return(1);
 }
 /* rb (rotate b): Shift up all elements of stack b by 1.
 The first element becomes the last one.*/
