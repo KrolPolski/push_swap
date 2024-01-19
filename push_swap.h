@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/16 10:47:27 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:02:23 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ int	smart_rotate_b(t_vec *b, int target);
 int	choose_cheapest_push(t_vec *a, t_vec *b);
 int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
 int	batch_push(t_vec *a, t_vec *b);
+int	vec_int_to_index(t_vec *a, int x);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/16 11:13:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:40:27 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 }
 int	reverse_sort_three(t_vec *b)
 {
+	ft_printf("entering reverse sort\n");
 	if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
 	{
 		rrb(b, 1);
+		sb(b, 1);
 		return (1);
 	}
 	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 2) < vec_int(b, 0))
@@ -90,11 +92,7 @@ int	reverse_sort_three(t_vec *b)
 	{
 		return (1);
 	}
-	else if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
-	{
-	    rrb(b, 1);
-		return (1);
-	}
+
 	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b,1) < vec_int(b, 2))
 	{
 		rb(b, 1);

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/16 10:49:12 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:36:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ int	vec_int(t_vec *a, int index)
 	ptr = vec_get(a, index);
 	x = *ptr;
 	return (x);
+}
+int	vec_int_to_index(t_vec *a, int x)
+{
+	int i;
+
+	//ft_printf("We entered vec_int_to_index\n");
+	i = 0;
+	while (i < a->len)
+	{
+		if (vec_int(a, i) == x)
+	{	//ft_printf("index of %d is %d\n", x, i);
+			return i;
+	}
+	i++;
+	} 
+	return (-1);
 }
 
 int	find_max(t_vec *a)
@@ -183,24 +199,76 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	int	i;
 	int	k;
 	int next;
+	int	b_max;
+	int b_min;
+	int	b_max_index;
+	int	b_min_index;
 
+//	ft_printf("We entered choose_cheapest_push\n");
 	i = 0;
 	k = 0;
 	index_a = a->len;
 	index_b = b->len;
-	min_a_cost = a->len;
+	min_a_cost = a->len + b->len;
+	b_max = find_max(b);
+	b_min = find_min(b, b_max);
+//print_vector(b);
+//	ft_printf("b_max is %d and b_min is %d\n", b_max, b_min);
+	b_max_index = vec_int_to_index(b, b_max);
+	b_min_index = vec_int_to_index(b, b_min);
 	//we also need to think about whether to insist on next integer. probably not?
 	//consider where to stop when we have only three left. i guess not here
+	//ft_printf("a->len is %d and b->len is %d\n", a->len, b->len);
 	while (i < a->len)
 	{
+		//ft_printf("inside i loop and i is %d\n", i);
 		while (k < b->len)
 		{
 			if (k == 0)
 				next = b->len - 1;
 			else
 				next = k - 1;
-			//this line triggers a seg fault because k can be 0 in some cases.
-			if (vec_int(a, i) > vec_int(b, k) && vec_int(a, i) < vec_int (b, next))
+			//we are also not yet considering b_costs. I guess we are indirectly.
+			//not considering reverse costs of b either.
+			if (vec_int(a, i) < b_min)
+			{
+				//handle this case
+				//ft_printf("We found a card in a that is less than b_min\n");
+				a_cost_forward = i + b_min_index;
+				a_cost_reverse = a->len - i - 1 + b_min_index;
+				if (a_cost_forward <= a_cost_reverse)
+					a_cost = a_cost_forward;
+				else
+					a_cost = a_cost_reverse;
+				if (a_cost < min_a_cost)
+				{
+				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
+					min_a_cost = a_cost;
+					//MAYBE NOT
+					index_a = i;
+					index_b = b_min_index;
+				}
+			}
+			else if (vec_int(a, i) > b_max)
+			{
+				//handle this case
+				//ft_printf("We found a card in a that is greater than b_max\n");
+				a_cost_forward = i + b_max_index;
+				a_cost_reverse = a->len - i - 1 + b_max_index;
+				if (a_cost_forward <= a_cost_reverse)
+					a_cost = a_cost_forward;
+				else
+					a_cost = a_cost_reverse;
+				if (a_cost < min_a_cost)
+				{
+				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
+					min_a_cost = a_cost;
+					//MAYBE NOT
+					index_a = i;
+					index_b = b_max_index;
+				}
+			}
+			else if (vec_int(a, i) > vec_int(b, k) && vec_int(a, i) < vec_int (b, next))
 			{
 				a_cost_forward = i + k;
 				a_cost_reverse = a->len - i - 1 + k;
@@ -210,20 +278,31 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					a_cost = a_cost_reverse;
 				if (a_cost < min_a_cost)
 				{
-				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
+			//		ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
 					min_a_cost = a_cost;
+					//MAYBE NOT
 					index_a = i;
 					index_b = k;
 				}
 			}
 			k++;
 		}
-		k = 0;
-		i++;
-		
-		//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
+	//ft_printf("we exited k loop\n");
+	k = 0;
+	i++;
+	}
+
+	
+	//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
+
+//	ft_printf("We exited i loop\n");
+	if (index_a >= a->len || index_b >= b->len)
+	{
+	//	ft_printf("Invalid index, so we need to force push something.\n");
+		//might be less than everything, might be more than everything.
 	}
 //	ft_printf("We have concluded that the cheapest push will be from index_a %d (%d)to index_b %d (%d)\n", index_a, vec_int(a, index_a), index_b, vec_int(b, index_b));
+	
 	execute_cheapest_push(a, b, index_a, index_b);
 	return (1);
 }
@@ -231,6 +310,7 @@ int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 {
 	//ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
 	//need to add logic to double rotate when possible, for now not worrying about it
+//	ft_printf("We entered execute_cheapest_push\n");
 	smart_rotate_a(a, vec_int(a, index_a));
 	smart_rotate_b(b, vec_int(b, index_b));
 	pb(a, b, 1);
@@ -238,11 +318,13 @@ int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 }
 int	batch_push(t_vec *a, t_vec *b)
 {
-	
+	//ft_printf("attempting batch push\n");
 	smart_rotate_b(b, find_max(b));
 	smart_rotate_a(a, find_max(a));
 	//print_vector(a);
 	//print_vector(b);
+	//the else statement below is getting triggered far too often, creating an infinite loop. 
+	//need to re-evaluate this.
 	while (b->len > 0)
 	{
 		if (vec_int(b, 0) < vec_int(a, 0) &&
@@ -254,8 +336,21 @@ int	batch_push(t_vec *a, t_vec *b)
 			pa(a, b, 1);
 			sa(a, 1);
 		}
+		else if (vec_int(b, 0) > find_max(a))
+		{
+			smart_rotate_a(a, find_max(a));
+			pa(a, b, 1);
+			sa(a, 1);
+		}
+		else if (vec_int(b, 0) < find_min(a, find_max(a)))
+		{
+			smart_rotate_a(a, find_min(a, find_max(a)));
+			pa(a, b, 1);
+		}
 		else
 			rra(a, 1);
+	//print_vector(a);
+	//print_vector(b);
 	}
 	return (1);
 }
