@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 11:36:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:49:53 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					min_a_cost = a_cost;
 					//MAYBE NOT
 					index_a = i;
-					index_b = b_min_index;
+					index_b = b_max_index;
 				}
 			}
 			else if (vec_int(a, i) > b_max)
