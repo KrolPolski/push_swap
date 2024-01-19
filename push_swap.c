@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 11:40:27 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:45:39 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 }
 int	reverse_sort_three(t_vec *b)
 {
-	ft_printf("entering reverse sort\n");
+	// 1 3 2 case is not working
+	//ft_printf("entering reverse sort\n");
 	if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
 	{
 		rrb(b, 1);
-		sb(b, 1);
+		//sb(b, 1);
 		return (1);
 	}
 	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 2) < vec_int(b, 0))
@@ -98,6 +99,11 @@ int	reverse_sort_three(t_vec *b)
 		rb(b, 1);
 		sb(b, 1);
 	}
+	else if (vec_int(b, 0) < vec_int(b, 2) && vec_int(b, 2) < vec_int(b, 1))
+	{
+		rb(b, 1);
+	}
+	//ft_printf("now leaving reverse_sort_three\n");
 //	else
 //		ft_printf("Something went wrong in push_swap_three");
 	return (-1);
@@ -105,33 +111,51 @@ int	reverse_sort_three(t_vec *b)
 
 int	push_swap_three(t_vec *a)
 {
+	//ft_printf("entering push_swap_three\n");
+	//print_vector(a);	
+	//ft_printf("Vec_int test: %d, %d, %d\n", vec_int(a, 0), vec_int(a, 1), vec_int(a, 2));
+	//test shows vec_int is pulling accurate values. then why aren't we triggering the appropriate branch?
+	if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 1) < vec_int(a, 2))
+		return (1);
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
+	//	ft_printf("we entered 1st branch\n");
 		sa(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
 	{
+	//	ft_printf("we entered 2nd branch\n");
 		rra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
 	{
+	//	ft_printf("we entered 3rd branch\n");
 		ra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
 	{
+	//	ft_printf("We should be doing a swap and rra here\n");
 		sa(a, 1);
 		rra(a, 1);
 		return (1);
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
+	//	ft_printf("we entered 5th branch\n");
 		sa(a, 1);
 		ra(a, 1);
 		return (1);
 	}
+	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
+	{
+	//	ft_printf("We entered last branch\n");
+		rra(a, 1);
+		sa(a, 1);
+	}
+	//ft_printf("exiting push_swap_three\n");
 //	else
 //		ft_printf("Something went wrong in push_swap_three");
 	return (-1);
@@ -236,6 +260,11 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 	reverse_sort_three(b);
 	while (a->len > 3)
 	{
+	//	ft_printf("about to enter choose_cheapest_push\n");
+		//ft_printf("I SPY a zero:\n");
+		//print_vector(a);
+		//print_vector(b);
+
 		choose_cheapest_push(a, b);
 	}
 	//now we need to sort a
@@ -397,6 +426,8 @@ int	main(int argc, char **argv)
 	//if we get here we can assume arguments are clean
 //	ft_printf("about to enter push_swap function\n");
 	push_swap(&a, &b);
+	ft_printf("We are done\n");
+	print_vector(&a);
 	vec_free(&a);
 	vec_free(&b);
 }

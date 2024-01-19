@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:47 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 15:17:49 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 14:29:42 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,16 @@ int	pb(t_vec *a, t_vec *b, int print)
 	int	*ptr;
 
 	ptr = vec_get(a, 0);
+	//if (*ptr == 0)
+	//	ft_printf("a, 0 was already 0, WTF\n");
 	if (!ptr)
 		return (-1);
 	if (vec_insert(b, ptr, 0) == -1 || vec_remove(a, 0) == -1)
 		return (-1);
 	if (print)
 		ft_printf("pb\n");
+	//if (vec_int(b, 0) == 0)
+	//	 ft_printf("We changed something to 0 when we pushed to b, WTF\n");
 	return (1);
 }
 

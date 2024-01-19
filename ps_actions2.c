@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:58 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/15 15:18:00 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:07:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,24 @@ int	ra(t_vec *a, int print)
 		ft_printf("ra\n");
 	return (1);
 }
-
 /* rb (rotate b): Shift up all elements of stack b by 1.
 The first element becomes the last one.*/
 int	rb(t_vec *b, int print)
+{
+	int	num;
+	int	*ptr;
+
+	num = vec_int(b, 0);
+	ptr = &num;
+	vec_remove(b, 0);
+	vec_push(b, ptr);
+	if (print == 1)
+		ft_printf("rb\n");
+	return (1);
+}
+/* rb (rotate b): Shift up all elements of stack b by 1.
+The first element becomes the last one.*/
+/*int	rb(t_vec *b, int print)
 {
 	int	*ptr;
 
@@ -39,7 +53,7 @@ int	rb(t_vec *b, int print)
 	if (print)
 		ft_printf("rb\n");
 	return (1);
-}
+}*/
 
 /*rr : ra and rb at the same time.*/
 int	rr(t_vec *a, t_vec *b, int print)
@@ -53,7 +67,7 @@ int	rr(t_vec *a, t_vec *b, int print)
 
 /*rra (reverse rotate a): Shift down all elements of stack a by 1.
 The last element becomes the first one.*/
-int	rra(t_vec *a, int print)
+/*int	rra(t_vec *a, int print)
 {
 	int	x;
 	int	*ptr;
@@ -71,7 +85,7 @@ int	rra(t_vec *a, int print)
 
 /*rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.*/
-int	rrb(t_vec *b, int print)
+/*int	rrb(t_vec *b, int print)
 {
 	int	x;
 	int	*ptr;
@@ -84,6 +98,35 @@ int	rrb(t_vec *b, int print)
 		return (-1);
 	if (print)
 		ft_printf("rrb\n");
+	return (1);
+}*/
+int    rra(t_vec *a, int print)
+{
+    int    num;
+    int    *ptr;
+
+    num = vec_int(a, a->len - 1);
+    ptr = &num;
+    vec_remove(a, a->len - 1);
+    vec_insert(a, ptr, 0);
+    if (print == 1)
+        ft_printf("rra\n");
+	return(1);
+}
+
+/*rrb (reverse rotate b): Shift down all elements of stack b by 1.
+The last element becomes the first one.*/
+int   rrb(t_vec *b, int print)
+{
+    int    num;
+    int    *ptr;
+
+    num = vec_int(b, b->len - 1);
+    ptr = &num;
+    vec_remove(b, b->len - 1);
+    vec_insert(b, ptr, 0);
+    if (print == 1)
+        ft_printf("rrb\n");
 	return (1);
 }
 
