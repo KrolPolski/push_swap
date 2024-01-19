@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 16:17:09 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:23:32 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	find_max(t_vec *a)
 	int	max;
 
 	index = 0;
-	max = 0;
+	max = -2147483648;
 	while (index < a->len)
 	{
 		if (vec_int(a, index) > max)
