@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 10:33:35 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:38:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "Libft/libft.h"
+
+typedef struct s_ccp
+{
+	int	a_cost;
+	int a_cost_forward;
+	int a_cost_reverse;
+	int	b_cost;
+	int	min_a_cost;
+	int	min_b_cost;
+	int total_cost;
+	int	min_total_cost;
+	int	index_a;
+	int	index_b;
+	int	i;
+	int	k;
+	int next;
+	int	b_max;
+	int b_min;
+	int	b_max_index;
+	int	b_min_index;
+}	t_ccp;
 
 /*sa (swap a): Swap the first 2 elements at the top of stack a.
 Do nothing if there is only one or no elements.*/

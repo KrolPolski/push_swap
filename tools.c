@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 10:59:53 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:46:50 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,59 +279,45 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 //1. first choose cheapest one only considering a rotates
 //2. consider b rotates
 //3. consider double rotates
+//Right now we are only considering costs as a + b rotates, 
+//when we need to consider the impact on cost of double rotates.
+//This might be the last optimization we need.
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
-	int	a_cost;
-	int a_cost_forward;
-	int a_cost_reverse;
-	int	b_cost;
-	int	min_a_cost;
-	int	min_b_cost;
-	int total_cost;
-	int	min_total_cost;
-	int	index_a;
-	int	index_b;
-	int	i;
-	int	k;
-	int next;
-	int	b_max;
-	int b_min;
-	int	b_max_index;
-	int	b_min_index;
-
+	t_ccp z;
 //	ft_printf("We entered choose_cheapest_push\n");
-	i = 0;
-	k = 0;
-	index_a = a->len;
-	index_b = b->len;
-	min_a_cost = a->len + b->len;
-	b_max = find_max(b);
-	b_min = find_min(b, b_max);
+	z.i = 0;
+	z.k = 0;
+	z.index_a = a->len;
+	z.index_b = b->len;
+	z.min_a_cost = a->len + b->len;
+	z.b_max = find_max(b);
+	z.b_min = find_min(b, z.b_max);
 //print_vector(b);
 //	ft_printf("b_max is %d and b_min is %d\n", b_max, b_min);
-	b_max_index = vec_int_to_index(b, b_max);
-	b_min_index = vec_int_to_index(b, b_min);
+	z.b_max_index = vec_int_to_index(b, z.b_max);
+	z.b_min_index = vec_int_to_index(b, z.b_min);
 	//we also need to think about whether to insist on next integer. probably not?
 	//consider where to stop when we have only three left. i guess not here
 	//ft_printf("a->len is %d and b->len is %d\n", a->len, b->len);
 	//find_0(b);
 	//if (vec_int(b, 0) == 73)
 		//ft_printf("About to move on after pushing 73\n");
-	while (i < a->len)
+	while (z.i < a->len)
 	{
 		
 		//print_vector(a);
 	//print_vector(b);
 		//ft_printf("inside i loop and i is %d\n", i);
-		while (k < b->len)
+		while (z.k < b->len)
 		{
-			if (k == 0)
-				next = b->len - 1;
+			if (z.k == 0)
+				z.next = b->len - 1;
 			else
-				next = k - 1;
+				z.next = z.k - 1;
 			//we are also not yet considering b_costs. I guess we are indirectly.
 			//not considering reverse costs of b either.
-			if (vec_int(a, 0) < b_min)
+			if (vec_int(a, 0) < z.b_min)
 			{
 				smart_rotate_b(b, find_max(b));
 				pb(a, b, 1);
@@ -354,59 +340,59 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					index_b = b_max_index + 1;
 				}*/
 			}
-			else if (vec_int(a, 0) > b_max)
+			else if (vec_int(a, 0) > z.b_max)
 			{
 				//handle this case
 				//ft_printf("We found a card in a that is greater than b_max\n");
-				a_cost_forward = i + b_max_index;
-				a_cost_reverse = a->len - i - 1 + b_max_index;
-				if (a_cost_forward <= a_cost_reverse)
-					a_cost = a_cost_forward;
+				z.a_cost_forward = z.i + z.b_max_index;
+				z.a_cost_reverse = a->len - z.i - 1 + z.b_max_index;
+				if (z.a_cost_forward <= z.a_cost_reverse)
+					z.a_cost = z.a_cost_forward;
 				else
-					a_cost = a_cost_reverse;
-				if (a_cost < min_a_cost)
+					z.a_cost = z.a_cost_reverse;
+				if (z.a_cost < z.min_a_cost)
 				{
 				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
-					min_a_cost = a_cost;
+					z.min_a_cost = z.a_cost;
 					//MAYBE NOT
-					index_a = i;
-					index_b = b_max_index;
+					z.index_a = z.i;
+					z.index_b = z.b_max_index;
 				}
 			}
-			else if (vec_int(a, i) > vec_int(b, k) && vec_int(a, i) < vec_int (b, next))
+			else if (vec_int(a, z.i) > vec_int(b, z.k) && vec_int(a, z.i) < vec_int (b, z.next))
 			{
-				a_cost_forward = i + k;
-				a_cost_reverse = a->len - i - 1 + k;
-				if (a_cost_forward <= a_cost_reverse)
-					a_cost = a_cost_forward;
+				z.a_cost_forward = z.i + z.k;
+				z.a_cost_reverse = a->len - z.i - 1 + z.k;
+				if (z.a_cost_forward <= z.a_cost_reverse)
+					z.a_cost = z.a_cost_forward;
 				else
-					a_cost = a_cost_reverse;
-				if (a_cost < min_a_cost)
+					z.a_cost = z.a_cost_reverse;
+				if (z.a_cost < z.min_a_cost)
 				{
 					//ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
 					//ft_printf("i and k are currently %d and %d\n", i, k);
-					if (vec_int(b, k) == 0)
+					if (vec_int(b, z.k) == 0)
 						{
 							//ft_printf("0 case");
 							//print_vector(b);
 						}
 					//ft_printf("i and k refer to %d and %d, and k-1 is %d\n", vec_int(a, i), vec_int(b, k), vec_int(b, next));
-					min_a_cost = a_cost;
+					z.min_a_cost = z.a_cost;
 					//MAYBE NOT
-					index_a = i;
-					index_b = k;
+					z.index_a = z.i;
+					z.index_b = z.k;
 				}
 			}
-			k++;
+			z.k++;
 		}
 	//ft_printf("we exited k loop\n");
-	k = 0;
-	i++;
+	z.k = 0;
+	z.i++;
 	}
 	//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
 
 	//ft_printf("We exited i loop\n");
-	if (index_a >= a->len || index_b >= b->len)
+	if (z.index_a >= a->len || z.index_b >= b->len)
 	{
 	//	ft_printf("Invalid index, exiting choose_cheapest_push\n");
 		return (-1);
@@ -415,7 +401,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	//ft_printf("We have concluded that the cheapest push will be from index_a %d (%d)to index_b %d (%d)\n", index_a, vec_int(a, index_a), index_b, vec_int(b, index_b));
 //	if (vec_int(a, index_a) == 73)
 			//ft_printf("a, %d is currently 73\n", i);
-	execute_cheapest_push(a, b, index_a, index_b);
+	execute_cheapest_push(a, b, z.index_a, z.index_b);
 	return (1);
 }
 int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
