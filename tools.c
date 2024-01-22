@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 16:23:32 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:44:56 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,86 @@ int	smart_rotate_b(t_vec *b, int target)
 		//rotate using rra(a) a->len - i number of times
 	return (1);
 }
+int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
+{
+	//we want to rotate to get the target 
+	//value on top, but we don't know which direction will be more efficient yet.
+	//We can use the index, distance from 0 or distance from len - 1
+	int a_from_zero;
+	int a_from_end;
+	int	b_from_zero;
+	int b_from_end;
+	int	i;
+	int k;
+
+//	ft_printf("we entered smart_rotate\n");
+	i = 0;
+	k = 0;
+	while (i < a->len && vec_int(a, i) != a_target)
+	{
+		i++;
+	}
+	while (k < b->len && vec_int(b, k) != b_target)
+	{
+		k++;
+	}
+	//ft_printf("i = %d\n", i);
+	if (vec_int(a, i) == a_target)
+	{
+		a_from_zero = i;
+		a_from_end = a->len - 1 - i;
+	}
+	if (vec_int(b, k) == b_target)
+	{
+		b_from_zero = k;
+		b_from_end = b->len - 1 - k;
+	}
+	if (a_from_zero <= a_from_end && b_from_zero <= b_from_end)
+	{
+		while (i > 0 && k > 0)
+		{
+			rr(a, b, 1);
+			i--;
+			k--;
+		}
+		while (i > 0)
+		{
+			ra(a, 1);
+			i--;
+		}
+		while (k > 0)
+		{
+			rb(b, 1);
+			k--;
+		}
+		//rotate using ra(a) i number of times
+	}
+	else if (a_from_zero > a_from_end && b_from_zero >= b_from_end)
+	{
+		while (i > 0 && k > 0)
+		{
+			rrr(a, b, 1);
+			i--;
+			k--;
+		}
+		while (i > 0)
+		{
+			rra(a, 1);
+			i--;
+		}
+		while (k > 0)
+		{
+			rrb(b, 1);
+			k--;
+		}
+	}
+	else
+	{
+		smart_rotate_a(a, a_target);
+		smart_rotate_b(b, b_target);
+	}
+	return (1);
+}
 
 /*We need to determine which item in stack a
  will cost the least in terms of rotates to find
@@ -346,8 +426,9 @@ int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 	//ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
 	//need to add logic to double rotate when possible, for now not worrying about it
 //	ft_printf("We entered execute_cheapest_push\n");
-	smart_rotate_a(a, vec_int(a, index_a));
-	smart_rotate_b(b, vec_int(b, index_b));
+	smart_rotate(a, b, vec_int(a, index_a), vec_int(b, index_b));
+	//smart_rotate_a(a, vec_int(a, index_a));
+	//smart_rotate_b(b, vec_int(b, index_b));
 	pb(a, b, 1);
 	return (1);
 }
