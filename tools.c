@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 12:46:50 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:58:24 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 //Right now we are only considering costs as a + b rotates, 
 //when we need to consider the impact on cost of double rotates.
 //This might be the last optimization we need.
+//also should consider costs of max and min insertions. those two will get us over the finish line
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
 	t_ccp z;
@@ -290,6 +291,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	z.k = 0;
 	z.index_a = a->len;
 	z.index_b = b->len;
+	z.min_total_cost = a->len + b->len;
 	z.min_a_cost = a->len + b->len;
 	z.b_max = find_max(b);
 	z.b_min = find_min(b, z.b_max);
@@ -317,14 +319,28 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 				z.next = z.k - 1;
 			//we are also not yet considering b_costs. I guess we are indirectly.
 			//not considering reverse costs of b either.
-			if (vec_int(a, 0) < z.b_min)
+			if (vec_int(a, z.i) < z.b_min)
 			{
-				smart_rotate_b(b, find_max(b));
-				pb(a, b, 1);
-				rb(b, 1);
+				z.a_cost_forward = z.i;
+				z.a_cost_reverse = a->len - z.i - 1;
+				if (z.a_cost_forward <= z.a_cost_reverse)
+					z.a_cost = z.a_cost_forward;
+				else
+					z.a_cost = z.a_cost_reverse;
+				z.b_cost_forward = z.b_max_index;
+				z.b_cost_reverse = b->len - z.b_max_index;
+				if (z.b_cost_forward <= z.b_cost_reverse)
+					z.b_cost = z.b_cost_forward;
+				else
+					z.b_cost = z.b_cost_reverse;
+				z.total_cost = z.a_cost + z.b_cost;
+				if (z.total_cost < z.min_total_cost)
+					z.min_total_cost = z.total_cost;
+					z.index_a = z.i;
+					z.index_b = z.b_max_index;
 				//handle this case
 			//	ft_printf("We found a card in a that is less than b_min\n");
-				return (1);
+				
 				/*a_cost_forward = i + b_min_index;
 				a_cost_reverse = a->len - i - 1 + b_min_index;
 				if (a_cost_forward <= a_cost_reverse)

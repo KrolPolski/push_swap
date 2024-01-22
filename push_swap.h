@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 12:38:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:52:52 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_ccp
 	int a_cost_forward;
 	int a_cost_reverse;
 	int	b_cost;
+	int	b_cost_forward;
+	int	b_cost_reverse;
 	int	min_a_cost;
 	int	min_b_cost;
 	int total_cost;
