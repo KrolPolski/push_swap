@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 10:44:56 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:59:53 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 			i--;
 			k--;
 		}
-		while (i > 0)
+		/*while (i > 0)
 		{
 			ra(a, 1);
 			i--;
@@ -244,7 +244,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 		{
 			rb(b, 1);
 			k--;
-		}
+		}*/
 		//rotate using ra(a) i number of times
 	}
 	else if (a_from_zero > a_from_end && b_from_zero >= b_from_end)
@@ -255,7 +255,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 			i--;
 			k--;
 		}
-		while (i > 0)
+		/*while (i > 0)
 		{
 			rra(a, 1);
 			i--;
@@ -264,13 +264,10 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 		{
 			rrb(b, 1);
 			k--;
-		}
+		}*/
 	}
-	else
-	{
 		smart_rotate_a(a, a_target);
 		smart_rotate_b(b, b_target);
-	}
 	return (1);
 }
 
