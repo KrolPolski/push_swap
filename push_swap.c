@@ -6,31 +6,19 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 16:17:37 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:14:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*	The plan:
-	1. Decide on data types. Do arrays make sense here? Or do I need a vector?
-	2. Convert argv to integers and form them into an array
-	3. make two arrays of max size + 1
-	4. handle invalid arguments, not enough arguments, etc.
-	5. Write a function for each push_swap instruction
-	6. Write logic to decide how to choose which instruction for what situation
-*/
-
 /* Parse the arguments and add them as elements to the vector */
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
-	// we need to build in logic that will 
-	//handle arguments being passed in quotes
-	// like this: "1 2 3" instead of 1 2 3
 	long	tmp;
 	int		int_tmp;
-	int	i;
-	int *ptr;
+	int		i;
+	int		*ptr;
 
 	i = 1;
 	if (argc == 2)
@@ -38,8 +26,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		argv = ft_split(argv[1], ' ');
 		if (!argv)
 			return (-1);
-		//this works but isn't super clear, there has to be a
-		// cleaner solution than screwing with argc and i
 		i = 0;
 		argc = 0;
 		while (argv[i] != NULL)
@@ -51,7 +37,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		//this logic is breaking negative numbers
 		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
 		{
 			vec_free(a);
@@ -63,102 +48,71 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		int_tmp = (int)tmp;
 		vec_push(a, &int_tmp);
 		ptr = vec_get(a, i - 1);
-		//ft_printf("%d, ", *ptr);
 		i++;
 	}
 	return (1);
 }
-int	reverse_sort_three(t_vec *b)
+
+void	reverse_sort_three(t_vec *b)
 {
-	// 1 3 2 case is not working
-	//ft_printf("entering reverse sort\n");
 	if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
-	{
 		rrb(b, 1);
-		//sb(b, 1);
-		return (1);
-	}
 	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 2) < vec_int(b, 0))
 	{
 		sb(b, 1);
-		return (1);
 	}
 	else if (vec_int(b, 1) < vec_int(b, 2) && vec_int(b, 0) > vec_int(b, 2))
 	{
 		rrb(b, 1);
 		sb(b, 1);
-		return (1);
 	}
 	else if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 1) > vec_int(b, 2))
-	{
-		return (1);
-	}
-
+		return ;
 	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b,1) < vec_int(b, 2))
 	{
 		rb(b, 1);
 		sb(b, 1);
 	}
 	else if (vec_int(b, 0) < vec_int(b, 2) && vec_int(b, 2) < vec_int(b, 1))
-	{
 		rb(b, 1);
-	}
-	//ft_printf("now leaving reverse_sort_three\n");
-//	else
-//		ft_printf("Something went wrong in push_swap_three");
-	return (-1);
 }
 
-int	push_swap_three(t_vec *a)
+void	push_swap_three(t_vec *a)
 {
-	//ft_printf("entering push_swap_three\n");
-	//print_vector(a);	
-	//ft_printf("Vec_int test: %d, %d, %d\n", vec_int(a, 0), vec_int(a, 1), vec_int(a, 2));
-	//test shows vec_int is pulling accurate values. then why aren't we triggering the appropriate branch?
 	if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 1) < vec_int(a, 2))
-		return (1);
+		return ;
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-	//	ft_printf("we entered 1st branch\n");
 		sa(a, 1);
-		return (1);
+		return ;
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
 	{
-	//	ft_printf("we entered 2nd branch\n");
 		rra(a, 1);
-		return (1);
+		return ;
 	}
 	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
 	{
-	//	ft_printf("we entered 3rd branch\n");
 		ra(a, 1);
-		return (1);
+		return ;
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
 	{
-	//	ft_printf("We should be doing a swap and rra here\n");
 		sa(a, 1);
 		rra(a, 1);
-		return (1);
+		return ;
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-	//	ft_printf("we entered 5th branch\n");
 		sa(a, 1);
 		ra(a, 1);
-		return (1);
+		return ;
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
-	//	ft_printf("We entered last branch\n");
 		rra(a, 1);
 		sa(a, 1);
 	}
-	//ft_printf("exiting push_swap_three\n");
-//	else
-//		ft_printf("Something went wrong in push_swap_three");
-	return (-1);
 }
 
 //we need to handle 2, or 3 numbers.

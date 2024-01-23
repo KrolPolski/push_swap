@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/22 13:52:52 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:14:39 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	rrr(t_vec *a, t_vec *b, int print);
 
 int	print_vector(t_vec *vec);
 int	check_order(t_vec *a);
-int	push_swap_three(t_vec *a);
+void	push_swap_three(t_vec *a);
 int	vec_int(t_vec *a, int index);
 int	push_swap_small(t_vec *a, t_vec *b);
 int	push_swap_five(t_vec *a, t_vec *b);
