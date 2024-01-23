@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 11:14:39 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:42:04 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct s_ccp
 	int	min_b_cost;
 	int total_cost;
 	int	min_total_cost;
-	int	index_a;
-	int	index_b;
-	int	i;
-	int	k;
+	size_t	index_a;
+	size_t	index_b;
+	size_t	i;
+	size_t	k;
 	int next;
 	int	b_max;
 	int b_min;
@@ -85,7 +85,7 @@ int	print_vector(t_vec *vec);
 int	check_order(t_vec *a);
 void	push_swap_three(t_vec *a);
 int	vec_int(t_vec *a, int index);
-int	push_swap_small(t_vec *a, t_vec *b);
+int	push_swap_small(t_vec *a);
 int	push_swap_five(t_vec *a, t_vec *b);
 int	push_swap_medium(t_vec *a, t_vec *b);
 int	find_max(t_vec *a);

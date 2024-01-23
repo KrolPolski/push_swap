@@ -1,6 +1,5 @@
 NAME	:= push_swap 
-# CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast 
-CFLAGS	:= -Wunreachable-code -Ofast 
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast 
 SRCS	:= push_swap.c \
 		   ps_actions.c \
 		   ps_actions2.c \

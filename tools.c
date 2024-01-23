@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 11:02:15 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:46:45 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_vector(t_vec *vec)
 
 int	check_order(t_vec *a)
 {
-	int	i;
+	size_t	i;
 	int	in_order;
 
 	i = 1;
@@ -53,7 +53,7 @@ int	vec_int(t_vec *a, int index)
 }
 int	vec_int_to_index(t_vec *a, int x)
 {
-	int i;
+	size_t i;
 
 	//ft_printf("We entered vec_int_to_index\n");
 	i = 0;
@@ -70,7 +70,7 @@ int	vec_int_to_index(t_vec *a, int x)
 
 int	find_max(t_vec *a)
 {
-	int	index;
+	size_t	index;
 	int	max;
 
 	index = 0;
@@ -83,27 +83,10 @@ int	find_max(t_vec *a)
 	}
 	return (max);
 }
-int	find_0(t_vec *a)
-{
-	int	index;
-	int	max;
 
-	index = 0;
-	while (index < a->len)
-	{
-		if (vec_int(a, index) == 0)
-			{
-				ft_printf("Sir 0 is here: ");
-				print_vector(a);
-			return (index);}
-		index++;
-	}
-	return (-1);
-	
-}
 int	find_min(t_vec *a, int max)
 {
-	int	index;
+	size_t	index;
 	int	min;
 
 	index = 0;
@@ -125,8 +108,10 @@ int	smart_rotate_a(t_vec *a, int target)
 	//We can use the index, distance from 0 or distance from len - 1
 	int from_zero;
 	int from_end;
-	int	i;
+	size_t	i;
 
+	from_zero = a->len;
+	from_end = a->len;
 //	ft_printf("we entered smart_rotate\n");
 	i = 0;
 	while (i < a->len && vec_int(a, i) != target)
@@ -163,7 +148,9 @@ int	smart_rotate_b(t_vec *b, int target)
 	//We can use the index, distance from 0 or distance from len - 1
 	int from_zero;
 	int from_end;
-	int	i;
+	size_t	i;
+	from_zero = b->len;
+	from_end = b->len;
 
 //	ft_printf("we entered smart_rotate\n");
 	i = 0;
@@ -203,8 +190,12 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 	int a_from_end;
 	int	b_from_zero;
 	int b_from_end;
-	int	i;
-	int k;
+	size_t	i;
+	size_t k;
+	a_from_zero = a->len;
+	a_from_end = a->len;
+	b_from_zero = b->len;
+	b_from_end = b->len;
 
 //	ft_printf("we entered smart_rotate\n");
 	i = 0;

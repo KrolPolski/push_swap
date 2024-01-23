@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:58 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/19 16:11:05 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:39:50 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ The last element becomes the first one.*/
 		ft_printf("rra\n");
 	return (1);
 }
-
+*/
 /*rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.*/
 /*int	rrb(t_vec *b, int print)
