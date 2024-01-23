@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 12:46:45 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:53:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,55 +143,49 @@ int	smart_rotate_a(t_vec *a, int target)
 }
 int	smart_rotate_b(t_vec *b, int target)
 {
-	//we want to rotate to get the target 
-	//value on top, but we don't know which direction will be more efficient yet.
-	//We can use the index, distance from 0 or distance from len - 1
 	int from_zero;
 	int from_end;
 	size_t	i;
 	from_zero = b->len;
 	from_end = b->len;
 
-//	ft_printf("we entered smart_rotate\n");
 	i = 0;
 	while (i < b->len && vec_int(b, i) != target)
 	{
 		i++;
 	}
-	//ft_printf("i = %d\n", i);
 	if (vec_int(b, i) == target)
 	{
 		from_zero = i;
 		from_end = b->len - 1 - i;
 	}
 	if (from_zero <= from_end)
+	{
 		while (i > 0)
 		{
 			rb(b, 1);
 			i--;
 		}
-		//rotate using ra(a) i number of times
+	}
 	else
 		i = b->len - i;
-		while (i > 0)
-		{
-			rrb(b, 1);
-			i--;
-		}
-		//rotate using rra(a) a->len - i number of times
+	while (i > 0)
+	{
+		rrb(b, 1);
+		i--;
+	}
 	return (1);
 }
+/*Rotates to two targets, taking advantage of double rotates where possible*/
 int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 {
-	//we want to rotate to get the target 
-	//value on top, but we don't know which direction will be more efficient yet.
-	//We can use the index, distance from 0 or distance from len - 1
-	int a_from_zero;
-	int a_from_end;
-	int	b_from_zero;
-	int b_from_end;
+	int		a_from_zero;
+	int		a_from_end;
+	int		b_from_zero;
+	int		b_from_end;
 	size_t	i;
-	size_t k;
+	size_t	k;
+
 	a_from_zero = a->len;
 	a_from_end = a->len;
 	b_from_zero = b->len;
