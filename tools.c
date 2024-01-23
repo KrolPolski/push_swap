@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 10:29:12 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:44:01 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,11 +250,11 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 	}
 	else if (a_from_zero > a_from_end && b_from_zero >= b_from_end)
 	{
-		while (i > 0 && k > 0)
+		while (i < a->len && k < b->len)
 		{
 			rrr(a, b, 1);
-			i--;
-			k--;
+			i++;
+			k++;
 		}
 		/*while (i > 0)
 		{
