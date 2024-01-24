@@ -6,11 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 18:20:10 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:28:54 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
 	long	tmp;
