@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 12:42:04 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:29:35 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_ccp
 	size_t	i;
 	size_t	k;
 	int next;
+	size_t	a_next;
+	size_t a_2next;
+	int	a_prev;
 	int	b_max;
 	int b_min;
 	int	b_max_index;

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 12:46:14 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:16:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,9 +269,14 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 //when we need to consider the impact on cost of double rotates.
 //This might be the last optimization we need.
 //also should consider costs of max and min insertions. those two will get us over the finish line
+//We should implement a cost discount for double push opportunities. maybe multiply by 0.5 if we could do a second push without any rotations
+//but how do we implement that?
+//need to check if the index after the one we are working with is greater than the current index,
+//but also less than the one on the bottom?
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
 	t_ccp	z;
+	int same_direction;
 	z.i = 0;
 	z.k = 0;
 	z.index_a = a->len;
@@ -286,28 +291,26 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	z.b_min_index = vec_int_to_index(b, z.b_min);
 	//we also need to think about whether to insist on next integer. probably not?
 	//consider where to stop when we have only three left. i guess not here
-	//ft_printf("a->len is %d and b->len is %d\n", a->len, b->len);
-	//find_0(b);
-	//if (vec_int(b, 0) == 73)
-		//ft_printf("About to move on after pushing 73\n");
 	while (z.i < a->len)
 	{
-		
-	//print_vector(a);
-	//print_vector(b);
-		//ft_printf("inside i loop and i is %d and a->len is %d\n", z.i, a->len);
+		if (z.i == a->len - 1)
+		{
+			z.a_next = 0;
+		}
+		else
+			z.a_next = z.i + 1;
+		if (z.i == 0)
+		{
+			z.a_prev = a->len - 1;
+		}
+		else 
+			z.a_prev = z.i - 1;
 		while (z.k < b->len)
 		{
 			if (z.k == 0)
 				z.next = b->len - 1;
 			else
 				z.next = z.k - 1;
-		//	ft_printf("the current value of next (b, %d) is %d\n", z.next, vec_int(b, z.next));
-			//we are also not yet considering b_costs. I guess we are indirectly.
-			//not considering reverse costs of b either.
-		//	ft_printf("vec_int(a, %d) is %d and z.b_min is %d\n", z.i, vec_int(a, z.i), z.b_min);
-			//ft_printf("vec_int(b, %d) is %d\n and vec_int(b, %d) is %d\n", z.k, vec_int(b, z.k), z.next, vec_int(b, z.next));
-			//ft_printf("else if (vec_int(a, z.i%d) > vec_int(b, z.k) && vec_int(a, z.i) < vec_int (b, z.next))")
 			if (vec_int(a, z.i) < z.b_min)
 			{
 				z.a_cost_forward = z.i;
@@ -401,6 +404,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 				{
 					z.a_cost = z.a_cost_forward;
 					z.b_cost = z.b_cost_forward;
+					same_direction = 1;
 					if (z.a_cost > z.b_cost)
 						z.total_cost = z.a_cost;
 					else
@@ -410,12 +414,14 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 				{
 					z.a_cost = z.a_cost_reverse;
 					z.b_cost = z.b_cost_reverse;
+					same_direction = 1;
 					if (z.a_cost > z.b_cost)
 						z.total_cost = z.a_cost;
 					else
 						z.total_cost = z.b_cost;
 				}
 				else {
+					same_direction = 0;
 				if (z.a_cost_forward <= z.a_cost_reverse)
 					z.a_cost = z.a_cost_forward;
 				else
@@ -426,6 +432,54 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					z.b_cost = z.b_cost_reverse;
 				z.total_cost = z.a_cost + z.b_cost;
 				}
+				//print_vector(a);
+				//ft_printf("i is %d and a_next is %d\n", z.i, z.a_next);
+				//print_vector(b);
+				//ft_printf("k is %d and z.next is %d\n", z.k, z.next);
+				//need to avoid a segfault for i going out of bounds
+				//the approach below is flawed because this should only count the a cost savings, not total cost.
+					if (vec_int(a, z.a_next) > vec_int(a, z.i) && vec_int(a, z.a_next) < vec_int (b, b->len - 1))
+					//why do we care that a_cost is higher than b_cost?
+					//
+					{
+							//this is making things worse in some cases.
+							//0.75 worked better than 0.5. Why?
+							if (z.a_cost >= 2 * z.b_cost)
+								z.total_cost *= 0.75;
+							else
+								z.total_cost--;
+						//if (!same_direction)
+							//z.total_cost = z.a_cost * 0.5 + z.b_cost;
+						//else
+					//	if (z.total_cost > 10)
+						//	z.total_cost--;
+						
+						//else if (z.a_cost > z.b_cost)
+						//	z.total_cost -= (z.a_cost - z.b_cost) * 0.5; 
+				/*	if (z.a_next == a->len - 1)
+						z.a_2next = 0;
+					else
+						z.a_2next = z.a_next + 1;
+					//ft_printf("z.a_2next = %d and z.a_next = %d\n", z.a_2next, z.a_next);*/
+					//if (vec_int(a, z.a_2next) > vec_int(a, z.a_next) && vec_int(a, z.a_2next) < vec_int (b, b->len - 1))
+					//	if (z.a_cost > 6)
+					//		z.total_cost--;
+					}
+					
+					//else	
+						//else
+							//z.total_cost--;
+							
+							//	z.total_cost *= 0.85;
+							//else
+							//	z.total_cost -= (z.a_cost * 0.5);
+							//if they are in the same direction, total cost should just be halved.
+							//if they are not, only the a part should be halved.
+						
+					
+					//this one makes things worse
+					//else if ((vec_int(a, z.a_prev) > vec_int(a, z.i) && vec_int(a, z.a_prev) < vec_int (b, b->len - 1)) && z.a_cost > z.b_cost)
+					//	z.total_cost = (z.total_cost / 2) + 1;
 				if (z.total_cost < z.min_total_cost)
 				{
 					z.min_total_cost = z.total_cost;
