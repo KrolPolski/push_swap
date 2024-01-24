@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 12:25:56 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:31:02 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,21 +312,42 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 			{
 				z.a_cost_forward = z.i;
 				z.a_cost_reverse = a->len - z.i - 1;
-				if (z.a_cost_forward <= z.a_cost_reverse)
-					z.a_cost = z.a_cost_forward;
-				else
-					z.a_cost = z.a_cost_reverse;
 				z.b_cost_forward = z.b_max_index;
 				z.b_cost_reverse = b->len - z.b_max_index;
-				if (z.b_cost_forward <= z.b_cost_reverse)
+				if (z.a_cost_forward <= z.a_cost_reverse && z.b_cost_forward <= z.b_cost_reverse)
+				{
+					z.a_cost = z.a_cost_forward;
 					z.b_cost = z.b_cost_forward;
-				else
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else if (z.a_cost_reverse <= z.a_cost_forward && z.b_cost_reverse <= z.b_cost_forward)
+				{
+					z.a_cost = z.a_cost_reverse;
 					z.b_cost = z.b_cost_reverse;
-				z.total_cost = z.a_cost + z.b_cost;
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else
+				{
+					if (z.a_cost_forward <= z.a_cost_reverse)
+						z.a_cost = z.a_cost_forward;
+					else
+						z.a_cost = z.a_cost_reverse;
+					if (z.b_cost_forward <= z.b_cost_reverse)
+						z.b_cost = z.b_cost_forward;
+					else
+						z.b_cost = z.b_cost_reverse;
+					z.total_cost = z.a_cost + z.b_cost;
+				}
 				if (z.total_cost < z.min_total_cost)
-					z.min_total_cost = z.total_cost;
+					{z.min_total_cost = z.total_cost;
 					z.index_a = z.i;
-					z.index_b = z.b_max_index;
+					z.index_b = z.b_max_index;}
 			}
 			else if (vec_int(a, z.i) > z.b_max)
 			{
@@ -366,9 +387,9 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					z.total_cost = z.a_cost + z.b_cost;
 				}
 				if (z.total_cost < z.min_total_cost)
-					z.min_total_cost = z.total_cost;
+					{z.min_total_cost = z.total_cost;
 					z.index_a = z.i;
-					z.index_b = z.b_max_index;
+					z.index_b = z.b_max_index;}
 			}
 			else if (vec_int(a, z.i) > vec_int(b, z.k) && vec_int(a, z.i) < vec_int (b, z.next))
 			{
