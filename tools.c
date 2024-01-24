@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 12:53:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:25:56 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,8 +271,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 //also should consider costs of max and min insertions. those two will get us over the finish line
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
-	t_ccp z;
-	//ft_printf("We entered choose_cheapest_push\n");
+	t_ccp	z;
 	z.i = 0;
 	z.k = 0;
 	z.index_a = a->len;
@@ -328,69 +327,74 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 					z.min_total_cost = z.total_cost;
 					z.index_a = z.i;
 					z.index_b = z.b_max_index;
-			//	ft_printf("We are done with min case handling\n");
-				//handle this case
-			//	ft_printf("We found a card in a that is less than b_min\n");
-				
-				/*a_cost_forward = i + b_min_index;
-				a_cost_reverse = a->len - i - 1 + b_min_index;
-				if (a_cost_forward <= a_cost_reverse)
-					a_cost = a_cost_forward;
-				else
-					a_cost = a_cost_reverse;
-				if (a_cost < min_a_cost)
-				{
-				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
-					min_a_cost = a_cost;
-					//MAYBE NOT
-					index_a = i;
-					index_b = b_max_index + 1;
-				}*/
 			}
 			else if (vec_int(a, z.i) > z.b_max)
 			{
 				z.a_cost_forward = z.i;
 				z.a_cost_reverse = a->len - z.i - 1;
-				if (z.a_cost_forward <= z.a_cost_reverse)
-					z.a_cost = z.a_cost_forward;
-				else
-					z.a_cost = z.a_cost_reverse;
 				z.b_cost_forward = z.b_max_index;
 				z.b_cost_reverse = b->len - z.b_max_index;
-				if (z.b_cost_forward <= z.b_cost_reverse)
+				if (z.a_cost_forward <= z.a_cost_reverse && z.b_cost_forward <= z.b_cost_reverse)
+				{
+					z.a_cost = z.a_cost_forward;
 					z.b_cost = z.b_cost_forward;
-				else
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else if (z.a_cost_reverse <= z.a_cost_forward && z.b_cost_reverse <= z.b_cost_forward)
+				{
+					z.a_cost = z.a_cost_reverse;
 					z.b_cost = z.b_cost_reverse;
-				z.total_cost = z.a_cost + z.b_cost;
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else
+				{
+					if (z.a_cost_forward <= z.a_cost_reverse)
+						z.a_cost = z.a_cost_forward;
+					else
+						z.a_cost = z.a_cost_reverse;
+					
+					if (z.b_cost_forward <= z.b_cost_reverse)
+						z.b_cost = z.b_cost_forward;
+					else
+						z.b_cost = z.b_cost_reverse;
+					z.total_cost = z.a_cost + z.b_cost;
+				}
 				if (z.total_cost < z.min_total_cost)
 					z.min_total_cost = z.total_cost;
 					z.index_a = z.i;
 					z.index_b = z.b_max_index;
-			//	ft_printf("We are done with max_case handling\n");
-				//handle this case
-				//ft_printf("We found a card in a that is greater than b_max\n");
-				/*z.a_cost_forward = z.i + z.b_max_index;
-				z.a_cost_reverse = a->len - z.i - 1 + z.b_max_index;
-				if (z.a_cost_forward <= z.a_cost_reverse)
-					z.a_cost = z.a_cost_forward;
-				else
-					z.a_cost = z.a_cost_reverse;
-				if (z.a_cost < z.min_a_cost)
-				{
-				//	ft_printf("We conclude that a_cost < min_a_cost and reset the minimum from %d to %d\n", min_a_cost, a_cost);
-					z.min_a_cost = z.a_cost;
-					//MAYBE NOT
-					z.index_a = z.i;
-					z.index_b = z.b_max_index;
-				}*/
 			}
 			else if (vec_int(a, z.i) > vec_int(b, z.k) && vec_int(a, z.i) < vec_int (b, z.next))
 			{
-			//	ft_printf("We are inside!\n");
 				z.a_cost_forward = z.i;
 				z.b_cost_forward = z.k;
 				z.a_cost_reverse = a->len - z.i - 1;
 				z.b_cost_reverse = b->len - z.k - 1;
+				if (z.a_cost_forward <= z.a_cost_reverse && z.b_cost_forward <= z.b_cost_reverse)
+				{
+					z.a_cost = z.a_cost_forward;
+					z.b_cost = z.b_cost_forward;
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else if (z.a_cost_reverse <= z.a_cost_forward && z.b_cost_reverse <= z.b_cost_forward)
+				{
+					z.a_cost = z.a_cost_reverse;
+					z.b_cost = z.b_cost_reverse;
+					if (z.a_cost > z.b_cost)
+						z.total_cost = z.a_cost;
+					else
+						z.total_cost = z.b_cost;
+				}
+				else {
 				if (z.a_cost_forward <= z.a_cost_reverse)
 					z.a_cost = z.a_cost_forward;
 				else
@@ -400,29 +404,16 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 				else
 					z.b_cost = z.b_cost_reverse;
 				z.total_cost = z.a_cost + z.b_cost;
-				//if (z.total_cost < z.min_total_cost)
-				//	z.min_total_cost = z.total_cost;
+				}
 				if (z.total_cost < z.min_total_cost)
 				{
-					//ft_printf("We conclude that total_cost < min_total_cost and reset the minimum from %d to %d\n", z.min_total_cost, z.total_cost);
-					//ft_printf("i and k are currently %d and %d\n", z.i, z.k);
-				//	if (vec_int(b, z.k) == 0)
-				//		{
-							//ft_printf("0 case");
-							//print_vector(b);
-				//		}
-					//ft_printf("i and k refer to %d and %d, and k-1 is %d\n", vec_int(a, i), vec_int(b, k), vec_int(b, next));
 					z.min_total_cost = z.total_cost;
-					//MAYBE NOT
 					z.index_a = z.i;
 					z.index_b = z.k;
-					
 				}
-				//ft_printf("we are done with default case handler\n");
 			}
 			z.k++;
 		}
-	//ft_printf("we exited k loop\n");
 	z.k = 0;
 	z.i++;
 	}
