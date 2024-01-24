@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 15:29:35 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:20:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	rrb(t_vec *b, int print);
 int	rrr(t_vec *a, t_vec *b, int print);
 
 int	print_vector(t_vec *vec);
-int	check_order(t_vec *a);
-void	push_swap_three(t_vec *a);
+void	check_order(t_vec *a, t_vec *b);
+void	push_swap_three(t_vec *a, t_vec *b);
 int	vec_int(t_vec *a, int index);
 int	push_swap_small(t_vec *a);
 int	push_swap_five(t_vec *a, t_vec *b);
@@ -97,7 +97,8 @@ int	smart_rotate_a(t_vec *a, int target);
 int	smart_rotate_b(t_vec *b, int target);
 int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target);
 int	choose_cheapest_push(t_vec *a, t_vec *b);
-int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
+void	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
 int	batch_push(t_vec *a, t_vec *b);
 int	vec_int_to_index(t_vec *a, int x);
+int	push_swap(t_vec *a, t_vec *b);
 #endif

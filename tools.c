@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 16:21:59 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:19:39 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	print_vector(t_vec *vec)
 	return (1);
 }
 
-int	check_order(t_vec *a)
+void	check_order(t_vec *a, t_vec *b)
 {
 	size_t	i;
 	int	in_order;
@@ -39,7 +39,12 @@ int	check_order(t_vec *a)
 			in_order = 0;
 		i++;
 	}
-	return (in_order);
+	if (in_order == 1)
+	{
+		vec_free(a);
+		vec_free(b);
+		exit(1);
+	}
 }
 
 int	vec_int(t_vec *a, int index)

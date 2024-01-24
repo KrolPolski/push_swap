@@ -6,52 +6,14 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/23 12:39:29 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:11:36 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Parse the arguments and add them as elements to the vector */
-int	convert_and_build_vector(t_vec *a, int argc, char **argv)
-{
-	long	tmp;
-	int		int_tmp;
-	int		i;
-	int		*ptr;
 
-	i = 1;
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		if (!argv)
-			return (-1);
-		i = 0;
-		argc = 0;
-		while (argv[i] != NULL)
-		{
-			argc++;
-			i++;
-		}
-		i = 0;
-	}
-	while (i < argc)
-	{
-		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
-		{
-			vec_free(a);
-			return (-1);
-		}
-		tmp = ft_long_atoi(argv[i]);
-		if (tmp > 2147483647 || tmp < -2147483648)
-			return (-1);
-		int_tmp = (int)tmp;
-		vec_push(a, &int_tmp);
-		ptr = vec_get(a, i - 1);
-		i++;
-	}
-	return (1);
-}
 
 void	reverse_sort_three(t_vec *b)
 {
@@ -233,62 +195,4 @@ int	push_swap(t_vec *a, t_vec *b)
 		push_swap_medium(a, b);
 	return (1);
 }
-//detect duplicate values and return an error
-int	validate_input (t_vec *a)
-{
-	
-	unsigned long i;
-	i = 0;
-	unsigned long k;
-	k = 1;
-	while (i < a->len - 1)
-	{
-		while (k < a->len)
-		{
-			if (vec_int(a, i) == vec_int(a, k))
-				return (-1);
-			k++;
-		}
-		i++;
-		k = i + 1;
-	}
-	return (1);
-	//detect values outside of integer range. except atoi is going to flunk this so I have to move this logic.
-}
 
-int	main(int argc, char **argv)
-{
-	int		ret;
-	t_vec	a;
-	t_vec	b;
-
-	if (argc < 2)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(-1);
-	}
-	vec_new(&a, 0, sizeof(int));
-	vec_new(&b, 0, sizeof(int));
-	ret = convert_and_build_vector(&a, argc, argv);
-	if (ret == -1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(-1);
-	}
-	if (validate_input(&a) == -1)
-	{
-		vec_free(&a);
-		vec_free(&b);
-		ft_putstr_fd("Error\n", 2);
-		exit(-1);
-	}
-	if (check_order(&a) == 1)
-	{
-		vec_free(&a);
-		vec_free(&b);
-		exit(1);
-	}
-	push_swap(&a, &b);
-	vec_free(&a);
-	vec_free(&b);
-}
