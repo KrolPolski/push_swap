@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 12:31:02 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:46:14 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -438,40 +438,27 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	z.k = 0;
 	z.i++;
 	}
-	//by now we have figured out the cheapest simple push. need to check if rotating b can drop the cost further	
 
-	//ft_printf("We exited i loop\n");
 	if (z.index_a >= a->len || z.index_b >= b->len)
 	{
-		//this should not be necessary
-		//ft_printf("Invalid index, forcing min max choose_cheapest_push\n");
-		//do something else here. some case is not being handled.
-		//return (-1);
-		//might be less than everything, might be more than everything.
+		ft_printf("Invalid index selected by choose_cheapest_push\n");
+		exit(EXIT_FAILURE);
 	}
-	//ft_printf("We have concluded that the cheapest push will be from index_a %d (%d)to index_b %d (%d)\n", index_a, vec_int(a, index_a), index_b, vec_int(b, index_b));
-//	if (vec_int(a, index_a) == 73)
-			//ft_printf("a, %d is currently 73\n", i);
-//	ft_printf("about to call execute_cheapest_push\n");
 	execute_cheapest_push(a, b, z.index_a, z.index_b);
 	return (1);
 }
 int	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 {
-	//ft_printf("a_index: %d b_index: %d\n", index_a, index_b);
-	//need to add logic to double rotate when possible, for now not worrying about it
-//	ft_printf("We entered execute_cheapest_push\n");
 	smart_rotate(a, b, vec_int(a, index_a), vec_int(b, index_b));
-	//smart_rotate_a(a, vec_int(a, index_a));
-	//smart_rotate_b(b, vec_int(b, index_b));
 	pb(a, b, 1);
 	return (1);
 }
 int	batch_push(t_vec *a, t_vec *b)
 {
 	//ft_printf("attempting batch push\n");
-	smart_rotate_b(b, find_max(b));
-	smart_rotate_a(a, find_max(a));
+	smart_rotate(a, b, find_max(a), find_max(b));
+//	smart_rotate_b(b, find_max(b));
+//	smart_rotate_a(a, find_max(a));
 	//print_vector(a);
 	//print_vector(b);
 	//the else statement below is getting triggered far too often, creating an infinite loop. 
