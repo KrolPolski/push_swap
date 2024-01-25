@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:23:28 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 12:05:42 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:13:06 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,34 @@ void	init_sr(t_sr *sr, t_vec *a, t_vec *b)
 	sr->i = 0;
 	sr->k = 0;
 }
+void	execute_double_rotations(t_sr *sr, t_vec *a, t_vec *b)
+{
+	if (sr->a_from_zero <= sr->a_from_end && sr->b_from_zero <= sr->b_from_end)
+	{
+		while (sr->i > 0 && sr->k > 0)
+		{
+			rr(a, b, 1);
+			sr->i--;
+			sr->k--;
+		}
+	}
+	else if (sr->a_from_zero > sr->a_from_end && sr->b_from_zero >= sr->b_from_end)
+	{
+		while (sr->i < a->len && sr->k < b->len)
+		{
+			rrr(a, b, 1);
+			sr->i++;
+			sr->k++;
+		}
+	}
+}
 /*Rotates to two targets, taking advantage of double rotates where possible*/
 int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 {
 	t_sr	sr;
 
 	init_sr(&sr, a, b);
+	
 	while (sr.i < a->len && vec_int(a, sr.i) != a_target)
 		sr.i++;
 	while (sr.k < b->len && vec_int(b, sr.k) != b_target)
@@ -140,24 +162,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 		sr.b_from_zero = sr.k;
 		sr.b_from_end = b->len - 1 - sr.k;
 	}
-	if (sr.a_from_zero <= sr.a_from_end && sr.b_from_zero <= sr.b_from_end)
-	{
-		while (sr.i > 0 && sr.k > 0)
-		{
-			rr(a, b, 1);
-			sr.i--;
-			sr.k--;
-		}
-	}
-	else if (sr.a_from_zero > sr.a_from_end && sr.b_from_zero >= sr.b_from_end)
-	{
-		while (sr.i < a->len && sr.k < b->len)
-		{
-			rrr(a, b, 1);
-			sr.i++;
-			sr.k++;
-		}
-	}
+	execute_double_rotations(&sr, a, b);
 	smart_rotate_a(a, a_target);
 	smart_rotate_b(b, b_target);
 	return (1);
