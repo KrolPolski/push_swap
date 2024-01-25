@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:24:10 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:27:15 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	vec_int(t_vec *a, int index)
 	x = *ptr;
 	return (x);
 }
+
 int	vec_int_to_index(t_vec *a, int x)
 {
 	size_t	i;
@@ -85,21 +86,3 @@ int	find_max(t_vec *a)
 	}
 	return (max);
 }
-
-int	find_min(t_vec *a, int max)
-{
-	size_t	index;
-	int	min;
-
-	index = 0;
-	min = max;
-	while (index < a->len)
-	{
-		if (vec_int(a, index) < min)
-			min = vec_int(a, index);
-		index++;
-	}
-	return (min);
-}
-
-

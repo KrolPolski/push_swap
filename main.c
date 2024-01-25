@@ -6,11 +6,36 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 18:28:54 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:56:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void	handle_split(int *argc, char **argv, int *i)
+{
+	if (*argc == 2)
+	{
+		if (!argv[1][0])
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		argv = ft_split(argv[1], ' ');
+		if (!argv)
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit(EXIT_FAILURE);
+		}
+		*i = 0;
+		*argc = 0;
+		while (argv[*i] != NULL)
+		{
+			(*argc)++;
+			(*i)++;
+		}
+		*i = 0;
+	}
+}
 
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
@@ -20,20 +45,7 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	int		*ptr;
 
 	i = 1;
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		if (!argv)
-			return (-1);
-		i = 0;
-		argc = 0;
-		while (argv[i] != NULL)
-		{
-			argc++;
-			i++;
-		}
-		i = 0;
-	}
+	handle_split(&argc, argv, &i);
 	while (i < argc)
 	{
 		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))

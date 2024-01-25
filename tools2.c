@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:23:28 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:24:47 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:48:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	reverse_sort_three(t_vec *b)
 	else if (vec_int(b, 0) < vec_int(b, 2) && vec_int(b, 2) < vec_int(b, 1))
 		rb(b, 1);
 }
+
 //we want to rotate to get the target 
 //value on top, but we don't know which direction will be more efficient yet.
 //We can use the index, distance from 0 or distance from len - 1
@@ -82,7 +83,6 @@ int	smart_rotate_b(t_vec *b, int target)
 
 	from_zero = b->len;
 	from_end = b->len;
-
 	i = 0;
 	while (i < b->len && vec_int(b, i) != target)
 	{
@@ -110,6 +110,7 @@ int	smart_rotate_b(t_vec *b, int target)
 	}
 	return (1);
 }
+
 /*Rotates to two targets, taking advantage of double rotates where possible*/
 int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 {
@@ -148,17 +149,6 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 			i--;
 			k--;
 		}
-		/*while (i > 0)
-		{
-			ra(a, 1);
-			i--;
-		}
-		while (k > 0)
-		{
-			rb(b, 1);
-			k--;
-		}*/
-		//rotate using ra(a) i number of times
 	}
 	else if (a_from_zero > a_from_end && b_from_zero >= b_from_end)
 	{
@@ -168,18 +158,24 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 			i++;
 			k++;
 		}
-		/*while (i > 0)
-		{
-			rra(a, 1);
-			i--;
-		}
-		while (k > 0)
-		{
-			rrb(b, 1);
-			k--;
-		}*/
 	}
-		smart_rotate_a(a, a_target);
-		smart_rotate_b(b, b_target);
+	smart_rotate_a(a, a_target);
+	smart_rotate_b(b, b_target);
 	return (1);
+}
+
+int	find_min(t_vec *a, int max)
+{
+	size_t	index;
+	int		min;
+
+	index = 0;
+	min = max;
+	while (index < a->len)
+	{
+		if (vec_int(a, index) < min)
+			min = vec_int(a, index);
+		index++;
+	}
+	return (min);
 }
