@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 18:41:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:10:26 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	initialize_ccp(t_vec *a, t_vec *b, t_ccp *z)
 	z->b_max_index = vec_int_to_index(b, z->b_max);
 	z->b_min_index = vec_int_to_index(b, z->b_min);
 }
+
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
 	t_ccp	z;
@@ -219,7 +220,6 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 		z.k = 0;
 		z.i++;
 	}
-
 	if (z.index_a >= a->len || z.index_b >= b->len)
 	{
 		ft_printf("Invalid index selected by choose_cheapest_push\n");
@@ -240,11 +240,11 @@ int	batch_push(t_vec *a, t_vec *b)
 	smart_rotate(a, b, find_max(a), find_max(b));
 	while (b->len > 0)
 	{
-		if (vec_int(b, 0) < vec_int(a, 0) &&
-			vec_int(b, 0) > vec_int(a, a->len - 1))
+		if (vec_int(b, 0) < vec_int(a, 0)
+			&& vec_int(b, 0) > vec_int(a, a->len - 1))
 			pa(a, b, 1);
-		else if (vec_int(b, 0) > vec_int(a, 0) &&
-			vec_int(b, 0) > vec_int(a, a->len -1))
+		else if (vec_int(b, 0) > vec_int(a, 0)
+			&& vec_int(b, 0) > vec_int(a, a->len -1))
 		{
 			pa(a, b, 1);
 			sa(a, 1);

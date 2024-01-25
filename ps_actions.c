@@ -6,10 +6,9 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:47 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 17:33:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:10:55 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -96,4 +95,3 @@ int	pb(t_vec *a, t_vec *b, int print)
 		ft_printf("pb\n");
 	return (1);
 }
-
