@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:23:41 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:01:56 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,15 @@ typedef struct s_ccp
 	int		b_max_index;
 	int		b_min_index;
 }	t_ccp;
-
+typedef struct s_sr
+{
+	int		a_from_zero;
+	int		a_from_end;
+	int		b_from_zero;
+	int		b_from_end;
+	size_t	i;
+	size_t	k;
+}	t_sr;
 /*sa (swap a): Swap the first 2 elements at the top of stack a.
 Do nothing if there is only one or no elements.*/
 int		sa(t_vec *a, int print);

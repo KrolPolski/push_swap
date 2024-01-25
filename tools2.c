@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:23:28 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:48:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:05:42 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,52 +111,51 @@ int	smart_rotate_b(t_vec *b, int target)
 	return (1);
 }
 
+void	init_sr(t_sr *sr, t_vec *a, t_vec *b)
+{
+	sr->a_from_zero = a->len;
+	sr->a_from_end = a->len;
+	sr->b_from_zero = b->len;
+	sr->b_from_end = b->len;
+	sr->i = 0;
+	sr->k = 0;
+}
 /*Rotates to two targets, taking advantage of double rotates where possible*/
 int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 {
-	int		a_from_zero;
-	int		a_from_end;
-	int		b_from_zero;
-	int		b_from_end;
-	size_t	i;
-	size_t	k;
+	t_sr	sr;
 
-	a_from_zero = a->len;
-	a_from_end = a->len;
-	b_from_zero = b->len;
-	b_from_end = b->len;
-	i = 0;
-	k = 0;
-	while (i < a->len && vec_int(a, i) != a_target)
-		i++;
-	while (k < b->len && vec_int(b, k) != b_target)
-		k++;
-	if (vec_int(a, i) == a_target)
+	init_sr(&sr, a, b);
+	while (sr.i < a->len && vec_int(a, sr.i) != a_target)
+		sr.i++;
+	while (sr.k < b->len && vec_int(b, sr.k) != b_target)
+		sr.k++;
+	if (vec_int(a, sr.i) == a_target)
 	{
-		a_from_zero = i;
-		a_from_end = a->len - 1 - i;
+		sr.a_from_zero = sr.i;
+		sr.a_from_end = a->len - 1 - sr.i;
 	}
-	if (vec_int(b, k) == b_target)
+	if (vec_int(b, sr.k) == b_target)
 	{
-		b_from_zero = k;
-		b_from_end = b->len - 1 - k;
+		sr.b_from_zero = sr.k;
+		sr.b_from_end = b->len - 1 - sr.k;
 	}
-	if (a_from_zero <= a_from_end && b_from_zero <= b_from_end)
+	if (sr.a_from_zero <= sr.a_from_end && sr.b_from_zero <= sr.b_from_end)
 	{
-		while (i > 0 && k > 0)
+		while (sr.i > 0 && sr.k > 0)
 		{
 			rr(a, b, 1);
-			i--;
-			k--;
+			sr.i--;
+			sr.k--;
 		}
 	}
-	else if (a_from_zero > a_from_end && b_from_zero >= b_from_end)
+	else if (sr.a_from_zero > sr.a_from_end && sr.b_from_zero >= sr.b_from_end)
 	{
-		while (i < a->len && k < b->len)
+		while (sr.i < a->len && sr.k < b->len)
 		{
 			rrr(a, b, 1);
-			i++;
-			k++;
+			sr.i++;
+			sr.k++;
 		}
 	}
 	smart_rotate_a(a, a_target);

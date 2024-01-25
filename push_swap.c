@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:23:25 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:59:43 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,20 @@ void	push_swap_three(t_vec *a)
 	if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 1) < vec_int(a, 2))
 		return ;
 	if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
-	{
 		sa(a, 1);
-		return ;
-	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) < vec_int(a, 0))
-	{
 		rra(a, 1);
-		return ;
-	}
 	else if (vec_int(a, 1) < vec_int(a, 2) && vec_int(a, 0) > vec_int(a, 2))
-	{
 		ra(a, 1);
-		return ;
-	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 1) > vec_int(a, 2))
 	{
 		sa(a, 1);
 		rra(a, 1);
-		return ;
 	}
 	else if (vec_int(a, 0) > vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
 		sa(a, 1);
 		ra(a, 1);
-		return ;
 	}
 	else if (vec_int(a, 0) < vec_int(a, 1) && vec_int(a, 2) > vec_int(a, 0))
 	{
