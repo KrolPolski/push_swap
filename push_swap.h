@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/24 18:28:05 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:23:41 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b);
 int		batch_push(t_vec *a, t_vec *b);
 int		vec_int_to_index(t_vec *a, int x);
 int		push_swap(t_vec *a, t_vec *b);
+void	reverse_sort_three(t_vec *b);
 #endif

@@ -6,36 +6,11 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:18:09 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:23:25 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* Parse the arguments and add them as elements to the vector */
-void	reverse_sort_three(t_vec *b)
-{
-	if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 2) > vec_int(b, 0))
-		rrb(b, 1);
-	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 2) < vec_int(b, 0))
-	{
-		sb(b, 1);
-	}
-	else if (vec_int(b, 1) < vec_int(b, 2) && vec_int(b, 0) > vec_int(b, 2))
-	{
-		rrb(b, 1);
-		sb(b, 1);
-	}
-	else if (vec_int(b, 0) > vec_int(b, 1) && vec_int(b, 1) > vec_int(b, 2))
-		return ;
-	else if (vec_int(b, 0) < vec_int(b, 1) && vec_int(b, 1) < vec_int(b, 2))
-	{
-		rb(b, 1);
-		sb(b, 1);
-	}
-	else if (vec_int(b, 0) < vec_int(b, 2) && vec_int(b, 2) < vec_int(b, 1))
-		rb(b, 1);
-}
 
 void	push_swap_three(t_vec *a)
 {

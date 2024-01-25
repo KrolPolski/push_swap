@@ -6,7 +6,8 @@ SRCS	:= main.c \
 		   ps_actions2.c \
 		   ps_actions3.c \
 		   choose_push.c \
-		   tools.c
+		   tools.c \
+		   tools2.c
 OBJS	:= ${SRCS:.c=.o} Libft/libft.a
 
 all: $(NAME)
