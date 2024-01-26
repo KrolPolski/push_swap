@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 12:09:04 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:14:12 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,25 @@ void	choose_min_max(t_vec *a, t_vec *b, t_ccp *z)
 		calculate_costs(a, b, z);
 }
 
+void	set_a_next(t_vec *a, t_ccp *z)
+{
+	if (z->i == a->len - 1)
+		z->a_next = 0;
+	else
+		z->a_next = z->i + 1;
+	if (z->i == 0)
+		z->a_prev = a->len - 1;
+	else
+		z->a_prev = z->i - 1;
+}
+
+void	set_b_next(t_vec *b, t_ccp *z)
+{
+	if (z->k == 0)
+		z->next = b->len - 1;
+	else
+		z->next = z->k - 1;
+}
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
 	t_ccp	z;
@@ -105,20 +124,10 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 	initialize_ccp(a, b, &z);
 	while (z.i < a->len)
 	{
-		if (z.i == a->len - 1)
-			z.a_next = 0;
-		else
-			z.a_next = z.i + 1;
-		if (z.i == 0)
-			z.a_prev = a->len - 1;
-		else
-			z.a_prev = z.i - 1;
+		set_a_next(a, &z);
 		while (z.k < b->len)
 		{
-			if (z.k == 0)
-				z.next = b->len - 1;
-			else
-				z.next = z.k - 1;
+			set_b_next(b, &z);
 			if (vec_int(a, z.i) < z.b_min || (vec_int(a, z.i) > z.b_max))
 				choose_min_max(a, b, &z);
 			else if (vec_int(a, z.i) > vec_int(b, z.k)
