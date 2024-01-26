@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 11:39:28 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:45:30 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,53 @@ void	initialize_ccp(t_vec *a, t_vec *b, t_ccp *z)
 	z->b_max_index = vec_int_to_index(b, z->b_max);
 	z->b_min_index = vec_int_to_index(b, z->b_min);
 }
-
+choose_min_max(t_vec *a, t_vec *b, t_ccp *z)
+{
+{
+				z->a_cost_forward = z->i;
+				z->a_cost_reverse = a->len - z->i - 1;
+				z->b_cost_forward = z->b_max_index;
+				z->b_cost_reverse = b->len - z->b_max_index;
+				if (z->a_cost_forward <= z->a_cost_reverse
+					&& z->b_cost_forward <= z->b_cost_reverse)
+				{
+					z->a_cost = z->a_cost_forward;
+					z->b_cost = z->b_cost_forward;
+					if (z->a_cost > z->b_cost)
+						z->total_cost = z->a_cost;
+					else
+						z->total_cost = z->b_cost;
+				}
+				else if (z->a_cost_reverse <= z->a_cost_forward
+					&& z->b_cost_reverse <= z->b_cost_forward)
+				{
+					z->a_cost = z->a_cost_reverse;
+					z->b_cost = z->b_cost_reverse;
+					if (z->a_cost > z->b_cost)
+						z->total_cost = z->a_cost;
+					else
+						z->total_cost = z->b_cost;
+				}
+				else
+				{
+					if (z->a_cost_forward <= z->a_cost_reverse)
+						z->a_cost = z->a_cost_forward;
+					else
+						z->a_cost = z->a_cost_reverse;
+					if (z->b_cost_forward <= z->b_cost_reverse)
+						z->b_cost = z->b_cost_forward;
+					else
+						z->b_cost = z->b_cost_reverse;
+					z->total_cost = z->a_cost + z->b_cost;
+				}
+				if (z->total_cost < z->min_total_cost)
+				{
+					z->min_total_cost = z->total_cost;
+					z->index_a = z->i;
+					z->index_b = z->b_max_index;
+				}
+			}
+}
 int	choose_cheapest_push(t_vec *a, t_vec *b)
 {
 	t_ccp	z;
@@ -67,50 +113,7 @@ int	choose_cheapest_push(t_vec *a, t_vec *b)
 			else
 				z.next = z.k - 1;
 			if (vec_int(a, z.i) < z.b_min || (vec_int(a, z.i) > z.b_max))
-			{
-				z.a_cost_forward = z.i;
-				z.a_cost_reverse = a->len - z.i - 1;
-				z.b_cost_forward = z.b_max_index;
-				z.b_cost_reverse = b->len - z.b_max_index;
-				if (z.a_cost_forward <= z.a_cost_reverse
-					&& z.b_cost_forward <= z.b_cost_reverse)
-				{
-					z.a_cost = z.a_cost_forward;
-					z.b_cost = z.b_cost_forward;
-					if (z.a_cost > z.b_cost)
-						z.total_cost = z.a_cost;
-					else
-						z.total_cost = z.b_cost;
-				}
-				else if (z.a_cost_reverse <= z.a_cost_forward
-					&& z.b_cost_reverse <= z.b_cost_forward)
-				{
-					z.a_cost = z.a_cost_reverse;
-					z.b_cost = z.b_cost_reverse;
-					if (z.a_cost > z.b_cost)
-						z.total_cost = z.a_cost;
-					else
-						z.total_cost = z.b_cost;
-				}
-				else
-				{
-					if (z.a_cost_forward <= z.a_cost_reverse)
-						z.a_cost = z.a_cost_forward;
-					else
-						z.a_cost = z.a_cost_reverse;
-					if (z.b_cost_forward <= z.b_cost_reverse)
-						z.b_cost = z.b_cost_forward;
-					else
-						z.b_cost = z.b_cost_reverse;
-					z.total_cost = z.a_cost + z.b_cost;
-				}
-				if (z.total_cost < z.min_total_cost)
-				{
-					z.min_total_cost = z.total_cost;
-					z.index_a = z.i;
-					z.index_b = z.b_max_index;
-				}
-			}
+				choose_min_max(a, b, &z);
 			else if (vec_int(a, z.i) > vec_int(b, z.k)
 				&& vec_int(a, z.i) < vec_int (b, z.next))
 			{
