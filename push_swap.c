@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:17:15 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:59:43 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:28:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ push to b, loop until there are only three left in a.
 Then push them all back to a in an intelligent way*/
 int	push_swap_medium(t_vec *a, t_vec *b)
 {
+	t_sr sr;
+	
 	pb(a, b, 1);
 	pb(a, b, 1);
 	pb(a, b, 1);
@@ -99,7 +101,7 @@ int	push_swap_medium(t_vec *a, t_vec *b)
 		choose_cheapest_push(a, b);
 	push_swap_three(a);
 	batch_push(a, b);
-	smart_rotate_a(a, find_min(a, find_max(a)));
+	smart_rotate_a(a, find_min(a, find_max(a)), &sr);
 	return (1);
 }
 

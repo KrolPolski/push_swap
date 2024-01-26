@@ -1,11 +1,12 @@
 NAME	:= push_swap 
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast 
+#CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast 
 SRCS	:= main.c \
 		   push_swap.c \
 		   ps_actions.c \
 		   ps_actions2.c \
 		   ps_actions3.c \
 		   choose_push.c \
+		   smart_rotate.c \
 		   tools.c \
 		   tools2.c
 OBJS	:= ${SRCS:.c=.o} Libft/libft.a
