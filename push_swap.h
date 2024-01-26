@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 10:38:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:36:40 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_ccp
 	int		b_min;
 	int		b_max_index;
 	int		b_min_index;
+	int		same_direction;
 }	t_ccp;
 typedef struct s_sr
 {
