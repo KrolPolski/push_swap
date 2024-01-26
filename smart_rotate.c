@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:35:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 11:26:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:22:16 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	smart_rotate_a(t_vec *a, int target)
 	from_zero = a->len;
 	from_end = a->len;
 	i = 0;
-	while (i < a->len && vec_int(a, i) != target)
+	while (i < (int)a->len && vec_int(a, i) != target)
 		i++;
 	if (vec_int(a, i) == target)
 	{
@@ -51,7 +51,7 @@ void	smart_rotate_b(t_vec *b, int target)
 	from_zero = b->len;
 	from_end = b->len;
 	i = 0;
-	while (i < b->len && vec_int(b, i) != target)
+	while (i < (int)b->len && vec_int(b, i) != target)
 		i++;
 	if (vec_int(b, i) == target)
 	{
