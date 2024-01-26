@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:35:27 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 10:33:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:38:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //we want to rotate to get the target 
 //value on top, but we don't know which direction will be more efficient yet.
 //We can use the index, distance from 0 or distance from len - 1
-void	smart_rotate_a(t_vec *a, int target, t_sr *sr)
+void	smart_rotate_a(t_vec *a, int target)
 {
 	int		from_zero;
 	int		from_end;
@@ -37,12 +37,12 @@ void	smart_rotate_a(t_vec *a, int target, t_sr *sr)
 	else
 	{
 		i = a->len - i;
-	while (i-- > 0)
+		while (i-- > 0)
 			rra(a, 1);
 	}
 }
 
-void	smart_rotate_b(t_vec *b, int target, t_sr *sr)
+void	smart_rotate_b(t_vec *b, int target)
 {
 	int		from_zero;
 	int		from_end;
@@ -123,7 +123,7 @@ int	smart_rotate(t_vec *a, t_vec *b, int a_target, int b_target)
 		sr.b_from_end = b->len - 1 - sr.k;
 	}
 	execute_double_rotations(&sr, a, b);
-	smart_rotate_a(a, a_target, &sr);
-	smart_rotate_b(b, b_target, &sr);
+	smart_rotate_a(a, a_target);
+	smart_rotate_b(b, b_target);
 	return (1);
 }
