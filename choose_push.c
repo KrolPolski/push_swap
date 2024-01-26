@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 10:39:24 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:32:40 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,16 +249,13 @@ int	batch_push(t_vec *a, t_vec *b)
 			pa(a, b, 1);
 			sa(a, 1);
 		}
-		else if (vec_int(b, 0) > find_max(a))
+		else if (vec_int(b, 0) > find_max(a) ||
+			vec_int(b, 0) < find_min(a, find_max(a)))
 		{
 			smart_rotate_a(a, find_min(a, find_max(a)));
 			pa(a, b, 1);
-			sa(a, 1);
-		}
-		else if (vec_int(b, 0) < find_min(a, find_max(a)))
-		{
-			smart_rotate_a(a, find_min(a, find_max(a)));
-			pa(a, b, 1);
+			if (vec_int(a, 0) == find_max(a))
+				sa(a, 1);
 		}
 		else
 			rra(a, 1);
