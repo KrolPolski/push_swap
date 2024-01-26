@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:58:03 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:58:31 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handle_split(int *argc, char **argv, int *i)
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
+		//this is leaking
 		argv = ft_split(argv[1], ' ');
 		if (!argv)
 		{
@@ -44,11 +45,16 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	int		int_tmp;
 	int		i;
 	int		*ptr;
+	int		free_req;
 
 	i = 1;
+	free_req = 0;
 	handle_split(&argc, argv, &i);
+	if (i == 0)
+		free_req = 1;
 	while (i < argc)
 	{
+		//be stricter about removing letters. and minuses not in 0 position.
 		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
 		{
 			vec_free(a);
