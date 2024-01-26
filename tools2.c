@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 11:23:28 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 13:35:45 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:26:49 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	reverse_sort_three(t_vec *b)
 	else if (vec_int(b, 0) < vec_int(b, 2) && vec_int(b, 2) < vec_int(b, 1))
 		rb(b, 1);
 }
-
-
 
 int	find_min(t_vec *a, int max)
 {
