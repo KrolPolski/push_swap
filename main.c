@@ -6,12 +6,20 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 13:58:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:33:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void	free_argv(char **argv)
+{
+	int i;
 
+	i = 0;
+	while (argv[i] != NULL)
+		free(argv[i]);
+	free(argv);
+}
 void	handle_split(int *argc, char **argv, int *i)
 {
 	if (*argc == 2)
@@ -58,16 +66,22 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
 		{
 			vec_free(a);
+			if (free_req)
+				free_argv(argv);
 			return (-1);
 		}
 		tmp = ft_long_atoi(argv[i]);
 		if (tmp > 2147483647 || tmp < -2147483648)
-			return (-1);
+			{if (free_req)
+				free_argv(argv);
+			return (-1);}
 		int_tmp = (int)tmp;
 		vec_push(a, &int_tmp);
 		ptr = vec_get(a, i - 1);
 		i++;
 	}
+	if (free_req)
+		free_argv(argv);
 	return (1);
 }
 
