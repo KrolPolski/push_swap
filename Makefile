@@ -13,6 +13,7 @@ SRCS	:= main.c \
 		   tools.c \
 		   tools2.c
 BONUS_SRCS := checker_bonus.c \
+			  main_bonus.c \
 			  push_swap.c \
 		      ps_actions.c \
 		      ps_actions2.c \
@@ -44,12 +45,12 @@ checker: $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) -o checker
 	
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) checker_bonus.o
 	rm -f Libft/.bonus;
 	$(MAKE) -C Libft/ clean
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) checker
 
 re: clean all
 
