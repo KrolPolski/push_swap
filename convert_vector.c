@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 12:43:30 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:50:48 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,24 @@ int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
 	return (1);
 }
 
+void	init_cbv(t_cbv *cbv, int argc, char **argv)
+{
+	cbv->i = 1;
+	cbv->k = 0;
+	cbv->free_req = 0;
+	cbv->result = handle_split(&argc, argv, &cbv->i);
+	if (cbv->result)
+	{
+		cbv->free_req = 1;
+		argv = cbv->result;
+	}
+}
+
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
 	t_cbv	cbv;
 
-	cbv.i = 1;
-	cbv.k = 0;
-	cbv.free_req = 0;
-	cbv.result = handle_split(&argc, argv, &cbv.i);
-	if (cbv.result)
-	{
-		cbv.free_req = 1;
-		argv = cbv.result;
-	}
+	init_cbv(&cbv, argc, argv);
 	while (cbv.i < argc)
 	{
 		if (validate_input(&cbv, a, argv) == -1)
