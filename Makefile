@@ -8,6 +8,7 @@ SRCS	:= main.c \
 		   choose_push.c \
 		   choose_push_utils.c \
 		   choose_push_utils2.c \
+		   convert_vector.c \
 		   smart_rotate.c \
 		   tools.c \
 		   tools2.c

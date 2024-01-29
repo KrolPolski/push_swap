@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 12:34:16 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:45:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,8 @@ void	calculate_costs(t_ccp *z, int insertion);
 void	choose_min_max(t_vec *a, t_vec *b, t_ccp *z);
 void	set_a_next(t_vec *a, t_ccp *z);
 void	set_b_next(t_vec *b, t_ccp *z);
+void	free_argv(char **argv);
+char	**handle_split(int *argc, char **argv, int *i);
+int		validate_input(t_cbv *cbv, t_vec *a, char **argv);
+int		convert_and_build_vector(t_vec *a, int argc, char **argv);
 #endif
