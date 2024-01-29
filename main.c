@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 12:31:54 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:41:20 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,25 @@ char	**handle_split(int *argc, char **argv, int *i)
 	return (NULL);
 }
 
+int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
+{
+	cbv->k = 0;
+	while (argv[cbv->i][cbv->k] != '\0')
+	{
+		if (argv[cbv->i][cbv->k] == '-' && cbv->k == 0)
+			cbv->k++;
+		else if (argv[cbv->i][cbv->k] < 48 || argv[cbv->i][cbv->k] > 57)
+		{
+			vec_free(a);
+			if (cbv->free_req)
+				free_argv(argv);
+			return (-1);
+		}
+		else
+			cbv->k++;
+	}
+	return (1);
+}
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
 	t_cbv	cbv;
@@ -67,21 +86,8 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	while (cbv.i < argc)
 	{
-		cbv.k = 0;
-		while (argv[cbv.i][cbv.k] != '\0')
-		{
-			if (argv[cbv.i][cbv.k] == '-' && cbv.k == 0)
-				cbv.k++;
-			else if (argv[cbv.i][cbv.k] < 48 || argv[cbv.i][cbv.k] > 57)
-			{
-				vec_free(a);
-				if (cbv.free_req)
-					free_argv(argv);
-				return (-1);
-			}
-			else
-				cbv.k++;
-		}
+		if (validate_input(&cbv, a, argv) == -1)
+			return (-1);
 		cbv.tmp = ft_long_atoi(argv[cbv.i]);
 		if (cbv.tmp > 2147483647 || cbv.tmp < -2147483648)
 		{
@@ -91,8 +97,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		}
 		cbv.int_tmp = (int)cbv.tmp;
 		vec_push(a, &cbv.int_tmp);
-		//why are we doing this?
-		cbv.ptr = vec_get(a, cbv.i - 1);
 		cbv.i++;
 	}
 	if (cbv.free_req)
@@ -101,7 +105,7 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 }
 
 //detect duplicate values and return an error
-void	validate_input(t_vec *a, t_vec *b)
+void	detect_duplicates(t_vec *a, t_vec *b)
 {
 	unsigned long	i;
 	unsigned long	k;
@@ -145,7 +149,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}
-	validate_input(&a, &b);
+	detect_duplicates(&a, &b);
 	check_order(&a, &b);
 	push_swap(&a, &b);
 	vec_free(&a);
