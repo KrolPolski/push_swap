@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 13:40:10 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 13:46:16 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,21 @@ int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
 	cbv->k = 0;
 	while (argv[cbv->i][cbv->k] != '\0')
 	{
-		if (argv[cbv->i][cbv->k] == '-' && cbv->k == 0)
+		if (argv[cbv->i][cbv->k] == '-' && cbv->k == 0 && argv[cbv->i][cbv->k + 1] != '\0')
 			cbv->k++;
 		else if (argv[cbv->i][cbv->k] < 48 || argv[cbv->i][cbv->k] > 57)
 		{
 			vec_free(a);
 			if (cbv->free_req == 1)
 			{	
-				ft_printf("Now trying to free because we detected letters and cbv->free_req is %d\n", cbv->free_req);
+			//	ft_printf("Now trying to free because we detected letters and cbv->free_req is %d\n", cbv->free_req);
 				free_argv(argv, cbv);
 			}
 			return (-1);
 		}
 		else
 			cbv->k++;
+		// we need some logic to ensure that a number was given at all
 	}
 	return (1);
 }
