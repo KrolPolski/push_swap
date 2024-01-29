@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/26 11:36:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:45:36 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,9 @@ int		batch_push(t_vec *a, t_vec *b);
 int		vec_int_to_index(t_vec *a, int x);
 int		push_swap(t_vec *a, t_vec *b);
 void	reverse_sort_three(t_vec *b);
+void	initialize_ccp(t_vec *a, t_vec *b, t_ccp *z);
+void	calculate_costs(t_ccp *z, int insertion);
+void	choose_min_max(t_vec *a, t_vec *b, t_ccp *z);
+void	set_a_next(t_vec *a, t_ccp *z);
+void	set_b_next(t_vec *b, t_ccp *z);
 #endif
