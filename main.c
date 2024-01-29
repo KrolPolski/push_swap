@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 14:07:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:18:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}
-//	print_vector(&a);
 	detect_duplicates(&a, &b);
 	check_order(&a, &b);
 	push_swap(&a, &b);
 	vec_free(&a);
 	vec_free(&b);
+	exit(EXIT_SUCCESS);
 }

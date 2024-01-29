@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 14:07:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:18:26 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	free_argv(char **argv, t_cbv *cbv)
 
 	i = 0;
 	while (argv[i] != NULL && cbv->free_req == 1)
-	{	
-	//	ft_printf("About to try to free argv[%d] which is '%s'\n", i, argv[i]);
+	{
 		free(argv[i]);
 		i++;
 	}
@@ -51,7 +50,6 @@ char	**handle_split(int *argc, char **argv, int *i)
 		*argc = 0;
 		while (result[(*i)++] != NULL)
 			(*argc)++;
-	//	ft_printf("argc is now %d\n", *argc);
 		*i = 0;
 		return (result);
 	}
@@ -63,21 +61,20 @@ int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
 	cbv->k = 0;
 	while (argv[cbv->i][cbv->k] != '\0')
 	{
-		if (argv[cbv->i][cbv->k] == '-' && cbv->k == 0 && argv[cbv->i][cbv->k + 1] != '\0')
+		if (argv[cbv->i][cbv->k] == '-' && cbv->k == 0
+			&& argv[cbv->i][cbv->k + 1] != '\0')
 			cbv->k++;
 		else if (argv[cbv->i][cbv->k] < 48 || argv[cbv->i][cbv->k] > 57)
 		{
 			vec_free(a);
 			if (cbv->free_req == 1)
-			{	
-			//	ft_printf("Now trying to free because we detected letters and cbv->free_req is %d\n", cbv->free_req);
+			{
 				free_argv(argv, cbv);
 			}
 			return (-1);
 		}
 		else
 			cbv->k++;
-		// we need some logic to ensure that a number was given at all
 	}
 	return (1);
 }
@@ -88,7 +85,6 @@ char	**init_cbv(t_cbv *cbv, int *argc, char **argv)
 	cbv->k = 0;
 	cbv->free_req = 0;
 	cbv->result = handle_split(argc, argv, &cbv->i);
-	//ft_printf("argc is still %d\n", argc);
 	if (cbv->result)
 	{
 		cbv->free_req = 1;
@@ -102,7 +98,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	t_cbv	cbv;
 
 	argv = init_cbv(&cbv, &argc, argv);
-//	ft_printf("argc is %d after coming back from init\n", argc);
 	while (cbv.i < argc)
 	{
 		if (validate_input(&cbv, a, argv) == -1)
@@ -112,7 +107,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		{
 			if (cbv.free_req)
 			{
-				//ft_printf("freeing argv because we are outside int bounds\n");
 				free_argv(argv, &cbv);
 			}
 			return (-1);
