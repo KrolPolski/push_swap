@@ -7,6 +7,7 @@ SRCS	:= main.c \
 		   ps_actions3.c \
 		   choose_push.c \
 		   choose_push_utils.c \
+		   choose_push_utils2.c \
 		   smart_rotate.c \
 		   tools.c \
 		   tools2.c
