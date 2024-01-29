@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 10:44:26 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:48:14 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 //working with is greater than the current index,
 //but also less than the one on the bottom?
 
-
-
 void	handle_default_insertion(t_vec *a, t_vec *b, t_ccp *z)
 {
 	z->a_cost_forward = z->i;
@@ -45,7 +43,6 @@ void	handle_default_insertion(t_vec *a, t_vec *b, t_ccp *z)
 		z->same_direction = 1;
 		z->a_cost = z->a_cost_forward;
 		z->b_cost = z->b_cost_forward;
-		calculate_costs(z, 1);
 	}
 	else if (z->a_cost_reverse <= z->a_cost_forward
 		&& z->b_cost_reverse <= z->b_cost_forward)
@@ -53,13 +50,10 @@ void	handle_default_insertion(t_vec *a, t_vec *b, t_ccp *z)
 		z->same_direction = 1;
 		z->a_cost = z->a_cost_reverse;
 		z->b_cost = z->b_cost_reverse;
-		calculate_costs(z, 1);
 	}
 	else
-	{
 		z->same_direction = 0;
-		calculate_costs(z, 1);
-	}
+	calculate_costs(z, 1);
 	if (vec_int(a, z->a_next) > vec_int(a, z->i)
 		&& vec_int(a, z->a_next) < vec_int (b, b->len - 1))
 		z->total_cost--;
