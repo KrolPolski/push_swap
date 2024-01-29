@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 11:33:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:57:28 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@ void	free_argv(char **argv)
 	int i;
 
 	i = 0;
+	
 	while (argv[i] != NULL)
+	{
+		//ft_printf("argv[%d] is '%s'\n", i, argv[i]);
 		free(argv[i]);
+		i++;
+	}
 	free(argv);
 }
-void	handle_split(int *argc, char **argv, int *i)
+char 	**handle_split(int *argc, char **argv, int *i)
 {
+	char **result;
 	if (*argc == 2)
 	{
 		if (!argv[1][0])
@@ -30,21 +36,23 @@ void	handle_split(int *argc, char **argv, int *i)
 			exit(EXIT_FAILURE);
 		}
 		//this is leaking
-		argv = ft_split(argv[1], ' ');
-		if (!argv)
+		result = ft_split(argv[1], ' ');
+		if (!result)
 		{
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
 		*i = 0;
 		*argc = 0;
-		while (argv[*i] != NULL)
+		while (result[*i] != NULL)
 		{
 			(*argc)++;
 			(*i)++;
 		}
 		*i = 0;
+		return (result);
 	}
+	return (NULL);
 }
 
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
@@ -54,12 +62,16 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	int		i;
 	int		*ptr;
 	int		free_req;
+	char	**result;
 
 	i = 1;
 	free_req = 0;
-	handle_split(&argc, argv, &i);
-	if (i == 0)
+	result = handle_split(&argc, argv, &i);
+	if (result)
+	{
 		free_req = 1;
+		argv = result;
+	}
 	while (i < argc)
 	{
 		//be stricter about removing letters. and minuses not in 0 position.
@@ -72,9 +84,11 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		}
 		tmp = ft_long_atoi(argv[i]);
 		if (tmp > 2147483647 || tmp < -2147483648)
-			{if (free_req)
+		{
+			if (free_req)
 				free_argv(argv);
-			return (-1);}
+			return (-1);
+		}
 		int_tmp = (int)tmp;
 		vec_push(a, &int_tmp);
 		ptr = vec_get(a, i - 1);
