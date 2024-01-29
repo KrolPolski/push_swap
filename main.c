@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 11:57:28 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:07:19 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	int		*ptr;
 	int		free_req;
 	char	**result;
+	int		k;
 
 	i = 1;
+	k = 0;
 	free_req = 0;
 	result = handle_split(&argc, argv, &i);
 	if (result)
@@ -74,13 +76,21 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 	}
 	while (i < argc)
 	{
+		k = 0;
 		//be stricter about removing letters. and minuses not in 0 position.
-		if (argv[i][0] != '-' && (argv[i][0] < 48 || argv[i][0] > 57))
+		while (argv[i][k] != '\0')
 		{
-			vec_free(a);
-			if (free_req)
-				free_argv(argv);
-			return (-1);
+			if (argv[i][k] == '-' && k == 0)
+				k++;
+			else if (argv[i][k] < 48 || argv[i][k] > 57)
+			{
+				vec_free(a);
+				if (free_req)
+					free_argv(argv);
+				return (-1);
+			}
+			else
+				k++;
 		}
 		tmp = ft_long_atoi(argv[i]);
 		if (tmp > 2147483647 || tmp < -2147483648)
