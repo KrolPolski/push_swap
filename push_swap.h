@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:18:21 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 10:45:36 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:28:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define PUSH_SWAP_H
 # include "Libft/libft.h"
 
+typedef struct s_cbv
+{
+	long	tmp;
+	int		int_tmp;
+	int		i;
+	int		*ptr;
+	int		free_req;
+	char	**result;
+	int		k;
+}	t_cbv;
 typedef struct s_ccp
 {
 	int		a_cost;

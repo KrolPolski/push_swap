@@ -6,28 +6,29 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 12:07:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:31:54 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	free_argv(char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	
 	while (argv[i] != NULL)
 	{
-		//ft_printf("argv[%d] is '%s'\n", i, argv[i]);
 		free(argv[i]);
 		i++;
 	}
 	free(argv);
 }
-char 	**handle_split(int *argc, char **argv, int *i)
+
+char	**handle_split(int *argc, char **argv, int *i)
 {
-	char **result;
+	char	**result;
+
 	if (*argc == 2)
 	{
 		if (!argv[1][0])
@@ -35,7 +36,6 @@ char 	**handle_split(int *argc, char **argv, int *i)
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
-		//this is leaking
 		result = ft_split(argv[1], ' ');
 		if (!result)
 		{
@@ -44,11 +44,8 @@ char 	**handle_split(int *argc, char **argv, int *i)
 		}
 		*i = 0;
 		*argc = 0;
-		while (result[*i] != NULL)
-		{
+		while (result[(*i)++] != NULL)
 			(*argc)++;
-			(*i)++;
-		}
 		*i = 0;
 		return (result);
 	}
@@ -57,54 +54,48 @@ char 	**handle_split(int *argc, char **argv, int *i)
 
 int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 {
-	long	tmp;
-	int		int_tmp;
-	int		i;
-	int		*ptr;
-	int		free_req;
-	char	**result;
-	int		k;
+	t_cbv	cbv;
 
-	i = 1;
-	k = 0;
-	free_req = 0;
-	result = handle_split(&argc, argv, &i);
-	if (result)
+	cbv.i = 1;
+	cbv.k = 0;
+	cbv.free_req = 0;
+	cbv.result = handle_split(&argc, argv, &cbv.i);
+	if (cbv.result)
 	{
-		free_req = 1;
-		argv = result;
+		cbv.free_req = 1;
+		argv = cbv.result;
 	}
-	while (i < argc)
+	while (cbv.i < argc)
 	{
-		k = 0;
-		//be stricter about removing letters. and minuses not in 0 position.
-		while (argv[i][k] != '\0')
+		cbv.k = 0;
+		while (argv[cbv.i][cbv.k] != '\0')
 		{
-			if (argv[i][k] == '-' && k == 0)
-				k++;
-			else if (argv[i][k] < 48 || argv[i][k] > 57)
+			if (argv[cbv.i][cbv.k] == '-' && cbv.k == 0)
+				cbv.k++;
+			else if (argv[cbv.i][cbv.k] < 48 || argv[cbv.i][cbv.k] > 57)
 			{
 				vec_free(a);
-				if (free_req)
+				if (cbv.free_req)
 					free_argv(argv);
 				return (-1);
 			}
 			else
-				k++;
+				cbv.k++;
 		}
-		tmp = ft_long_atoi(argv[i]);
-		if (tmp > 2147483647 || tmp < -2147483648)
+		cbv.tmp = ft_long_atoi(argv[cbv.i]);
+		if (cbv.tmp > 2147483647 || cbv.tmp < -2147483648)
 		{
-			if (free_req)
+			if (cbv.free_req)
 				free_argv(argv);
 			return (-1);
 		}
-		int_tmp = (int)tmp;
-		vec_push(a, &int_tmp);
-		ptr = vec_get(a, i - 1);
-		i++;
+		cbv.int_tmp = (int)cbv.tmp;
+		vec_push(a, &cbv.int_tmp);
+		//why are we doing this?
+		cbv.ptr = vec_get(a, cbv.i - 1);
+		cbv.i++;
 	}
-	if (free_req)
+	if (cbv.free_req)
 		free_argv(argv);
 	return (1);
 }
