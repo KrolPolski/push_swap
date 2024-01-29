@@ -6,23 +6,26 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 12:50:48 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 13:40:10 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_argv(char **argv)
+void	free_argv(char **argv, t_cbv *cbv)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i] != NULL)
-	{
+	while (argv[i] != NULL && cbv->free_req == 1)
+	{	
+		ft_printf("About to try to free argv[%d] which is '%s'\n", i, argv[i]);
 		free(argv[i]);
 		i++;
 	}
-	free(argv);
+	if (cbv->free_req == 1)
+		free(argv);
+	cbv->free_req = 0;
 }
 
 char	**handle_split(int *argc, char **argv, int *i)
@@ -36,6 +39,8 @@ char	**handle_split(int *argc, char **argv, int *i)
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
+		if (!ft_strchr(argv[1], ' '))
+			return (NULL);
 		result = ft_split(argv[1], ' ');
 		if (!result)
 		{
@@ -62,8 +67,11 @@ int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
 		else if (argv[cbv->i][cbv->k] < 48 || argv[cbv->i][cbv->k] > 57)
 		{
 			vec_free(a);
-			if (cbv->free_req)
-				free_argv(argv);
+			if (cbv->free_req == 1)
+			{	
+				ft_printf("Now trying to free because we detected letters and cbv->free_req is %d\n", cbv->free_req);
+				free_argv(argv, cbv);
+			}
 			return (-1);
 		}
 		else
@@ -98,7 +106,10 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		if (cbv.tmp > 2147483647 || cbv.tmp < -2147483648)
 		{
 			if (cbv.free_req)
-				free_argv(argv);
+			{
+				ft_printf("freeing argv because we are outside int bounds\n");
+				free_argv(argv, &cbv);
+			}
 			return (-1);
 		}
 		cbv.int_tmp = (int)cbv.tmp;
@@ -106,6 +117,6 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		cbv.i++;
 	}
 	if (cbv.free_req)
-		free_argv(argv);
+		free_argv(argv, &cbv);
 	return (1);
 }
