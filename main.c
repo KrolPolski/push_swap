@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 14:18:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:21:40 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}
 	vec_new(&a, 0, sizeof(int));
