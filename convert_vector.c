@@ -6,12 +6,13 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 14:18:26 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:31:59 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Frees argv in the event it was overwritten by our handle_split*/
 void	free_argv(char **argv, t_cbv *cbv)
 {
 	int	i;
@@ -27,6 +28,8 @@ void	free_argv(char **argv, t_cbv *cbv)
 	cbv->free_req = 0;
 }
 
+/*handles the case of all the arguments given as a
+ single space delimited string*/
 char	**handle_split(int *argc, char **argv, int *i)
 {
 	char	**result;
@@ -56,6 +59,7 @@ char	**handle_split(int *argc, char **argv, int *i)
 	return (NULL);
 }
 
+/*Checks for non numeric characters or more than one - sign*/
 int	validate_input(t_cbv *cbv, t_vec *a, char **argv)
 {
 	cbv->k = 0;

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:56:54 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 10:57:57 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:27:11 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	choose_min_max(t_vec *a, t_vec *b, t_ccp *z)
 	}
 }
 
+/* this allows our logic to wrap around the a vector
+as needed, to avoid segfaults from going outside of index range*/
 void	set_a_next(t_vec *a, t_ccp *z)
 {
 	if (z->i == a->len - 1)
@@ -53,6 +55,8 @@ void	set_a_next(t_vec *a, t_ccp *z)
 		z->a_prev = z->i - 1;
 }
 
+/* this allows our logic to wrap around the b vector
+as needed, to avoid segfaults from going outside of index range*/
 void	set_b_next(t_vec *b, t_ccp *z)
 {
 	if (z->k == 0)

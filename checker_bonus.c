@@ -6,12 +6,13 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:18:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 16:24:49 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:39:03 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// check for duplicate integers
 void	detect_duplicates(t_vec *a, t_vec *b)
 {
 	unsigned long	i;
@@ -37,6 +38,7 @@ void	detect_duplicates(t_vec *a, t_vec *b)
 	}
 }
 
+// check to see if sorting was actually successful
 int	checker_order(t_vec *a, t_vec *b)
 {
 	int	i;
@@ -84,6 +86,7 @@ int	process_single_order(t_vec *a, t_vec *b, char *str)
 	return (1);
 }
 
+// process all the instructions provided by the push_swap we are testing
 void	execute_orders(t_vec *a, t_vec *b, char *str)
 {
 	while (str)

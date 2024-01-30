@@ -6,31 +6,16 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:22:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 10:53:31 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:30:37 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*We need to determine which item in stack a
+
+/* We need to determine which item in stack a
  will cost the least in terms of rotates to find
   its correct position in stack b. This will return the 
   index of the cheapest one*/
-//iterations:
-//1. first choose cheapest one only considering a rotates
-//2. consider b rotates
-//3. consider double rotates
-//Right now we are only considering costs as a + b rotates, 
-//when we need to consider the impact on cost of double rotates.
-//This might be the last optimization we need.
-//also should consider costs of max and min insertions. 
-//those two will get us over the finish line
-//We should implement a cost discount for double push opportunities.
-// maybe multiply by 0.5 if we could do a second push without any rotations
-//but how do we implement that?
-//need to check if the index after the one we are 
-//working with is greater than the current index,
-//but also less than the one on the bottom?
-
 void	handle_default_insertion(t_vec *a, t_vec *b, t_ccp *z)
 {
 	z->a_cost_forward = z->i;
@@ -90,6 +75,7 @@ void	execute_cheapest_push(t_vec *a, t_vec *b, int index_a, int index_b)
 	pb(a, b, 1);
 }
 
+/*Push the entire b stack back into a in the appropriate position*/
 int	batch_push(t_vec *a, t_vec *b)
 {
 	smart_rotate(a, b, find_max(a), find_max(b));

@@ -6,13 +6,12 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:10:32 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/29 14:21:40 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:33:03 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//detect duplicate values and return an error
 void	detect_duplicates(t_vec *a, t_vec *b)
 {
 	unsigned long	i;
