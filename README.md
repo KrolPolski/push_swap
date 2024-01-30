@@ -49,3 +49,10 @@ sa
 rra
 rra
 ```
+## Visualization
+Here is a visualization of the before and after of this example sort, using the repo here: https://github.com/o-reo/push_swap_visualizer
+### Before
+<img width="350" alt="Screen Shot 2024-01-30 at 12 35 07" src="https://github.com/KrolPolski/push_swap/assets/47835762/5e52725d-403f-48ab-a198-7f11a0b94d2e">
+
+### After
+<img width="350" alt="Screen Shot 2024-01-30 at 12 35 26" src="https://github.com/KrolPolski/push_swap/assets/47835762/175056b7-a155-4bb0-a826-21ca294c0067">
