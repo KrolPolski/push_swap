@@ -21,7 +21,7 @@ The goal was to fully sort the integers provided, under the following limits:
 * 500 integers: 5500
 
 ## Approach
-I decided that it would be easier to complete this project if I was able to use vectors, so it would be easier to insert and move values than it would be with a standard array. Since vectors are not available by default in C, I followed this very helpful tutorial (https://github.com/juliuskoskela/c-vec) and added the relevant functions to my libft library.
+I decided that it would be easier to complete this project if I was able to use vectors, so it would be easier to insert and move values than it would be with a standard array. Since vectors are not available by default in C, I followed this very helpful tutorial (https://github.com/juliuskoskela/c-vec) and added the relevant functions to my [libft](https://github.com/KrolPolski/Libft) library.
 
 For small sets, the logic is very straightforward and largely hardcoded. For larger sets (>5 integers), we use an insertion sort model that pushes integers into reverse order in stack b, until there are three remaining in a. It then pushes all the b stack back into a in order.
 
