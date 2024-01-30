@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/30 13:42:54 by rboudwin          #+#    #+#              #
+#    Updated: 2024/01/30 13:44:31 by rboudwin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	:= push_swap 
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast 
 SRCS	:= main.c \
@@ -54,4 +66,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all, clean, fclean, re 
+.PHONY: all, clean, fclean, bonus, re 

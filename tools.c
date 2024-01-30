@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 09:33:17 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/25 11:27:15 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:50:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_order(t_vec *a, t_vec *b)
 	in_order = 1;
 	while (i < a->len)
 	{
-		if (*(int *)(vec_get(a, i - 1)) > *(int *)(vec_get(a, i)))
+		if (vec_int(a, i - 1) > vec_int(a, i))
 			in_order = 0;
 		i++;
 	}
