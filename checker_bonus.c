@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:18:31 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/30 14:39:03 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:38:20 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ int	checker(t_vec *a, t_vec *b)
 	execute_orders(a, b, str);
 	if (!checker_order(a, b))
 	{
-		write(1, "KO\n", 2);
+		write(1, "KO\n", 3);
 		vec_free(a);
 		vec_free(b);
 		exit(EXIT_FAILURE);
 	}
 	else
-		write(1, "OK\n", 2);
+		write(1, "OK\n", 3);
 	vec_free(a);
 	vec_free(b);
 	exit(EXIT_SUCCESS);
