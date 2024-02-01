@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:43:19 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/30 14:31:59 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:23:24 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int	convert_and_build_vector(t_vec *a, int argc, char **argv)
 		if (validate_input(&cbv, a, argv) == -1)
 			return (-1);
 		cbv.tmp = ft_long_atoi(argv[cbv.i]);
-		if (cbv.tmp > 2147483647 || cbv.tmp < -2147483648)
+		if ((ft_strlen(argv[cbv.i]) > 11) || cbv.tmp > 2147483647
+			|| cbv.tmp < -2147483648)
 		{
 			if (cbv.free_req)
 			{
